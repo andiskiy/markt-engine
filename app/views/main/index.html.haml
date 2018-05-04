@@ -4,6 +4,9 @@
       .navmenu-header
         .fas.fa-bars
         Categories
+      =link_to root_path do
+        .navmenu-item
+          All Items
       -@categories.each do |category|
         =link_to category_path(category) do
           .navmenu-item

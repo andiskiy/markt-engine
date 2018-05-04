@@ -2,7 +2,10 @@ class CategoriesController < ApplicationController
 
 
   def show
-    @items = Category.find(params[:id]).items
+    @categories = Category.all
+    category = Category.find(params[:id])
+    @items = category.items
+    @category_name = category.name
   end
 
 end

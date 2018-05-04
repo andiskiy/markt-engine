@@ -7,10 +7,17 @@ body {
 }
 
 .page_head {
-  color: #666666;
+  color: #999999;
   font-size: 20px;
   padding: 10px;
-  border-bottom: 1px solid #CCCCCC;
+  border-bottom: 1px solid #999999;
+  text-shadow: 0px 1px 0px #ffffff;
+}
+
+.notice-info {
+  font-size: 16px;
+  color: #999999;
+  text-shadow: 0px 1px 0px #ffffff;
 }
 
 a:hover {
