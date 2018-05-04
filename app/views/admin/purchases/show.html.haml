@@ -1,0 +1,13 @@
+.row
+  .col-sm-12
+    .bg-secondary.text-white
+      Purchase manage
+      .fas.fa-angle-double-right
+      Show orders
+
+%ul
+  -@orders.each do |order|
+    %li
+      =link_to item_path(order.item) do
+        .fas.fa-gift
+        =order.item.name

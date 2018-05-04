@@ -1,0 +1,128 @@
+.general {
+  .navbar {
+
+    height: 70px;
+    background: #ffa84c;
+    background: -moz-linear-gradient(top, #ffa84c 0%, #ff7b0d 100%);
+    background: -webkit-linear-gradient(top, #ffa84c 0%, #ff7b0d 100%);
+    background: linear-gradient(to bottom, #ffa84c 0%, #ff7b0d 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffa84c', endColorstr='#ff7b0d', GradientType=0);
+
+    .searchbar {
+      width: 100%;
+      height: 40px;
+      line-height: 40px;
+      color: #2E2F30;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 8px 8px 8px 8px;
+      -moz-border-radius: 8px 8px 8px 8px;
+      -webkit-border-radius: 8px 8px 8px 8px;
+      border: 0px solid #F7F7F7;
+      position: relative;
+      padding: 3px;
+
+      &:hover {
+        background: rgba(255, 255, 255, 1.0);
+      }
+
+    }
+
+    .search-icon {
+      color: #2E2F30;
+      right: 20px;
+      bottom: 6px;
+      position: absolute;
+    }
+
+    a {
+      padding: 5px;
+      color: #F7F7F7;
+      text-shadow: 0px -1px 0px #2E2F30;
+      text-decoration: none;
+      &:hover {
+        color: #F7F7F7;
+      }
+    }
+
+    .dropdown-menu {
+      a {
+        text-decoration: none;
+        color: #2E2F30;
+      }
+    }
+
+    .user-tools {
+      text-align: right;
+    }
+  }
+}
+
+.navmenu {
+  margin: 10px;
+  background-color: #FFFFFF;
+  min-height: 300px;
+
+  .navmenu-header {
+    width: 100%;
+    padding: 10px;
+    color: #F7F7F7;
+    background-color: #ff7b0d;
+    text-shadow: 0px -1px 0px #2E2F30;
+  }
+
+
+  text-decoration: none;
+
+
+  .navmenu-item {
+    border-top: 1px solid #DADADA;
+    width: 100%;
+    padding: 10px;
+    color: #666666;
+
+    &:hover {
+      background-color: #FDFCFA;
+    }
+  }
+}
+
+.items-list {
+  margin: 10px;
+
+  .item {
+    background-color: #F7F7F7;
+    margin: 5px;
+    text-align: center;
+    font-size: 18px;
+    padding: 5px;
+    text-shadow: 0px -1px 0px #2E2F30;
+
+    .item-header {
+      color: #2E2F30;
+      padding: 20px;
+    }
+
+    .item-photo {
+      color: #F7F7F7;
+      background-color: teal;
+      height: 150px;
+    }
+
+    .item-price {
+      color: #F7F7F7;
+      padding: 10px;
+      background-color: lightseagreen;
+    }
+
+    .item-button {
+      padding: 15px;
+      color: #F7F7F7;
+      background-color: #ff7b0d;
+      &:hover {
+        background-color: #fc7121
+      }
+    }
+
+  }
+
+}

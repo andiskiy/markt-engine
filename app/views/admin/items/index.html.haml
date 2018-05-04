@@ -1,0 +1,40 @@
+.row
+  .col-sm-12
+    .bg-secondary.text-white
+      Items manage
+      .fas.fa-angle-double-right
+
+%table.table
+  %thead.thead-dark
+    %tr
+      %th Name
+      %th Description
+      %th Price
+      %th Category
+      %th Actions
+  %tbody
+    -@items.each do |item|
+      %tr
+        %td
+          =item.name
+        %td
+          =item.description
+        %td
+          =item.price
+        %td
+          =item.category.name
+        %td
+          .btn-group
+            =link_to edit_admin_item_path(item), class: 'btn btn-primary' do
+              .fas.fa-edit
+            =link_to admin_item_path(item), method: :delete, class: 'btn btn-danger' do
+              .fas.fa-trash-alt
+
+.row
+  .col-sm-4
+  .col-sm-4
+    %center
+      =link_to new_admin_item_path, class: 'btn btn-success' do
+        .fas.fa-plus
+        Add Item
+  .col-sm-4

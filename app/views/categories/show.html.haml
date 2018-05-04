@@ -1,0 +1,13 @@
+.row
+  -@items.each do |item|
+    .col-sm-3
+      .img-thumbnail
+        %center
+          =image_tag('no_photo.jpg')
+          =link_to item.name, item_path(item.id)
+          .label.label-danger
+            ="$#{item.price}"
+          =link_to orders_path(item_id: item.id), method: 'POST' do
+            .btn.btn-success
+              .fas.fa-cart-plus
+              Add to Cart

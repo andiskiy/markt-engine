@@ -1,0 +1,18 @@
+.row
+  .col-sm-12
+    .bg-secondary.text-white
+      Items manage
+      .fas.fa-angle-double-right
+      Create item
+
+.row
+  .col-sm-4
+  .col-sm-4
+    .img-thumbnail
+      =simple_form_for @item, url: admin_items_path do |f|
+        =f.input :name
+        =f.input :description
+        =f.input :price
+        =f.association :category
+        =f.submit class: 'btn btn-success'
+  .col-sm-4

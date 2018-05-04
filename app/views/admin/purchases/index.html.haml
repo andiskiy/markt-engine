@@ -1,0 +1,51 @@
+.row
+  .col-sm-12
+    .bg-secondary.text-white
+      Purchase manage
+      .fas.fa-angle-double-right
+
+.row.bg-dark.text-white
+  .col-sm-3
+    Data
+  .col-sm-2
+    User
+  .col-sm-2
+    Total price
+  .col-sm-2
+    Status
+  .col-sm-3
+    Actions
+.row
+  -@purchases.each do |purchase|
+    .col-sm-3
+      =purchase.created_at
+    .col-sm-2
+      ="#{purchase.user.first_name} #{purchase.user.last_name} (#{purchase.user.email})"
+    .col-sm-2
+      =purchase.orders.map{|order| order.item}.pluck(:price).inject(0, :+)
+    .col-sm-2
+      -if purchase.completed
+        .badge.badge-success
+          .far.fa-check-circle
+          Completed
+      -else
+        .badge.badge-warning
+          .far.fa-circle
+          Pending
+    .col-sm-3
+      .btn-group
+        =link_to '#', class: 'btn btn-info', data: {toggle: 'collapse', target: "#details-#{purchase.id}"} do
+          .far.fa-clipboard
+          Show orders
+        =link_to admin_purchase_path(purchase), method: :delete, class: 'btn btn-danger' do
+          .fas.fa-trash-alt
+
+    .col-sm-12.bg-light.text-dark
+      .collapse{id: "details-#{purchase.id}"}
+        .list-group
+          -purchase.orders.each do |order|
+            .list-group-item.list-group-item-info
+              %center
+                =link_to item_path(order.item) do
+                  .fas.fa-gift
+                  ="#{order.item.name} - $#{order.item.price}"
