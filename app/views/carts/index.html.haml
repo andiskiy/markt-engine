@@ -1,0 +1,15 @@
+
+.page_head
+  Items in Cart
+.items-list
+  .row
+    -@orders.each do |order|
+      .col-sm-4
+        .item.shadow-sm
+          .item-header
+            =order.item.name
+          .item-photo
+            .fas.fa-images
+            No image
+          .item-price
+            ="$#{order.item.price}"
