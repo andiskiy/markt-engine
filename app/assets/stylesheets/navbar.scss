@@ -52,7 +52,8 @@
     }
 
     .user-tools {
-      text-align: right;
+      float: right;
+      display: inline-block;
     }
   }
 }
