@@ -12,6 +12,14 @@ body {
   padding: 10px;
   border-bottom: 1px solid #999999;
   text-shadow: 0px 1px 0px #ffffff;
+
+  .header-actions {
+      color: #999999;
+      &:hover {
+        color: #666666;
+      }
+  }
+
 }
 
 .notice-info {
