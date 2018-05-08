@@ -9,27 +9,28 @@
       %center
         Items in Cart
     .col-sm-4
-.items-list
-  -if @orders.count.zero?
-    %center
-      .notice-info
-        .fas.fa-exclamation-circle
-        No items in cart
-  -else
-    .row
-      -@orders.each do |order|
-        .col-sm-4
-          .item.shadow-sm
-            .row
-              .col-sm-2
-              .col-sm-8
-                .item-header
-                  =order.item.name
-              .col-sm-2
-                =link_to order_path(order), method: :delete, class: 'item-close' do
-                  .far.fa-times-circle
-            .item-photo
-              .fas.fa-images
-              No image
-            .item-price
-              ="$#{order.item.price}"
+.content
+  .items-list
+    -if @orders.count.zero?
+      %center
+        .notice-info
+          .fas.fa-exclamation-circle
+          No items in cart
+    -else
+      .row
+        -@orders.each do |order|
+          .col-sm-4
+            .item.shadow-sm
+              .row
+                .col-sm-2
+                .col-sm-8
+                  .item-header
+                    =order.item.name
+                .col-sm-2
+                  =link_to order_path(order), method: :delete, class: 'item-close' do
+                    .far.fa-times-circle
+              .item-photo
+                .fas.fa-images
+                No image
+              .item-price
+                ="$#{order.item.price}"

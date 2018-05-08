@@ -6,6 +6,12 @@ body {
   background-color: #EFEFEF !important;
 }
 
+.content {
+  min-width: 965px;
+  max-width: 1280px;
+  margin: auto;
+}
+
 .page_head {
   font-family: 'Yanone Kaffeesatz', sans-serif;
 
@@ -21,7 +27,6 @@ body {
         color: #666666;
       }
   }
-
 }
 
 .notice-info {
