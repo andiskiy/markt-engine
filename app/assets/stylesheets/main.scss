@@ -7,6 +7,8 @@ body {
 }
 
 .page_head {
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+
   color: #999999;
   font-size: 20px;
   padding: 10px;
@@ -30,4 +32,59 @@ body {
 
 a:hover {
   text-decoration:none !important;
+}
+
+.items-list {
+  margin: 10px;
+
+  .item {
+    background-color: #F7F7F7;
+    margin: 5px;
+    text-align: center;
+    font-size: 18px;
+    padding: 5px;
+    text-shadow: 0px -1px 0px #666666;
+
+    .item-close {
+      color: #BBBBBB;
+      font-size: 25px;
+
+      &:hover {
+        color: #B00100;
+      }
+    }
+
+    .item-header {
+      font-size: 24px;
+      font-family: 'Yanone Kaffeesatz', sans-serif;
+      //font-family: 'Oswald', sans-serif;
+      color: #7c7c7c;
+      padding: 20px;
+    }
+
+    .item-photo {
+      color: #F7F7F7;
+      background-color: teal;
+      height: 150px;
+    }
+
+    .item-price {
+      font-family: 'Oswald', sans-serif;
+      color: #F7F7F7;
+      padding: 10px;
+      background-color: lightseagreen;
+    }
+
+    .item-button {
+      font-family: 'Oswald', sans-serif;
+      padding: 15px;
+      color: #F7F7F7;
+      background-color: #ff7b0d;
+      &:hover {
+        background-color: #fc7121
+      }
+    }
+
+  }
+
 }

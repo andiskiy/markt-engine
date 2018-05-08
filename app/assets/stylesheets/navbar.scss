@@ -1,6 +1,7 @@
 .general {
   .navbar {
-
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
     height: 70px;
     background: #ffa84c;
     background: -moz-linear-gradient(top, #ffa84c 0%, #ff7b0d 100%);
@@ -59,6 +60,10 @@
 }
 
 .navmenu {
+  //font-family: 'PT Sans Narrow', sans-serif;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-size: 20px;
+
   margin: 10px;
   background-color: #FFFFFF;
   min-height: 300px;
@@ -87,52 +92,3 @@
   }
 }
 
-.items-list {
-  margin: 10px;
-
-  .item {
-    background-color: #F7F7F7;
-    margin: 5px;
-    text-align: center;
-    font-size: 18px;
-    padding: 5px;
-    text-shadow: 0px -1px 0px #666666;
-
-    .item-close {
-      color: #BBBBBB;
-      font-size: 25px;
-
-      &:hover {
-        color: #B00100;
-      }
-    }
-
-    .item-header {
-      color: #BBBBBB;
-      padding: 20px;
-    }
-
-    .item-photo {
-      color: #F7F7F7;
-      background-color: teal;
-      height: 150px;
-    }
-
-    .item-price {
-      color: #F7F7F7;
-      padding: 10px;
-      background-color: lightseagreen;
-    }
-
-    .item-button {
-      padding: 15px;
-      color: #F7F7F7;
-      background-color: #ff7b0d;
-      &:hover {
-        background-color: #fc7121
-      }
-    }
-
-  }
-
-}
