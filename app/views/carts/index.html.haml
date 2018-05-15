@@ -9,6 +9,7 @@
       %center
         Items in Cart
     .col-sm-4
+      = pay_url "Pay with Robokassa", @purchase.id, @purchase.amount
 .content
   .items-list
     -if @orders.count.zero?
