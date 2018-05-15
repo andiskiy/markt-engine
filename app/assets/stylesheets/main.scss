@@ -1,9 +1,9 @@
 html {
-  background-color: #EFEFEF !important;
+  background-color: #f8f8f8 !important;
 }
 
 body {
-  background-color: #EFEFEF !important;
+  background-color: #f8f8f8 !important;
 }
 
 .content {
@@ -13,13 +13,13 @@ body {
 }
 
 .page_head {
-  font-family: 'Yanone Kaffeesatz', sans-serif;
-
+  //font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 200;
   color: #999999;
   font-size: 20px;
+  margin: 5px;
   padding: 10px;
-  border-bottom: 1px solid #999999;
-  text-shadow: 0px 1px 0px #ffffff;
 
   .header-actions {
       color: #999999;
@@ -27,12 +27,24 @@ body {
         color: #666666;
       }
   }
+
+  .payment-button {
+    float: right;
+    a {
+      color: #ffffff;
+      padding: 5px;
+      border-radius: 10px 10px 10px 10px;
+      -moz-border-radius: 10px 10px 10px 10px;
+      -webkit-border-radius: 10px 10px 10px 10px;
+      background-color: #fc7121;
+    }
+  }
 }
 
 .notice-info {
   font-size: 16px;
   color: #999999;
-  text-shadow: 0px 1px 0px #ffffff;
+  //text-shadow: 0px 1px 0px #ffffff;
 }
 
 a:hover {
@@ -40,53 +52,61 @@ a:hover {
 }
 
 .items-list {
-  margin: 10px;
+  padding: 0px 15px;
 
   .item {
+    border: 1px solid #fc7121;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
     background-color: #FFFFFF;
     margin: 5px;
     text-align: center;
     font-size: 18px;
     padding: 5px;
-    text-shadow: 0px -1px 0px #666666;
+    //text-shadow: 0px -1px 0px #666666;
 
     .item-close {
       color: #BBBBBB;
       font-size: 25px;
 
       &:hover {
-        color: #B00100;
+        color: #fc7121;
       }
     }
 
     .item-header {
       font-size: 20px;
-      font-family: 'Yanone Kaffeesatz', sans-serif;
-      //font-family: 'Oswald', sans-serif;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 200;
       color: #7c7c7c;
       padding: 20px;
     }
 
     .item-photo {
-      color: #F7F7F7;
-      background-color: teal;
+      color: #DADADA;
+      background-color: #fbfbfb;
       height: 150px;
     }
 
     .item-price {
       font-family: 'Oswald', sans-serif;
-      color: #F7F7F7;
+
+      color: #34dbae;
       padding: 10px;
-      background-color: lightseagreen;
+      //background-color: lightseagreen;
     }
 
     .item-button {
       font-family: 'Oswald', sans-serif;
-      padding: 15px;
-      color: #F7F7F7;
-      background-color: #ff7b0d;
+      padding: 5px;
+      border-radius: 10px 10px 10px 10px;
+      -moz-border-radius: 10px 10px 10px 10px;
+      -webkit-border-radius: 10px 10px 10px 10px;
+      color: #fc7121;
+      //background-color: #F7F7F7;
       &:hover {
-        background-color: #fc7121
+        color: #de5b30;
       }
     }
 

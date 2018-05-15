@@ -3,13 +3,13 @@
   .row
     .col-sm-4
       =link_to root_path, class: "header-actions"  do
-        .fas.fa-arrow-alt-circle-left
         Back to Main
     .col-sm-4
       %center
         Items in Cart
     .col-sm-4
-      = pay_url "Pay with Robokassa", @purchase.id, @purchase.amount
+      .payment-button
+        = pay_url "Payment", @purchase.id, @purchase.amount
 .content
   .items-list
     -if @orders.count.zero?
@@ -21,7 +21,7 @@
       .row
         -@orders.each do |order|
           .col-sm-4
-            .item.shadow-sm
+            .item
               .row
                 .col-sm-2
                 .col-sm-8
