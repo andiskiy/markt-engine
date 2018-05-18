@@ -13,6 +13,8 @@
         =f.input :name
         =f.input :description
         =f.input :price
+        =f.simple_fields_for :item_photos do |p|
+          =p.input :photo
         =f.association :category
         =f.submit class: 'btn btn-success'
   .col-sm-4

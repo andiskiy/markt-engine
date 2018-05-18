@@ -29,6 +29,9 @@
 /config/master.key
 
 .idea/*
+.env
+
+/public/uploads/*
 
 /tmp
 config/database.yml

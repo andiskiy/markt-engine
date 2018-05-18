@@ -23,8 +23,11 @@
                 .item-header
                   =item.name
                 .item-photo
-                  .fas.fa-images
-                  No image
+                  -if item.item_photos.present?
+                    =image_tag item.item_photos.first.photo.thumb.url
+                  -else
+                    .fas.fa-images
+                    No image
                 .item-price
                   ="$#{item.price}"
                 =link_to orders_path(item_id: item.id), method: 'POST' do

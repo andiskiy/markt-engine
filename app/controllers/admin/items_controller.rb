@@ -7,6 +7,7 @@ module Admin
 
     def new
       @item = Item.new
+      @item.item_photos.build
     end
 
     def create
@@ -17,7 +18,7 @@ module Admin
     private
 
     def permit_params
-      params.require(:item).permit(:name, :description, :price, :category_id)
+      params.require(:item).permit(:name, :description, :price, :category_id, item_photos_attributes: [:photo])
     end
   end
 end
