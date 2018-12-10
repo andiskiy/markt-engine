@@ -1,0 +1,31 @@
+require: rubocop-rspec
+
+Rails:
+  Enabled: true
+  Exclude:
+    - 'db/schema.rb'
+    - 'bin/**/*'
+
+Style/Documentation:
+  Enabled: false
+Style/AlignHash:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: table
+Metrics/LineLength:
+  Max: 130
+RSpec/FilePath:
+  Enabled: false
+
+ClassLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/AbcSize:
+  Max: 25
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
