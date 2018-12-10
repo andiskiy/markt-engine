@@ -1,36 +1,21 @@
-.content
-  .row
-    .col-sm-3
-      .navmenu
-        .navmenu-header
-          .fas.fa-bars
-          Categories
-        =link_to root_path do
-          .navmenu-item
-            All Items
-        -@categories.each do |category|
-          =link_to category_path(category) do
-            .navmenu-item
-              =category.name
-    .col-sm-9
-      .page_head
-        All Items
-      .items-list
-        .row
-          -@items.each do |item|
-            .col-sm-4
-              .item
-                .item-header
-                  =item.name
-                .item-photo
-                  -if item.item_photos.present?
-                    =image_tag item.item_photos.first.photo.thumb.url
-                  -else
-                    .fas.fa-images
-                    No image
-                .item-price
-                  ="$#{item.price}"
-                =link_to orders_path(item_id: item.id), method: 'POST' do
-                  .item-button
-                    .fas.fa-cart-plus
-                    Add to Cart
+.col-sm-12
+  .page_head
+    All Items
+  .items-list
+    .row
+      - @items.each do |item|
+        .col-sm-4
+          .item
+            .item-header
+              =item.name
+            .item-photo
+              -if item.item_photos.present?
+                =image_tag item.item_photos.first.photo.thumb.url
+              -else
+                .fas.fa-images
+                No image
+            .item-price $#{item.price}
+            =link_to orders_path(item_id: item.id), method: 'POST' do
+              .item-button
+                .fas.fa-cart-plus
+                Add to Cart

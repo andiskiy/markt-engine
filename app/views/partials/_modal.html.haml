@@ -1,0 +1,11 @@
+.modal.fade{ id: "#{type}-modal",
+             aria: { hidden: true },
+             role: 'dialog',
+             tabindex: -1 }
+  .modal-dialog{ class: "modal-#{size}" }
+    - if body
+      .modal-content.modal-body
+        = captured
+    - else
+      .modal-content
+        = captured
