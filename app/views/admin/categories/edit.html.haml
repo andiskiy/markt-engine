@@ -3,6 +3,5 @@
     .bg-secondary.text-white
       Categories manage
       .fas.fa-angle-double-right
-      Create category
-
-= render partial: "form", locals: {url: admin_categories_path}
+      Edit category
+= render partial: "form", locals: {url: admin_category_path(@category)}

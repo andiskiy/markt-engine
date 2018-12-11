@@ -14,14 +14,13 @@
     -@categories.each do |category|
       %tr
         %td
-          =category.name
+          =link_to edit_admin_category_path(category) do
+            =category.name
         %td
           =category.description
         %td
           .btn-group
-            =link_to edit_admin_category_path(category), class: 'btn btn-primary' do
-              .fas.fa-edit
-            =link_to admin_category_path(category), method: :delete, class: 'btn btn-danger' do
+            =link_to admin_category_path(category), method: :delete, class: 'delete' do
               .fas.fa-trash-alt
 
 .row
