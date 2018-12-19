@@ -1,6 +1,5 @@
 module Admin
   class ItemsController < AdminController
-
     def index
       @items = Item.all
     end
@@ -12,7 +11,7 @@ module Admin
 
     def create
       @item = Item.create(permit_params)
-      redirect_to admin_items_path
+      redirect_to(admin_items_path)
     end
 
     private

@@ -27,9 +27,9 @@ gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'font-awesome-sass', '~> 5.0.9'
 gem 'devise'
 gem 'simple_form'
-gem "rubykassa", git: 'git://github.com/Sammy3124/rubykassa.git'
+gem 'rubykassa', git: 'git://github.com/Sammy3124/rubykassa.git'
 gem 'carrierwave', '~> 1.0'
-gem "mini_magick"
+gem 'mini_magick'
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'

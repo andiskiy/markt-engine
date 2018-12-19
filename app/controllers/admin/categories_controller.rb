@@ -1,7 +1,6 @@
 module Admin
   class CategoriesController < AdminController
-
-    before_action :set_category, only: [:edit, :update, :destroy]
+    before_action :set_category, only: %i[edit update destroy]
 
     def index
       @categories = Category.all
@@ -14,19 +13,19 @@ module Admin
     def edit; end
 
     def create
-      @category = Category.create(permit_params)
+      @category = Category.new(permit_params)
       @category.save
-      redirect_to admin_categories_path
+      redirect_to(admin_categories_path)
     end
 
     def update
       @category.update(permit_params)
-      redirect_to admin_categories_path
+      redirect_to(admin_categories_path)
     end
 
     def destroy
       @category.destroy
-      redirect_to admin_categories_path
+      redirect_to(admin_categories_path)
     end
 
     private
@@ -38,6 +37,5 @@ module Admin
     def set_category
       @category = Category.find(params[:id])
     end
-
   end
 end

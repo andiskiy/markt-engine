@@ -14,7 +14,7 @@ module ApplicationHelper
   def page_cols(options)
     options = { md: options.to_i } if options.respond_to? :to_i
 
-    set_main_row(options)
+    main_row(options)
   end
 
   def title(page_title)
@@ -23,7 +23,7 @@ module ApplicationHelper
 
   private
 
-  def set_main_row(options)
+  def main_row(options)
     row_class = options.map do |k, v|
       "col-#{k}-#{v} offset-#{k}-#{(12 - v) / 2}"
     end

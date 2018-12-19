@@ -1,6 +1,5 @@
 module Admin
   class PurchasesController < AdminController
-
     def index
       @purchases = Purchase.all
     end
@@ -8,6 +7,5 @@ module Admin
     def show
       @orders = Purchase.find(params[:id]).orders
     end
-
   end
 end
