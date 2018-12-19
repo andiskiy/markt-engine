@@ -19,7 +19,7 @@
                 .fas.fa-user
                 = current_user.full_name
               .dropdown-menu
-                - if current_user.is_admin?
+                - if current_user.admin?
                   = link_to admin_path, class: 'dropdown-item' do
                     .fas.fa-cogs
                     Admin

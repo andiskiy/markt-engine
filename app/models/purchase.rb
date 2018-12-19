@@ -1,11 +1,10 @@
-class Purchase < ActiveRecord::Base
+class Purchase < ApplicationRecord
+  # Associations
   belongs_to :user
   has_many :orders
 
+  # Methods
   def amount
-    total_amount = 0.0
-    orders.each{|order| total_amount += order.item.price}
-    total_amount
+    orders.inject(0.0) { |sum, order| sum + order.item.price }
   end
-
 end
