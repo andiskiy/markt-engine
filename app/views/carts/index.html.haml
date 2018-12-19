@@ -1,37 +1,32 @@
-
 .page_head
   .row
-    .col-sm-4
-      =link_to root_path, class: "header-actions"  do
-        Back to Main
+    .col-sm-4= link_to 'Back to Main', root_path, class: 'header-actions'
     .col-sm-4
       %center
         Items in Cart
     .col-sm-4
       .payment-button
-        = pay_url "Payment", @purchase.id, @purchase.amount
+        = pay_url 'Payment', @purchase.id, @purchase.amount
 .content
   .items-list
-    -if @orders.count.zero?
-      %center
-        .notice-info
-          .fas.fa-exclamation-circle
-          No items in cart
-    -else
+    - if @orders.present?
       .row
-        -@orders.each do |order|
+        - @orders.each do |order|
           .col-sm-4
             .item
               .row
                 .col-sm-2
                 .col-sm-8
-                  .item-header
-                    =order.item.name
+                  .item-header= order.item.name
                 .col-sm-2
-                  =link_to order_path(order), method: :delete, class: 'item-close' do
+                  = link_to order_path(order), method: :delete, class: 'item-close' do
                     .far.fa-times-circle
               .item-photo
                 .fas.fa-images
                 No image
-              .item-price
-                ="$#{order.item.price}"
+              .item-price $#{order.item.price}
+    - else
+      %center
+        .notice-info
+          .fas.fa-exclamation-circle
+          No items in cart

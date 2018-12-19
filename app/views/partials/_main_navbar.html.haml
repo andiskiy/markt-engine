@@ -3,35 +3,31 @@
     .container-fluid
       .col-sm-3
         %center
-          =link_to 'Logo', root_path, class: 'navbar-brand'
+          = link_to 'Logo', root_path, class: 'navbar-brand'
       .col-sm-6
-        %input.searchbar{type: 'text', placeholder: 'Search'}
+        %input.searchbar{ type: 'text', placeholder: 'Search' }
         .search-icon
           .fas.fa-search
       .col-sm-3
-        -if user_signed_in?
+        - if user_signed_in?
           .user-tools.ml-auto
-
-
-            =link_to carts_path do
+            = link_to carts_path do
               .fas.fa-shopping-cart
               Cart
-
-
             %span.dropdown
-              =link_to '#', class: 'dropdown-toggle', id: 'navbardrop', data: {toggle: 'dropdown'} do
+              = link_to '#', class: 'dropdown-toggle', id: 'navbardrop', data: { toggle: 'dropdown' } do
                 .fas.fa-user
-                =current_user.full_name
+                = current_user.full_name
               .dropdown-menu
-                -if current_user.is_admin?
-                  =link_to admin_path, class: 'dropdown-item' do
+                - if current_user.is_admin?
+                  = link_to admin_path, class: 'dropdown-item' do
                     .fas.fa-cogs
                     Admin
-                =link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do
+                = link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do
                   .fas.fa-sign-out-alt
                   Logout
-        -else
+        - else
           .user-tools
-            =link_to new_user_session_path do
+            = link_to new_user_session_path do
               .fas.fa-sign-in-alt
               Login

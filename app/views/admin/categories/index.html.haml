@@ -11,23 +11,23 @@
       %th Description
       %th Actions
   %tbody
-    -@categories.each do |category|
+    - @categories.each do |category|
       %tr
         %td
-          =link_to edit_admin_category_path(category) do
-            =category.name
+          = link_to edit_admin_category_path(category) do
+            = category.name
         %td
-          =category.description
+          = category.description
         %td
           .btn-group
-            =link_to admin_category_path(category), method: :delete, class: 'delete' do
+            = link_to admin_category_path(category), method: :delete, class: 'delete' do
               .fas.fa-trash-alt
 
 .row
   .col-sm-4
   .col-sm-4
     %center
-      =link_to new_admin_category_path, class: 'btn btn-success' do
+      = link_to new_admin_category_path, class: 'btn btn-success' do
         .fas.fa-plus
         Add Category
   .col-sm-4

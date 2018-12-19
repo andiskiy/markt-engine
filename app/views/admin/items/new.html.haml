@@ -9,12 +9,12 @@
   .col-sm-4
   .col-sm-4
     .img-thumbnail
-      =simple_form_for @item, url: admin_items_path do |f|
-        =f.input :name
-        =f.input :description
-        =f.input :price
-        =f.simple_fields_for :item_photos do |p|
-          =p.input :photo
-        =f.association :category
-        =f.submit class: 'btn btn-success'
+      = simple_form_for @item, url: admin_items_path do |f|
+        = f.input :name
+        = f.input :description
+        = f.input :price
+        = f.simple_fields_for :item_photos do |p|
+          = p.input :photo
+        = f.association :category
+        = f.submit class: 'btn btn-success'
   .col-sm-4

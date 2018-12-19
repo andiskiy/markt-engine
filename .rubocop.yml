@@ -8,7 +8,7 @@ Rails:
 
 Style/Documentation:
   Enabled: false
-Style/AlignHash:
+Layout/AlignHash:
   EnforcedHashRocketStyle: table
   EnforcedColonStyle: table
 Metrics/LineLength:

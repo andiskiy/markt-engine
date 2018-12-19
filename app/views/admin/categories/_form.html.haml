@@ -3,8 +3,8 @@
   .col-sm-4
     .content-container
       .img-thumbnail
-        =simple_form_for @category, url: url do |f|
-          =f.input :name
-          =f.input :description
-          =f.submit class: 'btn btn-success'
+        = simple_form_for @category, url: url do |f|
+          = f.input :name
+          = f.input :description
+          = f.submit class: 'btn btn-success'
   .col-sm-4

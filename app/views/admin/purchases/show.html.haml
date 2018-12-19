@@ -6,8 +6,8 @@
       Show orders
 
 %ul
-  -@orders.each do |order|
+  - @orders.each do |order|
     %li
-      =link_to item_path(order.item) do
+      = link_to item_path(order.item) do
         .fas.fa-gift
-        =order.item.name
+        = order.item.name

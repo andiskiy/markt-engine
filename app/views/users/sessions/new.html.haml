@@ -9,6 +9,6 @@
         = f.input :password, required: true
         = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
       .auth-form-actions
-        = f.button :submit, "Log in", class: 'auth-btn-primary'
-        = render "users/shared/links"
+        = f.button :submit, 'Log in', class: 'auth-btn-primary'
+        = render 'users/shared/links'
   .col-sm-4

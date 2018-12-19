@@ -1,12 +1,12 @@
 .col-sm-12
-  .page_head = @category_name
+  .page_head= @category_name
   .items-list
     - if @items.present?
       .row
         - @items.each do |item|
           .col-sm-4
             .item
-              .item-header =item.name
+              .item-header= item.name
               .item-photo
                 .fas.fa-images
                 No image

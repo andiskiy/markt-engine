@@ -7,15 +7,15 @@
         .col-sm-4
           .item
             .item-header
-              =item.name
+              = item.name
             .item-photo
-              -if item.item_photos.present?
-                =image_tag item.item_photos.first.photo.thumb.url
-              -else
+              - if item.item_photos.present?
+                = image_tag item.item_photos.first.photo.thumb.url
+              - else
                 .fas.fa-images
                 No image
             .item-price $#{item.price}
-            =link_to orders_path(item_id: item.id), method: 'POST' do
+            = link_to orders_path(item_id: item.id), method: 'POST' do
               .item-button
                 .fas.fa-cart-plus
                 Add to Cart
