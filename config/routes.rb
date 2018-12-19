@@ -7,10 +7,10 @@ Rails.application.routes.draw do
     resources :categories
     resources :items
     resources :purchases
-    resources  :users
+    resources :users
   end
 
-  devise_for :users, controllers: {registrations: 'users/registrations'}
+  devise_for :users, controllers: { registrations: 'users/registrations' }
 
   resources :categories
   resources :orders
@@ -18,5 +18,4 @@ Rails.application.routes.draw do
   resources :carts
 
   root 'main#index'
-
 end
