@@ -5,7 +5,7 @@
         %center
           = link_to 'Logo', root_path, class: 'navbar-brand'
       .col-sm-6
-        %input.searchbar{ type: 'text', placeholder: 'Search' }
+        %input.searchbar{ type: 'text', placeholder: t('shared.navbar.search') }
         .search-icon
           .fas.fa-search
       .col-sm-3
@@ -13,7 +13,7 @@
           .user-tools.ml-auto
             = link_to carts_path do
               .fas.fa-shopping-cart
-              Cart
+              = t('shared.navbar.cart')
             %span.dropdown
               = link_to '#', class: 'dropdown-toggle', id: 'navbardrop', data: { toggle: 'dropdown' } do
                 .fas.fa-user
@@ -22,12 +22,12 @@
                 - if current_user.admin?
                   = link_to admin_path, class: 'dropdown-item' do
                     .fas.fa-cogs
-                    Admin
+                    = t('shared.navbar.admin_panel')
                 = link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do
                   .fas.fa-sign-out-alt
-                  Logout
+                  = t('shared.navbar.logout')
         - else
           .user-tools
             = link_to new_user_session_path do
               .fas.fa-sign-in-alt
-              Login
+              = t('shared.navbar.login')

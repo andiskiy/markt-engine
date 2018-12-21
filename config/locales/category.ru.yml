@@ -1,0 +1,25 @@
+ru:
+  category:
+    titles:
+      index: "Категории"
+    messages:
+      no_items: 'В этой категории нет товаров'
+
+  admin:
+    category:
+      titles:
+        index: 'Управление категориями'
+        new: 'Создать категорию'
+        edit: 'Изменить категорию'
+      actions:
+        add: 'Добавить категорию'
+        save: 'Сохранить категорию'
+      attributes:
+        name: 'Название'
+        description: 'Описание'
+
+  activerecord:
+    attributes:
+      category:
+        name: 'Имя'
+        description: 'Описание'

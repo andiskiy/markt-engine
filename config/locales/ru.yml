@@ -1,0 +1,18 @@
+ru:
+  shared:
+    navbar:
+      cart: 'Корзина'
+      admin_panel: 'Администрирование'
+      login: 'Войти'
+      logout: 'Выйти'
+      search: 'Поиск'
+    actions:
+      login: 'Войти'
+      sign_up: 'Зарегистрироваться'
+      forgot_password: 'Забыли пароль?'
+
+    admin:
+      categories: 'Категории'
+      items: 'Товары'
+      purchases: 'Сделки'
+      users: 'Пользователи'

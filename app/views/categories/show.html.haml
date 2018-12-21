@@ -9,14 +9,14 @@
               .item-header= item.name
               .item-photo
                 .fas.fa-images
-                No image
+                = t('item.messages.no_image')
               .item-price $#{item.price}
               = link_to orders_path(item_id: item.id), method: 'POST' do
                 .item-button
                   .fas.fa-cart-plus
-                  Add to Cart
+                  = t('item.actions.add_to_cart')
     - else
       %center
         .notice-info
           .fas.fa-exclamation-circle
-          No items found on this category
+          = t('category.messages.no_items')

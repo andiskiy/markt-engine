@@ -1,0 +1,34 @@
+ru:
+  item:
+    titles:
+      index: 'Все товары'
+    actions:
+      add_to_cart: 'Добавить в корзину'
+    messages:
+      no_image: 'Нет изображения'
+
+  admin:
+    item:
+      titles:
+        index: 'Управление товарами'
+        new: 'Создать товара'
+        edit: 'Изменить товар'
+      actions:
+        add: 'Добавить товар'
+        save: 'Сохранить товар'
+      attributes:
+        name: 'Название'
+        description: 'Описание'
+        price: 'Цена'
+        category: 'Категория'
+
+  activerecord:
+    attributes:
+      item:
+        name: 'Имя'
+        description: 'Описание'
+        category: 'Категория'
+        price: 'Цена'
+      item_photo:
+        photo: "Изображения"
+

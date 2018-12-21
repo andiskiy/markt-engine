@@ -1,0 +1,12 @@
+en:
+  admin:
+    purchase:
+      titles:
+        index: 'Purchases management'
+      actions:
+        order_details: 'Order details'
+      attributes:
+        date: 'Date'
+        user: 'User'
+        total_price: 'Amount'
+        status: 'Status'

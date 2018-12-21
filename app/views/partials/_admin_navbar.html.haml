@@ -4,26 +4,26 @@
     .nav-item
       = link_to admin_categories_path, class: 'nav-link' do
         .fas.fa-book
-        Categories
+        = t('shared.admin.categories')
     .nav-item
       = link_to admin_items_path, class: 'nav-link' do
         .fas.fa-tag
-        Items
+        = t('shared.admin.items')
     .nav-item
       = link_to admin_purchases_path, class: 'nav-link' do
         .fas.fa-clipboard-list
-        Purchases
+        = t('shared.admin.purchases')
     .nav-item
       = link_to admin_users_path, class: 'nav-link' do
         .fas.fa-user
-        Users
+        = t('shared.admin.users')
   - if user_signed_in?
     .ml-auto
       .navbar-nav
         .nav-item
           = link_to carts_path, class: 'nav-link' do
             .fas.fa-shopping-cart
-            Cart
+            = t('shared.navbar.cart')
         .nav-item.dropdown
           = link_to '#', class: 'nav-link dropdown-toggle', id: 'navbardrop', data: { toggle: 'dropdown' } do
             .fas.fa-user
@@ -31,7 +31,7 @@
           .dropdown-menu
             = link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do
               .fas.fa-sign-out-alt
-              Logout
+              = t('shared.navbar.logout')
   - else
     .ml-auto
       .navbar-nav

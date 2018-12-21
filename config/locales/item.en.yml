@@ -1,0 +1,34 @@
+en:
+  item:
+    titles:
+      index: 'All items'
+    actions:
+      add_to_cart: 'Add to cart'
+    messages:
+      no_image: 'No image'
+
+  admin:
+    item:
+      titles:
+        index: 'Items management'
+        new: 'Create item'
+        edit: 'Edit item'
+      actions:
+        add: 'Add item'
+        save: 'Save'
+      attributes:
+        name: 'Name'
+        description: 'Description'
+        price: 'Price'
+        category: 'Category'
+
+  activerecord:
+    attributes:
+      item:
+        name: 'Name'
+        description: 'Description'
+        category: 'Category'
+        price: 'Price'
+      item_photo:
+        photo: "Images"
+

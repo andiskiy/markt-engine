@@ -1,9 +1,9 @@
 .page_head
   .row
-    .col-sm-4= link_to 'Back to Main', root_path, class: 'header-actions'
+    .col-sm-4= link_to t('cart.actions.go_to_main'), root_path, class: 'header-actions'
     .col-sm-4
       %center
-        Items in Cart
+        = t('cart.titles.index')
     .col-sm-4
       .payment-button
         = pay_url 'Payment', @purchase.id, @purchase.amount
@@ -23,10 +23,10 @@
                     .far.fa-times-circle
               .item-photo
                 .fas.fa-images
-                No image
+                = t('item.messages.no_image')
               .item-price $#{order.item.price}
     - else
       %center
         .notice-info
           .fas.fa-exclamation-circle
-          No items in cart
+          = t('cart.messages.no_items')

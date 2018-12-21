@@ -1,0 +1,24 @@
+ru:
+  admin:
+    user:
+      titles:
+        index: 'Управление пользователями'
+        new: 'Создать пользователя'
+        edit: 'Изменить пользователя'
+      actions:
+        add: 'Добавить пользователя'
+        save: 'Сохранить пользователя'
+      attributes:
+        name: 'Имя'
+        email: 'Email'
+        price: 'Цена'
+
+  activerecord:
+    attributes:
+      user:
+        first_name: 'Имя'
+        last_name: 'Фамилия'
+        email: 'Email'
+        password: 'Пароль'
+        role: 'Роль'
+        remember_me: 'Запомнить'

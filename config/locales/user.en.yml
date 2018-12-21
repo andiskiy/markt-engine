@@ -1,0 +1,24 @@
+en:
+  admin:
+    user:
+      titles:
+        index: 'Users management'
+        new: 'Create user'
+        edit: 'Edit user'
+      actions:
+        add: 'Add user'
+        save: 'Save'
+      attributes:
+        name: 'Name'
+        email: 'Email'
+        price: 'Price'
+
+  activerecord:
+    attributes:
+      user:
+        first_name: 'First Name'
+        last_name: 'Last Name'
+        email: 'Email'
+        password: 'Password'
+        role: 'Role'
+        remember_me: 'Remember me'

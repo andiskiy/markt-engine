@@ -1,0 +1,8 @@
+en:
+  cart:
+    titles:
+      index: 'Items in cart'
+    actions:
+      go_to_main: 'Back to Main'
+    messages:
+      no_items: 'No items in you cart'

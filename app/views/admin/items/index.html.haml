@@ -1,17 +1,21 @@
 .row
   .col-sm-12
     .bg-secondary.text-white
-      Items manage
+      = t('admin.item.titles.index')
       .fas.fa-angle-double-right
 
 %table.table
   %thead.thead-dark
     %tr
-      %th Name
-      %th Description
-      %th Price
-      %th Category
-      %th Actions
+      %th
+        = t('admin.item.attributes.name')
+      %th
+        = t('admin.item.attributes.description')
+      %th
+        = t('admin.item.attributes.price')
+      %th
+        = t('admin.item.attributes.category')
+      %th
   %tbody
     - @items.each do |item|
       %tr
@@ -32,5 +36,5 @@
     %center
       = link_to new_admin_item_path, class: 'btn btn-success' do
         .fas.fa-plus
-        Add Item
+        = t('admin.item.actions.add')
   .col-sm-4

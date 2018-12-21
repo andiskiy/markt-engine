@@ -1,15 +1,17 @@
 .row
   .col-sm-12
     .bg-secondary.text-white
-      Users manage
+      = t('admin.user.titles.index')
       .fas.fa-angle-double-right
 
 %table.table
   %thead.thead-dark
     %tr
-      %th Name
-      %th Email
-      %th Actions
+      %th
+        = t('admin.user.attributes.name')
+      %th
+        = t('admin.user.attributes.email')
+      %th
   %tbody
     - @users.each do |user|
       %tr
