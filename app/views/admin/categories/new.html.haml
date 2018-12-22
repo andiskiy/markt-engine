@@ -1,8 +1,8 @@
 .row
   .col-sm-12
     .bg-secondary.text-white
-      Categories manage
+      = t('admin.category.titles.index')
       .fas.fa-angle-double-right
-      Create category
+      = t('admin.category.titles.new')
 
 = render partial: 'form', locals: { url: admin_categories_path }

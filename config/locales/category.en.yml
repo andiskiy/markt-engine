@@ -1,0 +1,24 @@
+en:
+  category:
+    titles:
+      index: 'Categories'
+    messages:
+      no_items: 'No items found on this category'
+  admin:
+    category:
+      titles:
+        index: 'Categories management'
+        new: 'Create category'
+        edit: 'Edit category'
+      actions:
+        add: 'Add category'
+        save: 'Save'
+      attributes:
+        name: 'Name'
+        description: 'Description'
+
+  activerecord:
+    attributes:
+      category:
+        name: 'Name'
+        description: 'Description'

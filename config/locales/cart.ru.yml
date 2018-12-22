@@ -1,0 +1,8 @@
+ru:
+  cart:
+    titles:
+      index: 'Товары в корзине'
+    actions:
+      go_to_main: 'Вернуться на главную'
+    messages:
+      no_items: 'В вашей корзине нет товаров'

@@ -2,13 +2,14 @@
   .col-sm-4
   .col-sm-4.shadow-sm.auth-form
     %center
-      %h2 Log in
+      %h2
+        = t('shared.actions.login')
     = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .auth-form-inputs
         = f.input :email, required: true, autofocus: true
         = f.input :password, required: true
         = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
       .auth-form-actions
-        = f.button :submit, 'Log in', class: 'auth-btn-primary'
+        = f.button :submit, t('shared.actions.login'), class: 'auth-btn-primary'
         = render 'users/shared/links'
   .col-sm-4

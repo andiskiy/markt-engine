@@ -6,5 +6,5 @@
         = simple_form_for @category, url: url do |f|
           = f.input :name
           = f.input :description
-          = f.submit class: 'btn btn-success'
+          = f.submit t('admin.category.actions.save'), class: 'btn btn-success'
   .col-sm-4

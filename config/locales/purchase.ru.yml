@@ -1,0 +1,12 @@
+ru:
+  admin:
+    purchase:
+      titles:
+        index: 'Управление сделками'
+      actions:
+        order_details: 'Детали заказа'
+      attributes:
+        date: 'Дата'
+        user: 'Заказчик'
+        total_price: 'Итоговая цена'
+        status: 'Статус'

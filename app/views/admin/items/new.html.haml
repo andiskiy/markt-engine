@@ -1,9 +1,9 @@
 .row
   .col-sm-12
     .bg-secondary.text-white
-      Items manage
+      = t('admin.item.titles.index')
       .fas.fa-angle-double-right
-      Create item
+      = t('admin.item.titles.new')
 
 .row
   .col-sm-4
@@ -16,5 +16,5 @@
         = f.simple_fields_for :item_photos do |p|
           = p.input :photo
         = f.association :category
-        = f.submit class: 'btn btn-success'
+        = f.submit t('admin.item.actions.save'), class: 'btn btn-success'
   .col-sm-4
