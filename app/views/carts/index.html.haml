@@ -24,7 +24,8 @@
               .item-photo
                 .fas.fa-images
                 = t('item.messages.no_image')
-              .item-price $#{order.item.price}
+              .item-price
+                = t('item.helpers.price', price: order.item.price)
     - else
       %center
         .notice-info

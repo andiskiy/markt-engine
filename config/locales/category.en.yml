@@ -1,7 +1,7 @@
 en:
   category:
     titles:
-      index: "Categories"
+      index: 'Categories'
     messages:
       no_items: 'No items found on this category'
   admin:

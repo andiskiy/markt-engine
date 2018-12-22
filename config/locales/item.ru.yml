@@ -6,6 +6,8 @@ ru:
       add_to_cart: 'Добавить в корзину'
     messages:
       no_image: 'Нет изображения'
+    helpers:
+          price: "%{price} руб"
 
   admin:
     item:
@@ -30,5 +32,5 @@ ru:
         category: 'Категория'
         price: 'Цена'
       item_photo:
-        photo: "Изображения"
+        photo: 'Изображения'
 

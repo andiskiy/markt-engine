@@ -1,7 +1,7 @@
 ru:
   category:
     titles:
-      index: "Категории"
+      index: 'Категории'
     messages:
       no_items: 'В этой категории нет товаров'
 

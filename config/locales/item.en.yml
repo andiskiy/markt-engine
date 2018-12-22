@@ -6,6 +6,8 @@ en:
       add_to_cart: 'Add to cart'
     messages:
       no_image: 'No image'
+    helpers:
+      price: "$%{price}"
 
   admin:
     item:
@@ -30,5 +32,5 @@ en:
         category: 'Category'
         price: 'Price'
       item_photo:
-        photo: "Images"
+        photo: 'Images'
 
