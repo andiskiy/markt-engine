@@ -1,4 +1,6 @@
 class Item < ApplicationRecord
+  PER_PAGE = 50
+
   # Associations
   belongs_to :category
   has_many :item_photos

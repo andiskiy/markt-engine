@@ -5,9 +5,10 @@
         %center
           = link_to 'Logo', root_path, class: 'navbar-brand'
       .col-sm-6
-        %input.searchbar{ type: 'text', placeholder: t('shared.navbar.search') }
-        .search-icon
-          .fas.fa-search
+        - unless @items.nil?
+          %input.searchbar{ type: 'text', placeholder: t('shared.navbar.search') }
+          .search-icon
+            .fas.fa-search
       .col-sm-3
         - if user_signed_in?
           .user-tools.ml-auto
