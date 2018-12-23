@@ -10,3 +10,5 @@ en:
         user: 'User'
         total_price: 'Amount'
         status: 'Status'
+      messages:
+        complete_confirmation: 'Are you sure you want to complete the purchase?'

@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     get '/', controller: 'admin/categories', to: 'categories#index'
     resources :categories
     resources :items
-    resources :purchases
+    resources :purchases do
+      post :complete
+    end
     resources :users
   end
 
