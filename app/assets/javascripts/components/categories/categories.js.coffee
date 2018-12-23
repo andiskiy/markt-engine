@@ -1,0 +1,2 @@
+class MarktEngine.CategoriesShow
+  @init: ->

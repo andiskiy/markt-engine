@@ -1,0 +1,2 @@
+class MarktEngine.MainIndex
+  @init: ->
