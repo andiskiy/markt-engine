@@ -1,2 +1,1 @@
-class MarktEngine.MainIndex
-  @init: ->
+class MarktEngine.MainIndex extends MarktEngine.CategoriesShow

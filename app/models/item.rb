@@ -8,4 +8,11 @@ class Item < ApplicationRecord
   has_many :orders
 
   accepts_nested_attributes_for :item_photos
+
+  class << self
+    def search(value, category_id)
+      items = Item.where('name ILIKE :value', value: "%#{value}%")
+      category_id.present? ? items.where(category_id: category_id) : items
+    end
+  end
 end

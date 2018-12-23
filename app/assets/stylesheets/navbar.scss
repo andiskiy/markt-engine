@@ -39,6 +39,10 @@
       right: 25px;
       bottom: 8px;
       position: absolute;
+
+      .fa-times:hover {
+        cursor: pointer;
+      }
     }
 
     a {

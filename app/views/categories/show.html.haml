@@ -1,6 +1,6 @@
 .col-sm-12
   .page_head= @category.name
-  .items-list
+  .items-list{ data: { category: { id: @category.id } } }
     - if @items.present?
       = render partial: 'partials/items', locals: { items: @items }
     - else
