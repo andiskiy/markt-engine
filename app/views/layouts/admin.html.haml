@@ -8,6 +8,6 @@
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  %body
+  %body{ data: { page: "Admin#{controller_name.camelize}#{action_name.camelize}", controller: body_controller } }
     = render partial: 'partials/admin_navbar', locals: { categories: @category }
     = yield

@@ -27,6 +27,11 @@
         background: rgba(255, 255, 255, 1.0);
       }
 
+      &:focus {
+        outline: none !important;
+        box-shadow: 0 0 10px #fc7121;
+      }
+
     }
 
     .search-icon {
@@ -34,6 +39,10 @@
       right: 25px;
       bottom: 8px;
       position: absolute;
+
+      .fa-times:hover {
+        cursor: pointer;
+      }
     }
 
     a {

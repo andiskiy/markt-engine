@@ -3,6 +3,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
+    @items = @category.items.includes(:item_photos).paginate(page: params[:page], per_page: Item::PER_PAGE)
   end
 
   private
