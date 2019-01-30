@@ -31,3 +31,5 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 Rails/HasManyOrHasOneDependent:
   Enabled: false
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
