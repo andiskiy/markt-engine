@@ -13,6 +13,10 @@ ru:
         email: 'Email'
         price: 'Цена'
 
+  user:
+    password:
+      hint: 'минимум %{count} символов'
+
   activerecord:
     attributes:
       user:
@@ -20,5 +24,26 @@ ru:
         last_name: 'Фамилия'
         email: 'Email'
         password: 'Пароль'
+        password_confirmation: 'Подтвердите пароль'
         role: 'Роль'
         remember_me: 'Запомнить'
+    errors:
+      models:
+        user:
+          attributes:
+            attribute_blanks: &blanks
+              blank: '^не должно быть пустым'
+            first_name:
+              <<: *blanks
+            last_name:
+              <<: *blanks
+            email:
+              <<: *blanks
+              taken: 'уже существует'
+              invalid: '^Не корректный Email'
+            password:
+              <<: *blanks
+              too_short: 'слишком короткий'
+              too_long: 'слишком длинный'
+            password_confirmation:
+              confirmation: '^Пароли не совпадают'

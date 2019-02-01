@@ -33,4 +33,15 @@ ru:
         price: 'Цена'
       item_photo:
         photo: 'Изображения'
-
+    errors:
+      models:
+        item:
+          attributes:
+            attribute_blanks: &blanks
+              blank: '^не должно быть пустым'
+            name:
+              <<: *blanks
+            price:
+              <<: *blanks
+            category:
+              required: 'не должна быть пустой'

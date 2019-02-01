@@ -23,3 +23,9 @@ ru:
       category:
         name: 'Имя'
         description: 'Описание'
+    errors:
+      models:
+        category:
+          attributes:
+            name:
+              blank: 'не должно быть пустым'

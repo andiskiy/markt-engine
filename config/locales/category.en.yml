@@ -22,3 +22,9 @@ en:
       category:
         name: 'Name'
         description: 'Description'
+    errors:
+      models:
+        category:
+          attributes:
+            name:
+              blank: "can't be blank"

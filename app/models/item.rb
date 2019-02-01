@@ -20,7 +20,7 @@ class Item < ApplicationRecord
   accepts_nested_attributes_for :item_photos
 
   # Validations
-  validates :name, :price, :category_id, presence: true
+  validates :name, :price, presence: true
 
   class << self
     def search(value, category_id)
