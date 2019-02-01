@@ -13,6 +13,10 @@ en:
         email: 'Email'
         price: 'Price'
 
+  user:
+    password:
+      hint: '%{count} characters minimum'
+
   activerecord:
     attributes:
       user:
@@ -20,5 +24,26 @@ en:
         last_name: 'Last Name'
         email: 'Email'
         password: 'Password'
+        password_confirmation: 'Confirm Password'
         role: 'Role'
         remember_me: 'Remember me'
+    errors:
+      models:
+        user:
+          attributes:
+            attribute_blanks: &blanks
+              blank: "^can't be blank"
+            first_name:
+              <<: *blanks
+            last_name:
+              <<: *blanks
+            email:
+              <<: *blanks
+              taken: 'is already taken'
+              invalid: '^Incorrect Email Address'
+            password:
+              <<: *blanks
+              too_short: 'too short'
+              too_long: 'too long'
+            password_confirmation:
+              confirmation: "^doesn't match Password"

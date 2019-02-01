@@ -33,4 +33,16 @@ en:
         price: 'Price'
       item_photo:
         photo: 'Images'
+    errors:
+      models:
+        item:
+          attributes:
+            attribute_blanks: &blanks
+              blank: "can't be blank"
+            name:
+              <<: *blanks
+            price:
+              <<: *blanks
+            category:
+              required: "can't be blank"
 
