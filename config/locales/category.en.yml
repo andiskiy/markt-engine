@@ -13,9 +13,16 @@ en:
       actions:
         add: 'Add category'
         save: 'Save'
+        edit: 'Edit category'
+        delete: 'Delete category'
       attributes:
         name: 'Name'
         description: 'Description'
+      flash_messages:
+        delete:
+          success: 'Category was successfully deleted'
+          danger: "Category wasn't successfully deleted"
+
 
   activerecord:
     attributes:

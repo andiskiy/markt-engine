@@ -1,35 +1,40 @@
-.row
-  .col-sm-12
-    .bg-secondary.text-white
-      = t('admin.category.titles.index')
-      .fas.fa-angle-double-right
+.text-center
+  = link_to new_admin_category_path, class: 'btn btn-success mb-3 mt-3' do
+    = t('admin.category.actions.add')
+    .fas.fa-plus
 
-%table.table
-  %thead.thead-dark
-    %tr
-      %th
-        = t('admin.category.attributes.name')
-      %th
-        = t('admin.category.attributes.description')
-      %th
-  %tbody
-    - @categories.each do |category|
-      %tr
-        %td
-          = link_to edit_admin_category_path(category) do
-            = category.name
-        %td
-          = category.description
-        %td
-          .btn-group
-            = link_to admin_category_path(category), method: :delete, class: 'delete' do
-              .fas.fa-trash-alt
+#accordion-categories
+  - @categories.each do |category|
+    .card.mb-2
+      .card-header{ id: "heading-#{category.id}" }
+        %a{ href: '#', data: { toggle: 'collapse', target: "#collapse-#{category.id}" },
+                       aria: { expanded: 'true', controls: "collapse-#{category.id}" } }
+          %i.fa{ aria: { hidden: 'true' } }
+          = category.name
+        .actions-category.float-right
+          = link_to admin_category_path(category),
+                    class: 'delete',
+                    method: :delete,
+                    title: t('admin.category.actions.delete') do
+            %i.fas.fa-trash-alt
 
-.row
-  .col-sm-4
-  .col-sm-4
-    %center
-      = link_to new_admin_category_path, class: 'btn btn-success' do
-        .fas.fa-plus
-        = t('admin.category.actions.add')
-  .col-sm-4
+        .actions-category.float-right
+          = link_to edit_admin_category_path(category),
+                    class: 'edit',
+                    title: t('admin.category.actions.edit') do
+            %i.fas.fa-edit
+        .actions-category.float-right
+          = link_to new_admin_category_item_path(category),
+                    class: 'create',
+                    title: t('admin.item.actions.add') do
+            %i.fas.fa-plus
+
+
+      .collapse{ id: "collapse-#{category.id}",
+                 data: { parent: '#accordion-categories' },
+                 aria: { labelledby: "heading-#{category.id}" } }
+        .card-body
+          - category.items.each do |item|
+            %ul.list-group.list-group-flush
+              %li.list-group-item
+                = link_to item.name, '#'

@@ -8,6 +8,13 @@
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  %body{ data: { page: "Admin#{controller_name.camelize}#{action_name.camelize}", controller: body_controller } }
-    = render partial: 'partials/admin_navbar', locals: { categories: @category }
-    = yield
+  %body{ data: { area: 'admin-panel',
+                 page: "Admin#{controller_name.camelize}#{action_name.camelize}",
+                 controller: body_controller } }
+    = render layout: 'partials/admin_navbar' do
+      .nav-path
+        = t("admin.#{controller_name.singularize}.titles.#{action_name}")
+        .fas.fa-angle-double-right
+        = t("admin.#{controller_name.singularize}.action.#{action_name}")
+    .container-fluid
+      = yield

@@ -4,8 +4,9 @@ Rails.application.routes.draw do
 
   namespace :admin, controller: 'admin' do
     get '/', controller: 'admin/categories', to: 'categories#index'
-    resources :categories
-    resources :items
+    resources :categories do
+      resources :items
+    end
     resources :purchases do
       post :complete
     end
