@@ -12,8 +12,7 @@ module ApplicationHelper
   end
 
   def page_cols(options)
-    options = { md: options.to_i } if options.respond_to? :to_i
-
+    options = options.respond_to?(:to_i) ? [options] : options.each_key.map { |key| "#{key}-#{options[key]}" }
     main_row(options)
   end
 
@@ -21,12 +20,14 @@ module ApplicationHelper
     content_for :title, page_title.to_s
   end
 
+  def indent_title_section(section)
+    "› #{section}"
+  end
+
   private
 
   def main_row(options)
-    row_class = options.map do |k, v|
-      "col-#{k}-#{v} offset-#{k}-#{(12 - v) / 2}"
-    end
-    content_for :main_row_class, row_class.join(' ')
+    row_class = options.map { |v| "col-#{v}" }.join(' ')
+    content_for :main_row_class, row_class
   end
 end
