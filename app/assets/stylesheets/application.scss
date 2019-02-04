@@ -13,13 +13,8 @@
  */
 
 @import '*';
-@import 'admin/*';
+@import 'base_stylesheets/base';
 //@import "require_self";
 @import 'bootstrap';
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
-
-
-.inline-block {
-  display: inline-block;
-}
