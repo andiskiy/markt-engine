@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :categories do
       resources :items
     end
+    get :items, controller: 'admin/items', to: 'items#all_items'
     resources :purchases do
       post :complete
     end

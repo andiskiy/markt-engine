@@ -23,6 +23,10 @@ ru:
         description: 'Описание'
         price: 'Цена'
         category: 'Категория'
+      flash_messages:
+        delete:
+          success: 'Товар был успешно удален'
+          danger: 'Товар не был успешно удален'
 
   activerecord:
     attributes:

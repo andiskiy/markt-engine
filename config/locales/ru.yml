@@ -10,6 +10,7 @@ ru:
       login: 'Войти'
       sign_up: 'Зарегистрироваться'
       forgot_password: 'Забыли пароль?'
+      back: 'Назад'
 
     admin:
       categories: 'Категории'

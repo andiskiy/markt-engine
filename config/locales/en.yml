@@ -10,6 +10,7 @@ en:
       login: 'Login'
       sign_up: 'Sign up'
       forgot_password: 'Forgot password?'
+      back: 'Back'
 
     admin:
       categories: 'Categories'

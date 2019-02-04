@@ -23,6 +23,10 @@ en:
         description: 'Description'
         price: 'Price'
         category: 'Category'
+      flash_messages:
+        delete:
+          success: 'Item was successfully deleted'
+          danger: "Item wasn't successfully deleted"
 
   activerecord:
     attributes:
