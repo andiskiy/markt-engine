@@ -11,13 +11,16 @@ en:
 
   admin:
     item:
+      attribute_edit: &edit
+        edit: 'Edit item'
       titles:
         index: 'Items management'
         new: 'Create item'
-        edit: 'Edit item'
+        <<: *edit
       actions:
         add: 'Add item'
         save: 'Save'
+        <<: *edit
       attributes:
         name: 'Name'
         description: 'Description'

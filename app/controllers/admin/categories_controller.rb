@@ -1,11 +1,13 @@
 module Admin
   class CategoriesController < AdminController
-    before_action :set_category, only: %i[edit update destroy]
+    before_action :set_category, only: %i[show edit update destroy]
     before_action :set_new_category, only: %i[new create]
 
     def index
       @categories = Category.all.includes(:items)
     end
+
+    def show; end
 
     def new; end
 

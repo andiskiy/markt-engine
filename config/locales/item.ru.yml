@@ -11,13 +11,16 @@ ru:
 
   admin:
     item:
+      attribute_edit: &edit
+        edit: 'Изменить товар'
       titles:
         index: 'Управление товарами'
         new: 'Создать товара'
-        edit: 'Изменить товар'
+        <<: *edit
       actions:
         add: 'Добавить товар'
         save: 'Сохранить товар'
+        <<: *edit
       attributes:
         name: 'Название'
         description: 'Описание'

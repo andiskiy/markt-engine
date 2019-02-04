@@ -15,6 +15,7 @@ en:
         save: 'Save'
         edit: 'Edit category'
         delete: 'Delete category'
+        show: 'Show category'
       attributes:
         name: 'Name'
         description: 'Description'

@@ -1,3 +1,5 @@
+- title(t('admin.category.titles.index'))
+
 .text-center
   = link_to new_admin_category_path, class: 'btn btn-success mb-3 mt-3' do
     = t('admin.category.actions.add')
@@ -5,30 +7,32 @@
 
 #accordion-categories
   - @categories.each do |category|
-    .card.mb-2
+    .card.mb-3
       .card-header{ id: "heading-#{category.id}" }
         %a{ href: '#', data: { toggle: 'collapse', target: "#collapse-#{category.id}" },
-                       aria: { expanded: 'true', controls: "collapse-#{category.id}" } }
+                       aria: { expanded: 'false', controls: "collapse-#{category.id}" } }
           %i.fa{ aria: { hidden: 'true' } }
           = category.name
-        .actions-category.float-right
+        .float-right
           = link_to admin_category_path(category),
-                    class: 'delete',
-                    method: :delete,
-                    title: t('admin.category.actions.delete') do
-            %i.fas.fa-trash-alt
-
-        .actions-category.float-right
-          = link_to edit_admin_category_path(category),
-                    class: 'edit',
-                    title: t('admin.category.actions.edit') do
-            %i.fas.fa-edit
-        .actions-category.float-right
+                    class: 'show m-1 inline-block',
+                    title: t('admin.category.actions.show') do
+            %i.fas.fa-eye
           = link_to new_admin_category_item_path(category),
-                    class: 'create',
+                    class: 'create m-1 inline-block',
                     title: t('admin.item.actions.add') do
             %i.fas.fa-plus
 
+          = link_to edit_admin_category_path(category),
+                    class: 'edit m-1 inline-block',
+                    title: t('admin.category.actions.edit') do
+            %i.fas.fa-edit
+
+          = link_to admin_category_path(category),
+                    class: 'delete m-1 inline-block',
+                    method: :delete,
+                    title: t('admin.category.actions.delete') do
+            %i.fas.fa-trash-alt
 
       .collapse{ id: "collapse-#{category.id}",
                  data: { parent: '#accordion-categories' },
@@ -37,4 +41,17 @@
           - category.items.each do |item|
             %ul.list-group.list-group-flush
               %li.list-group-item
-                = link_to item.name, '#'
+                .row
+                  .col-9
+                    = link_to item.name, admin_category_item_path(category, item)
+                  .col-3.text-right
+                    = link_to edit_admin_category_item_path(category, item),
+                              class: 'edit m-1 inline-block',
+                              title: t('admin.category.actions.edit') do
+                      %i.fas.fa-edit
+
+                    = link_to admin_category_item_path(category, item),
+                              class: 'delete m-1 inline-block',
+                              method: :delete,
+                              title: t('admin.category.actions.delete') do
+                      %i.fas.fa-trash-alt

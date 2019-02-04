@@ -1,19 +1,27 @@
 - page_cols(lg: 6, md: 10, sm: 12)
 - title(@item.name)
-= render partial: 'back_btn', locals: { category: @category }
 
 .row
-  .col-md-2
-    %strong #{t('admin.item.attributes.name')}:
-  .col-md-10
-    = @item.name
-.row
-  .col-md-2
-    %strong #{t('admin.item.attributes.price')}:
-  .col-md-10
-    = t('item.helpers.price', price: @item.price)
-.row
-  .col-md-2
-    %strong #{t('admin.item.attributes.description')}:
-  .col-md-10
-    = @item.description
+  .col-6
+    %h4= @category.name
+  .col-6.text-right
+    = link_to t('admin.item.actions.edit'), edit_admin_category_item_path(@category, @item), class: 'btn btn-primary'
+    = link_to t('shared.actions.back'), admin_category_items_path(@category), class: 'btn btn-light'
+%hr
+
+.admin-form.mb-5
+  .row
+    .col-md-3
+      %strong #{t('admin.item.attributes.name')}:
+    .col-md-9
+      = @item.name
+  .row
+    .col-md-3
+      %strong #{t('admin.item.attributes.price')}:
+    .col-md-9
+      = t('item.helpers.price', price: @item.price)
+  .row
+    .col-md-3
+      %strong #{t('admin.item.attributes.description')}:
+    .col-md-9
+      = @item.description
