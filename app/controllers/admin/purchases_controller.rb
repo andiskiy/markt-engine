@@ -1,19 +1,27 @@
 module Admin
   class PurchasesController < AdminController
-
-    before_action :set_purchase, only: [:show, :complete]
+    before_action :set_purchase, only: %i[complete destroy]
 
     def index
-      @purchases = Purchase.all
-    end
-
-    def show
-      @orders = @purchase.orders
+      @purchases = Purchase.includes(:user, orders: :item).paginate(page: params[:page], per_page: Purchase::PER_PAGE)
     end
 
     def complete
-      @purchase.update(status: 'completed')
-      redirect_to admin_purchases_path
+      if @purchase.complete!
+        flash[:success] = t('admin.purchase.flash_messages.complete.success')
+      else
+        flash[:danger] = t('admin.purchase.flash_messages.complete.danger')
+      end
+      redirect_to(admin_purchases_path)
+    end
+
+    def destroy
+      if @purchase.destroy
+        flash[:success] = t('admin.purchase.flash_messages.delete.success')
+      else
+        flash[:danger] = t('admin.purchase.flash_messages.delete.danger')
+      end
+      redirect_to(admin_purchases_path)
     end
 
     private

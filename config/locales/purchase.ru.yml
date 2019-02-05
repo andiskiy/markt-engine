@@ -5,10 +5,22 @@ ru:
         index: 'Управление сделками'
       actions:
         order_details: 'Детали заказа'
+        complete: 'Завершить сделку'
+        delete: 'Удалить сделку'
       attributes:
         date: 'Дата'
         user: 'Заказчик'
         total_price: 'Итоговая цена'
         status: 'Статус'
+        complete: 'Сделка завершена'
+        processing: 'В процессе'
+        pending: 'В ожидании'
+      flash_messages:
+        delete:
+          success: 'Сделка была успешно удалена'
+          danger: 'Сделка не была успешно удалена'
+        complete:
+          success: 'Сделка успешно завершена'
+          danger: 'Сделка не была успешно завершена'
       messages:
         complete_confirmation: 'Завершайте сделку только если уверены, что получили оплату и товар был отправлен покупателю. Завершить сделку?'

@@ -8,8 +8,9 @@ Rails.application.routes.draw do
       resources :items
     end
     get :items, controller: 'admin/items', to: 'items#all_items'
-    resources :purchases do
+    resources :purchases, only: %i[index destroy] do
       post :complete
+      resources :orders, only: :index
     end
     resources :users
   end

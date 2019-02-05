@@ -5,10 +5,22 @@ en:
         index: 'Purchases management'
       actions:
         order_details: 'Order details'
+        complete: 'Complete order'
+        delete: 'Delete order'
       attributes:
         date: 'Date'
         user: 'User'
         total_price: 'Amount'
         status: 'Status'
+        complete: 'Complete'
+        processing: 'Processing'
+        pending: 'Pending'
+      flash_messages:
+        delete:
+          success: 'Purchase was successfully deleted'
+          danger: "Purchase wasn't successfully deleted"
+        complete:
+          success: 'Purchase was successfully completed'
+          danger: "Purchase wasn't successfully completed"
       messages:
         complete_confirmation: 'Are you sure you want to complete the purchase?'
