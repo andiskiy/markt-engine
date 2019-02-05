@@ -1,13 +1,23 @@
 - title(t('admin.item.titles.index'))
 
+.d-block.d-sm-block.d-md-none
+  %h4= category_name(@category)
+  %hr
 .row.mb-3
-  .col-4.text-left
-    .d-block.d-sm-block.d-md-none
-      %h4= category_name(@category)
-  .col-8.text-right
-    = link_to new_admin_category_item_path(@category), class: 'btn btn-success mr-2' do
-      = t('admin.item.actions.add')
-      .fas.fa-plus
-    = link_to t('shared.actions.back'), admin_categories_path, class: 'btn btn-light d-none d-md-block inline-block'
+  .col-9.col-md-6
+    .input-group
+      %input.form-control.admin-searchbar.item-searchbar{ type: 'search', placeholder: t('shared.navbar.search') }
+      .search-icon
+        %i.fas.fa-search
+  .col-3.col-md-6.text-right
+    .d-md-none
+      = link_to new_admin_category_item_path(@category), class: 'btn btn-success mr-2' do
+        .fas.fa-plus
+    .d-none.d-md-block
+      = link_to new_admin_category_item_path(@category), class: 'btn btn-success mr-2' do
+        = t('admin.item.actions.add')
+        .fas.fa-plus
+      = link_to t('shared.actions.back'), admin_categories_path, class: 'btn btn-light d-none d-md-block inline-block'
 
-= render partial: 'items_table', locals: { items: @items }
+.items-list{ data: { category: { id: @category.id } } }
+  = render partial: 'items_table', locals: { items: @items }

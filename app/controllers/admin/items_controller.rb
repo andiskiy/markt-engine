@@ -5,7 +5,15 @@ module Admin
     before_action :set_new_item, only: %i[new create]
 
     def all_items
-      @items = Item.includes(:category).paginate(page: params[:page], per_page: Item::PER_PAGE)
+      @items = Item.search(params[:value], params[:category_id])
+                   .includes(:category)
+                   .paginate(page: params[:page], per_page: Item::PER_PAGE)
+      respond_to do |format|
+        format.html {}
+        format.js do
+          render partial: 'admin/items/items_table', layout: false, locals: { items: @items }
+        end
+      end
     end
 
     def index

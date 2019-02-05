@@ -7,6 +7,7 @@
 #= require_self
 #= require cable.js
 #= require_tree ./components/settings
+#= require_tree ./base
 #= require_tree ./components
 
 window.MarktEngine = {}
