@@ -4,7 +4,7 @@ module Admin
     before_action :set_new_category, only: %i[new create]
 
     def index
-      @categories = Category.all.includes(:items)
+      @categories = Category.includes(:items).paginate(page: params[:page], per_page: Category::PER_PAGE)
     end
 
     def show; end

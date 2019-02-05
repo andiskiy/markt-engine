@@ -10,4 +10,4 @@
       .fas.fa-plus
     = link_to t('shared.actions.back'), admin_categories_path, class: 'btn btn-light d-none d-md-block inline-block'
 
-= render 'items_table'
+= render partial: 'items_table', locals: { items: @items }

@@ -17,6 +17,10 @@ body[data-page='AdminCategoriesIndex'] {
           content: '\f13a';
         }
       }
+
+      .load-more:hover {
+       text-decoration: underline;
+      }
     }
   }
 }

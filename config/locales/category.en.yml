@@ -16,6 +16,7 @@ en:
         edit: 'Edit category'
         delete: 'Delete category'
         show: 'Show category'
+        show_items: 'Show items of this category'
       attributes:
         name: 'Name'
         description: 'Description'

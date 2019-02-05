@@ -11,7 +11,7 @@
         = t('admin.item.attributes.category')
       %th
   %tbody
-    - @items.each do |item|
+    - items.each do |item|
       %tr
         %td= link_to item.name, admin_category_item_path(item.category, item)
         %td.d-none.d-md-block= item.description.truncate(30)
@@ -23,3 +23,6 @@
               .fas.fa-edit
             = link_to admin_category_item_path(item.category, item), method: :delete, class: 'btn btn-danger' do
               .fas.fa-trash-alt
+.text-center
+  .inline-block
+    = will_paginate(items, renderer: WillPaginate::ActionView::BootstrapLinkRenderer)

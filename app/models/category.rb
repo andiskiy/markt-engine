@@ -7,6 +7,8 @@
 #
 
 class Category < ApplicationRecord
+  PER_PAGE = 10
+
   # Associations
   has_many :items
 
