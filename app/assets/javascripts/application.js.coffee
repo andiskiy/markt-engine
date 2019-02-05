@@ -1,7 +1,7 @@
-#= require rails-ujs
 #= require activestorage
 #= require turbolinks
 #= require jquery3
+#= require jquery_ujs
 #= require popper
 #= require bootstrap-sprockets
 #= require_self
@@ -16,6 +16,7 @@ class MarktEngine.Application
     MarktEngine.DisabledLinks.init()
     MarktEngine.GlobalTooltips.init()
     MarktEngine.TurbolinksAdditions.init()
+    MarktEngine.ConfirmDialog.init()
 
 ready = ->
   data       = $('body').data()

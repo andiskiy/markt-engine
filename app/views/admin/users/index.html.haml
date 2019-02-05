@@ -20,5 +20,8 @@
         %td
           = user.email
         %td
-          = link_to admin_user_path(user), method: :delete, class: 'btn btn-danger' do
+          = link_to admin_user_path(user),
+                    class: 'btn btn-danger',
+                    method: :delete,
+                    data: { confirm: t('shared.messages.confirm') } do
             .fas.fa-trash-alt

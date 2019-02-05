@@ -12,6 +12,7 @@
         = link_to admin_category_item_path(category, item),
                               class: 'delete m-1 inline-block',
                               method: :delete,
+                              data: { confirm: t('shared.messages.confirm') },
                               title: t('admin.category.actions.delete') do
           %i.fas.fa-trash-alt
 
