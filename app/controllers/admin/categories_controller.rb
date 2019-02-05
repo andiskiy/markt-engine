@@ -4,7 +4,15 @@ module Admin
     before_action :set_new_category, only: %i[new create]
 
     def index
-      @categories = Category.includes(:items).paginate(page: params[:page], per_page: Category::PER_PAGE)
+      @categories = Category.search(params[:value])
+                            .includes(:items)
+                            .paginate(page: params[:page], per_page: Category::PER_PAGE)
+      respond_to do |format|
+        format.html {}
+        format.js do
+          render partial: 'admin/categories/categories', layout: false, locals: { categories: @categories }
+        end
+      end
     end
 
     def show; end

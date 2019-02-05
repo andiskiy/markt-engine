@@ -1,54 +1,20 @@
 - title(t('admin.category.titles.index'))
 
-.text-center
-  = link_to new_admin_category_path, class: 'btn btn-success mb-3 mt-3' do
-    = t('admin.category.actions.add')
-    .fas.fa-plus
+.row
+  .col-8
+    .input-group.mt-3
+      %input.form-control.category-searchbar{ type: 'search', placeholder: t('shared.navbar.search') }
+      .search-icon
+        %i.fas.fa-search
+  .col-4.text-right
+    .d-md-none
+      = link_to new_admin_category_path, class: 'btn btn-success mb-3 mt-3' do
+        .fas.fa-plus
+    .d-none.d-md-block
+      = link_to new_admin_category_path, class: 'btn btn-success mb-3 mt-3' do
+        = t('admin.category.actions.add')
+        .fas.fa-plus
+%hr
 
 #accordion-categories
-  - @categories.each do |category|
-    .card.mb-3
-      .card-header{ id: "heading-#{category.id}" }
-        %a{ href: '#', data: { toggle: 'collapse', target: "#collapse-#{category.id}" },
-                       aria: { expanded: 'false', controls: "collapse-#{category.id}" } }
-          %i.fa{ aria: { hidden: 'true' } }
-          = category.name
-        .float-right
-          = link_to admin_category_path(category),
-                    class: 'show-entity m-1 inline-block',
-                    title: t('admin.category.actions.show') do
-            %i.fas.fa-eye
-
-          = link_to admin_category_items_path(category),
-                    class: 'show-entity m-1 inline-block',
-                    title: t('admin.category.actions.show_items') do
-            %i.fas.fa-sitemap
-
-          = link_to new_admin_category_item_path(category),
-                    class: 'create m-1 inline-block',
-                    title: t('admin.item.actions.add') do
-            %i.fas.fa-plus
-
-          = link_to edit_admin_category_path(category),
-                    class: 'edit m-1 inline-block',
-                    title: t('admin.category.actions.edit') do
-            %i.fas.fa-edit
-
-          = link_to admin_category_path(category),
-                    class: 'delete m-1 inline-block',
-                    method: :delete,
-                    data: { confirm: t('shared.messages.confirm') },
-                    title: t('admin.category.actions.delete') do
-            %i.fas.fa-trash-alt
-
-      .collapse{ id: "collapse-#{category.id}",
-                 data: { parent: '#accordion-categories' },
-                 aria: { labelledby: "heading-#{category.id}" } }
-        .card-body
-          %ul.list-group.list-group-flush.items-list
-            - items = category.items.paginate(page: 1, per_page: Item::PER_PAGE)
-            = render partial: 'items', locals: { category: category, items: items, next_page: 2 }
-
-  .text-center
-    .inline-block
-      = will_paginate(@categories, renderer: WillPaginate::ActionView::BootstrapLinkRenderer)
+  = render partial: 'categories', locals: { categories: @categories }

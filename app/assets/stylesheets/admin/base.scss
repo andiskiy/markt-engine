@@ -69,4 +69,28 @@ body[data-area='admin-panel'] {
       border: 1px solid #c5c5c5;
     }
   }
+
+  .input-group {
+    .category-searchbar {
+      border-radius: 5px;
+
+      &:focus {
+        border-color: #7952b3;
+        box-shadow: 0 0 0 3px rgba(121,82,179,.25);
+        z-index: 0;
+      }
+    }
+  }
+
+
+  .search-icon {
+    color: #7952b3;
+    right: 25px;
+    bottom: 6px;
+    position: absolute;
+
+    .fa-times:hover {
+      cursor: pointer;
+    }
+  }
 }

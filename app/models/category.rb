@@ -15,4 +15,10 @@ class Category < ApplicationRecord
   # Validations
   validates :name, presence: true
 
+  class << self
+    def search(value)
+      Category.where('name ILIKE :value', value: "%#{value}%")
+    end
+  end
+
 end
