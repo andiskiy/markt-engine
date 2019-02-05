@@ -10,6 +10,11 @@ en:
       login: 'Login'
       sign_up: 'Sign up'
       forgot_password: 'Forgot password?'
+      back: 'Back'
+      cancel: 'Cancel'
+      confirm: 'Confirm'
+    messages:
+      confirm: 'Are you sure?'
 
     admin:
       categories: 'Categories'

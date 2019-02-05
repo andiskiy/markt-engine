@@ -10,6 +10,11 @@ ru:
       login: 'Войти'
       sign_up: 'Зарегистрироваться'
       forgot_password: 'Забыли пароль?'
+      back: 'Назад'
+      cancel: 'Отмена'
+      confirm: 'Подтвердить'
+    messages:
+      confirm: 'Вы уверены?'
 
     admin:
       categories: 'Категории'

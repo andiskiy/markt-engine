@@ -1,0 +1,11 @@
+= render partial: 'back_btn', locals: { category: category }
+
+.admin-form.mb-5
+  = simple_form_for @item, url: url do |f|
+    = f.input :name
+    = f.input :description, input_html: { rows: 6 }
+    = f.input :price
+    = f.simple_fields_for :item_photos do |p|
+      = p.input :photo
+    = f.association :category
+    = f.submit t('admin.item.actions.save'), class: 'btn btn-success'

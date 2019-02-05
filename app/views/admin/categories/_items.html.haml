@@ -1,0 +1,23 @@
+- items.each do |item|
+  %li.list-group-item
+    .row
+      .col-9
+        = link_to item.name, admin_category_item_path(category, item)
+      .col-3.text-right
+        = link_to edit_admin_category_item_path(category, item),
+                              class: 'edit m-1 inline-block',
+                              title: t('admin.category.actions.edit') do
+          %i.fas.fa-edit
+
+        = link_to admin_category_item_path(category, item),
+                              class: 'delete m-1 inline-block',
+                              method: :delete,
+                              data: { confirm: t('shared.messages.confirm') },
+                              title: t('admin.category.actions.delete') do
+          %i.fas.fa-trash-alt
+
+- if items.length == Item::PER_PAGE
+  %li.list-group-item.text-center
+    %a.cursor.load-more{ data: { next: { page: next_page }, category: { id: category.id } } }
+      %i.fas.fa-arrow-down
+      Load more items...

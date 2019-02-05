@@ -1,0 +1,6 @@
+.row
+  .col-8
+    %h4= category.name
+  .col-4.text-right
+    = link_to t('shared.actions.back'), admin_category_items_path(category), class: 'btn btn-light'
+%hr

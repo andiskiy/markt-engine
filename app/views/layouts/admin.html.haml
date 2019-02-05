@@ -3,11 +3,31 @@
   %head
     %meta{ content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type' }
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' }
-    %title MarkEngine
+    %title
+      MarkEngine
+      = indent_title_section(yield :title) if content_for?(:title)
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag    'admin/admin', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  %body{ data: { page: "Admin#{controller_name.camelize}#{action_name.camelize}", controller: body_controller } }
-    = render partial: 'partials/admin_navbar', locals: { categories: @category }
-    = yield
+  %body{ data: { area: 'admin-panel',
+                 page: "Admin#{controller_name.camelize}#{action_name.camelize}",
+                 controller: body_controller } }
+    = render layout: 'partials/admin_navbar' do
+      .nav-path.mb-5
+        = t("admin.#{controller_name.singularize}.titles.#{action_name}")
+        .fas.fa-angle-double-right
+        = t("admin.#{controller_name.singularize}.action.#{action_name}")
+    .container
+      .row.justify-content-center
+        %div{ class: content_for?(:main_row_class) ? yield(:main_row_class) : 'col-12' }
+          = yield
+
+    = modal 'message', size: 'sm' do
+      .modal-body
+        .message
+      .modal-footer
+        %button.btn.btn-light{ type: 'button', data: { dismiss: 'modal', btn: { text: t('shared.actions.cancel') } } }
+          = t('shared.actions.cancel')
+        %button.btn.btn-danger.js-confirm{ type: 'button' }
+          = t('shared.actions.confirm')

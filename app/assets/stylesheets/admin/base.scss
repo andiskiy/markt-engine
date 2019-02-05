@@ -1,0 +1,96 @@
+body[data-area='admin-panel'] {
+  .show-entity {
+    color: #007bff;
+    &:hover {
+      color: #0069d9;
+    }
+  }
+
+  .create {
+    color: #5cb85c;
+
+    &:hover {
+      color: #3C783C;
+    }
+  }
+
+  .edit {
+    color: #5bc0de;
+
+    &:hover {
+      color: #518EAB;
+    }
+  }
+
+  .delete {
+    color: #E85551;
+
+    &:hover {
+      color: #AA4845;
+    }
+  }
+
+  .btn-light {
+    border: 1px #c5c5c5 solid;
+  }
+
+  .content-container {
+    margin: 10px;
+  }
+
+  .nav-path {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #637aad), color-stop(1, #5972a7));
+    background: -moz-linear-gradient(top, #637aad 5%, #5972a7 100%);
+    background: -webkit-linear-gradient(top, #637aad 5%, #5972a7 100%);
+    background: -o-linear-gradient(top, #637aad 5%, #5972a7 100%);
+    background: -ms-linear-gradient(top, #637aad 5%, #5972a7 100%);
+    background: linear-gradient(to bottom, #637aad 5%, #5972a7 100%);
+    background-color: #637aad;
+    border: 1px solid #314179;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+
+  .admin-form {
+    background-color: #FDFCFA;
+    max-width: 100%;
+    height: 100%;
+    padding: 40px;
+    margin: auto;
+    border-radius: 5px;
+    border: 1px solid #c5c5c5;
+    box-shadow: 0 0 20px 5px #c5c5c5;
+
+    input, textarea, select {
+      border-radius: 15px;
+      border: 1px solid #c5c5c5;
+    }
+  }
+
+  .input-group {
+    .admin-searchbar {
+      border-radius: 5px;
+
+      &:focus {
+        border-color: #7952b3;
+        box-shadow: 0 0 0 3px rgba(121,82,179,.25);
+        z-index: 0;
+      }
+    }
+  }
+
+
+  .search-icon {
+    color: #7952b3;
+    right: 25px;
+    bottom: 6px;
+    position: absolute;
+
+    .fa-times:hover {
+      cursor: pointer;
+    }
+  }
+}

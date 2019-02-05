@@ -1,8 +1,5 @@
-.row
-  .col-sm-12
-    .bg-secondary.text-white
-      Categories manage
-      .fas.fa-angle-double-right
-      Edit category
+- page_cols(lg: 6, md: 10, sm: 12)
+- title(@category.name)
+
 = render partial: 'form', locals: { url: admin_category_path(@category) }
 

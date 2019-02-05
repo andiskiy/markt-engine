@@ -1,40 +1,23 @@
-.row
-  .col-sm-12
-    .bg-secondary.text-white
-      = t('admin.item.titles.index')
-      .fas.fa-angle-double-right
+- title(t('admin.item.titles.index'))
 
-%table.table
-  %thead.thead-dark
-    %tr
-      %th
-        = t('admin.item.attributes.name')
-      %th
-        = t('admin.item.attributes.description')
-      %th
-        = t('admin.item.attributes.price')
-      %th
-        = t('admin.item.attributes.category')
-      %th
-  %tbody
-    - @items.each do |item|
-      %tr
-        %td= item.name
-        %td= item.description
-        %td= item.price
-        %td= item.category.name
-        %td
-          .btn-group
-            = link_to edit_admin_item_path(item), class: 'btn btn-primary' do
-              .fas.fa-edit
-            = link_to admin_item_path(item), method: :delete, class: 'btn btn-danger' do
-              .fas.fa-trash-alt
-
-.row
-  .col-sm-4
-  .col-sm-4
-    %center
-      = link_to new_admin_item_path, class: 'btn btn-success' do
+.d-block.d-sm-block.d-md-none
+  %h4= category_name(@category)
+  %hr
+.row.mb-3
+  .col-9.col-md-6
+    .input-group
+      %input.form-control.admin-searchbar.item-searchbar{ type: 'search', placeholder: t('shared.navbar.search') }
+      .search-icon
+        %i.fas.fa-search
+  .col-3.col-md-6.text-right
+    .d-md-none
+      = link_to new_admin_category_item_path(@category), class: 'btn btn-success mr-2' do
         .fas.fa-plus
+    .d-none.d-md-block
+      = link_to new_admin_category_item_path(@category), class: 'btn btn-success mr-2' do
         = t('admin.item.actions.add')
-  .col-sm-4
+        .fas.fa-plus
+      = link_to t('shared.actions.back'), admin_categories_path, class: 'btn btn-light d-none d-md-block inline-block'
+
+.items-list{ data: { category: { id: @category.id } } }
+  = render partial: 'items_table', locals: { items: @items }

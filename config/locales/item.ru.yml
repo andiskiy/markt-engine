@@ -11,18 +11,25 @@ ru:
 
   admin:
     item:
+      attribute_edit: &edit
+        edit: 'Изменить товар'
       titles:
         index: 'Управление товарами'
         new: 'Создать товара'
-        edit: 'Изменить товар'
+        <<: *edit
       actions:
         add: 'Добавить товар'
         save: 'Сохранить товар'
+        <<: *edit
       attributes:
         name: 'Название'
         description: 'Описание'
         price: 'Цена'
         category: 'Категория'
+      flash_messages:
+        delete:
+          success: 'Товар был успешно удален'
+          danger: 'Товар не был успешно удален'
 
   activerecord:
     attributes:

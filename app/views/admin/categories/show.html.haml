@@ -1,0 +1,18 @@
+- page_cols(lg: 6, md: 10, sm: 12)
+- title(@category.name)
+
+.text-right
+  = link_to t('admin.category.actions.edit'), edit_admin_category_path(@category), class: 'btn btn-primary'
+  = link_to t('shared.actions.back'), admin_categories_path, class: 'btn btn-light'
+%hr
+
+.admin-form.mb-5
+  .row
+    .col-md-3
+      %strong #{t('admin.category.attributes.name')}:
+    .col-md-9
+      = @category.name
+    .col-md-3
+      %strong #{t('admin.category.attributes.description')}:
+    .col-md-9
+      = @category.description

@@ -14,9 +14,17 @@ ru:
       actions:
         add: 'Добавить категорию'
         save: 'Сохранить категорию'
+        edit: 'Изменить категорию'
+        delete: 'Удалить категорию'
+        show: 'Показать категорию'
+        show_items: 'Показать товары данной категории'
       attributes:
         name: 'Название'
         description: 'Описание'
+      flash_messages:
+        delete:
+          success: 'Категория была успешно удалена'
+          danger: 'Категория не была успешно удалена'
 
   activerecord:
     attributes:

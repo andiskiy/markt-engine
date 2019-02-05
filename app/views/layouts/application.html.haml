@@ -9,7 +9,9 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Oswald:200,300,400|PT+Sans+Narrow|Yanone+Kaffeesatz'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  %body{ data: { page: controller_name.camelize + action_name.camelize, controller: body_controller } }
+  %body{ data: { area: 'markt-panel',
+                 page: controller_name.camelize + action_name.camelize,
+                 controller: body_controller } }
     = render 'partials/main_navbar'
     - if @categories
       = render 'partials/categories'

@@ -1,8 +1,4 @@
-.row
-  .col-sm-12
-    .bg-secondary.text-white
-      = t('admin.category.titles.index')
-      .fas.fa-angle-double-right
-      = t('admin.category.titles.new')
+- page_cols(lg: 6, md: 10, sm: 12)
+- title(t('admin.category.titles.new'))
 
 = render partial: 'form', locals: { url: admin_categories_path }

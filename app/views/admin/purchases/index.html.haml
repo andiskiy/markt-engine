@@ -44,10 +44,13 @@
           = link_to admin_purchase_complete_path(purchase),
                     method: :post,
                     class: 'btn btn-success',
-                    data: {confirm: t('admin.purchase.messages.complete_confirmation')} do
+                    data: { confirm: t('admin.purchase.messages.complete_confirmation') } do
             .fas.fa-check
     .col-sm-1
-      = link_to admin_purchase_path(purchase), method: :delete, class: 'btn btn-danger' do
+      = link_to admin_purchase_path(purchase),
+                class: 'btn btn-danger',
+                method: :delete,
+                data: { confirm: t('shared.messages.confirm') } do
         .fas.fa-trash-alt
     .col-sm-12.bg-light.text-dark
       .collapse{ id: "details-#{purchase.id}" }

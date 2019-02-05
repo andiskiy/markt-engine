@@ -1,0 +1,26 @@
+body[data-page='AdminCategoriesIndex'] {
+  #accordion-categories {
+    .card {
+      border-radius: 6px;
+      border: 1px solid #d9d9d9;
+      overflow: hidden;
+      box-shadow: 0 0 10px 0 #c5c5c5;
+
+      .card-header {
+        background-color: #e5e5e5;
+
+        [aria-expanded='false'] .fa:before {
+          content: '\f139';
+        }
+
+        [aria-expanded='true'] .fa:before {
+          content: '\f13a';
+        }
+      }
+
+      .load-more:hover {
+       text-decoration: underline;
+      }
+    }
+  }
+}

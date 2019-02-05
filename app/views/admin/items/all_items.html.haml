@@ -1,0 +1,10 @@
+- title(t('shared.admin.items'))
+
+.input-group.mt-3
+  %input.form-control.admin-searchbar.item-searchbar{ type: 'search', placeholder: t('shared.navbar.search') }
+  .search-icon
+    %i.fas.fa-search
+%hr
+
+.items-list
+  = render partial: 'items_table', locals: { items: @items }

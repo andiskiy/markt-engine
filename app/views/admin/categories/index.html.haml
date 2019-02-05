@@ -1,35 +1,20 @@
-.row
-  .col-sm-12
-    .bg-secondary.text-white
-      = t('admin.category.titles.index')
-      .fas.fa-angle-double-right
-
-%table.table
-  %thead.thead-dark
-    %tr
-      %th
-        = t('admin.category.attributes.name')
-      %th
-        = t('admin.category.attributes.description')
-      %th
-  %tbody
-    - @categories.each do |category|
-      %tr
-        %td
-          = link_to edit_admin_category_path(category) do
-            = category.name
-        %td
-          = category.description
-        %td
-          .btn-group
-            = link_to admin_category_path(category), method: :delete, class: 'delete' do
-              .fas.fa-trash-alt
+- title(t('admin.category.titles.index'))
 
 .row
-  .col-sm-4
-  .col-sm-4
-    %center
-      = link_to new_admin_category_path, class: 'btn btn-success' do
+  .col-8
+    .input-group.mt-3
+      %input.form-control.admin-searchbar.category-searchbar{ type: 'search', placeholder: t('shared.navbar.search') }
+      .search-icon
+        %i.fas.fa-search
+  .col-4.text-right
+    .d-md-none
+      = link_to new_admin_category_path, class: 'btn btn-success mb-3 mt-3' do
         .fas.fa-plus
+    .d-none.d-md-block
+      = link_to new_admin_category_path, class: 'btn btn-success mb-3 mt-3' do
         = t('admin.category.actions.add')
-  .col-sm-4
+        .fas.fa-plus
+%hr
+
+#accordion-categories
+  = render partial: 'categories', locals: { categories: @categories }

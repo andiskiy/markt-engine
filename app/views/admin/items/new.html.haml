@@ -1,20 +1,4 @@
-.row
-  .col-sm-12
-    .bg-secondary.text-white
-      = t('admin.item.titles.index')
-      .fas.fa-angle-double-right
-      = t('admin.item.titles.new')
+- page_cols(lg: 6, md: 10, sm: 12)
+- title(t('admin.item.titles.new'))
 
-.row
-  .col-sm-4
-  .col-sm-4
-    .img-thumbnail
-      = simple_form_for @item, url: admin_items_path do |f|
-        = f.input :name
-        = f.input :description
-        = f.input :price
-        = f.simple_fields_for :item_photos do |p|
-          = p.input :photo
-        = f.association :category
-        = f.submit t('admin.item.actions.save'), class: 'btn btn-success'
-  .col-sm-4
+= render partial: 'form', locals: { url: admin_category_items_path(@category), category: @category }
