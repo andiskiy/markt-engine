@@ -29,6 +29,9 @@ class User < ApplicationRecord
 
   acts_as_paranoid
 
+  has_paper_trail on:   :update,
+                  only: %i[first_name last_name email]
+
   # Associations
   has_many :orders
   has_many :items, through: :orders

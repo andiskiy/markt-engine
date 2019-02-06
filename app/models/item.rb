@@ -14,6 +14,9 @@ class Item < ApplicationRecord
 
   acts_as_paranoid
 
+  has_paper_trail on:   :update,
+                  only: %i[name price]
+
   # Associations
   belongs_to :category
   has_many :item_photos

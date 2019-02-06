@@ -29,6 +29,9 @@ gem 'pundit'
 # access to deleted records
 gem 'paranoia', '~> 2.2'
 
+# track versions
+gem 'paper_trail'
+
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.1.0'
