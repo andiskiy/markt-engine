@@ -4,6 +4,7 @@ module Admin
 
     def index
       @purchases = Purchase.includes(:user, orders: :item).paginate(page: params[:page], per_page: Purchase::PER_PAGE)
+      authorize([:admin, @purchases])
     end
 
     def complete
@@ -28,6 +29,7 @@ module Admin
 
     def set_purchase
       @purchase = Purchase.find(params[:id] || params[:purchase_id])
+      authorize([:admin, @purchase])
     end
   end
 end

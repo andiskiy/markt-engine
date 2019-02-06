@@ -26,7 +26,7 @@
                     class: 'edit inline-block m-1',
                     title: t('admin.purchase.actions.order_details') do
             .far.fa-clipboard
-          - unless purchase.completed?
+          - if policy([:admin, purchase]).complete?
             = link_to admin_purchase_complete_path(purchase),
                       method: :post,
                       class: 'create inline-block m-1',

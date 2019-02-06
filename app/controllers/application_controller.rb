@@ -16,10 +16,10 @@ class ApplicationController < ActionController::Base
       if @current_user
         flash.now[:warning] = exception_message(exception)
         referer_page = request.referer || root_path
-        format.any(:xlsx, :json, :js) { redirect_to(referer_page) }
-        format.html { render 'users/sessions/access_denied', layout: @layout ? false : layout_name }
+        format.any(:json, :js) { redirect_to(referer_page) }
+        format.html { render 'users/sessions/access_denied', layout: @layout ? false : current_layout }
       else
-        format.any(:html, :xlsx, :json, :js) do
+        format.any(:html, :json, :js) do
           flash[:warning] = exception.to_s
           redirect_to(root_path)
         end
@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def layout_name
+  def current_layout
     @current_user.admin? ? 'admin' : 'application'
   end
 end
