@@ -18,6 +18,7 @@
 #  last_sign_in_at         :datetime
 #  current_sign_in_ip      :inet
 #  last_sign_in_ip         :inet
+#  deleted_at              :datetime
 #
 
 class User < ApplicationRecord
@@ -25,6 +26,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  acts_as_paranoid
 
   # Associations
   has_many :orders

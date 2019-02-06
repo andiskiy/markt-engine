@@ -6,10 +6,13 @@
 #  description :text
 #  price       :float
 #  category_id :integer
+#  deleted_at  :datetime
 #
 
 class Item < ApplicationRecord
   PER_PAGE = 50
+
+  acts_as_paranoid
 
   # Associations
   belongs_to :category

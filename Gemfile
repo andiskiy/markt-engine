@@ -26,6 +26,9 @@ gem 'coffee-rails', '~> 4.2'
 # authorization
 gem 'pundit'
 
+# access to deleted records
+gem 'paranoia', '~> 2.2'
+
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.1.0'
