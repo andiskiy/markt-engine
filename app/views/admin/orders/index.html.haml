@@ -1,0 +1,25 @@
+- page_cols(8)
+- title(t('admin.order.titles.index'))
+
+%div
+  %strong #{t('admin.purchase.attributes.total_price')}:
+  = @orders.map(&:item).pluck(:price).inject(0, :+)
+%div
+  %strong #{t('admin.purchase.attributes.user')}:
+  #{@purchase.user.full_name} (#{@purchase.user.email})
+%div.mb-4
+  %strong #{t('admin.purchase.attributes.status')}:
+  = purchase_status(@purchase)
+
+.row
+  .col-9
+    .input-group
+      %input.form-control.admin-searchbar.order-searchbar{ type: 'search', placeholder: t('shared.navbar.search') }
+      .search-icon
+        %i.fas.fa-search
+  .col-3.text-right
+    = link_to t('shared.actions.back'), admin_purchases_path, class: 'btn btn-light'
+%hr
+
+.orders-list{ data: { purchase: { id: @purchase.id } } }
+  = render partial: 'orders_list', locals: { orders: @orders }

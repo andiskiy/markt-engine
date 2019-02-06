@@ -1,0 +1,8 @@
+en:
+  admin:
+    order:
+      titles:
+        index: 'Orders'
+      attributes:
+        item: 'Item'
+        price: 'Price'

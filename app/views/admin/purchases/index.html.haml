@@ -1,63 +1,57 @@
 .row
-  .col-sm-12
-    .bg-secondary.text-white
-      = t('admin.purchase.titles.index')
-      .fas.fa-angle-double-right
+  .col-sm-12.col-md-2.mt-3
+    = link_to t('admin.purchase.attributes.pending'), admin_purchases_path(status: 'pending'),
+                                                       class: 'btn btn-warning'
+  .col-sm-12.col-md-2.mt-3
+    = link_to t('admin.purchase.attributes.processing'), admin_purchases_path(status: 'processing'),
+                                                       class: 'btn btn-primary'
+  .col-sm-12.col-md-2.mt-3
+    = link_to t('admin.purchase.attributes.complete'), admin_purchases_path(status: 'completed'),
+                                                       class: 'btn btn-success'
+%hr
 
-.row.bg-dark.text-white
-  .col-sm-3
-    = t('admin.purchase.attributes.date')
-  .col-sm-2
-    = t('admin.purchase.attributes.user')
-  .col-sm-2
-    = t('admin.purchase.attributes.total_price')
-  .col-sm-2
-    = t('admin.purchase.attributes.status')
-  .col-sm-3
-.row
-  - @purchases.each do |purchase|
-    .col-sm-3
-      = purchase.created_at
-    .col-sm-2
-      #{purchase.user.first_name} #{purchase.user.last_name} (#{purchase.user.email})
-    .col-sm-2
-      = purchase.orders.map(&:item).pluck(:price).inject(0, :+)
-    .col-sm-2
-      - if purchase.completed?
-        .badge.badge-success
-          .far.fa-check-circle
-          Completed
-      - elsif purchase.pending?
-        .badge.badge-warning
-          .far.fa-circle
-          Pending
-      - elsif purchase.processing?
-        .badge.badge-warning
-          .far.fa-circle
-          Processing
-    .col-sm-2
-      .btn-group
-        = link_to '#', class: 'btn btn-info', data: { toggle: 'collapse', target: "#details-#{purchase.id}" } do
-          .far.fa-clipboard
-          = t('admin.purchase.actions.order_details')
-        - unless purchase.completed?
-          = link_to admin_purchase_complete_path(purchase),
-                    method: :post,
-                    class: 'btn btn-success',
-                    data: { confirm: t('admin.purchase.messages.complete_confirmation') } do
-            .fas.fa-check
-    .col-sm-1
-      = link_to admin_purchase_path(purchase),
-                class: 'btn btn-danger',
-                method: :delete,
-                data: { confirm: t('shared.messages.confirm') } do
-        .fas.fa-trash-alt
-    .col-sm-12.bg-light.text-dark
-      .collapse{ id: "details-#{purchase.id}" }
-        .list-group
-          - purchase.orders.each do |order|
-            .list-group-item.list-group-item-info
-              %center
-                = link_to items_path(order.item) do
-                  .fas.fa-gift
-                  #{order.item.name} - #{order.item.price}
+%table.table.table-striped
+  %thead
+    %tr
+      %th
+        = t('admin.purchase.attributes.date')
+      %th.d-none.d-lg-table-cell
+        = t('admin.purchase.attributes.user')
+      %th.d-none.d-lg-table-cell
+        = t('admin.purchase.attributes.total_price')
+      %th
+        = t('admin.purchase.attributes.status')
+      %th
+  %tbody
+    - @purchases.each do |purchase|
+      %tr
+        %td.d-none.d-lg-table-cell
+          = purchase.datetime_format(purchase.created_at)
+        %td.d-none.d-lg-table-cell
+          #{purchase.user.full_name} (#{purchase.user.email})
+        %td
+          = purchase.orders.map(&:item).pluck(:price).inject(0, :+)
+        %td
+          = purchase_status(purchase)
+        %td.text-right
+          - if policy([:admin, purchase]).complete?
+            = link_to admin_purchase_complete_path(purchase),
+                      method: :post,
+                      class: 'create inline-block m-1',
+                      data: { confirm: t('admin.purchase.messages.complete_confirmation') },
+                      title: t('admin.purchase.actions.complete') do
+              .fas.fa-check
+          = link_to admin_purchase_orders_path(purchase),
+                    class: 'edit inline-block m-1',
+                    title: t('admin.purchase.actions.order_details') do
+            .far.fa-clipboard
+          = link_to admin_purchase_path(purchase),
+                    class: 'delete inline-block m-1',
+                    method: :delete,
+                    data: { confirm: t('shared.messages.confirm') },
+                     title: t('admin.purchase.actions.delete') do
+            .fas.fa-trash-alt
+
+.text-center
+  .inline-block
+    = will_paginate(@purchases, renderer: WillPaginate::ActionView::BootstrapLinkRenderer)

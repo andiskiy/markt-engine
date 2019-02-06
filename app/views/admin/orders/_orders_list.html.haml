@@ -1,0 +1,19 @@
+%table.table.table-striped
+  %thead
+    %tr
+      %th
+        = t('admin.order.attributes.item')
+      %th
+        = t('admin.order.attributes.price')
+  %tbody
+  - orders.each do |order|
+    %tr
+      %td
+        = link_to items_path(order.item) do
+          .fas.fa-gift
+          = order.item.name
+      %td= order.item.price
+
+.text-center
+  .inline-block
+    = will_paginate(orders, renderer: WillPaginate::ActionView::BootstrapLinkRenderer)

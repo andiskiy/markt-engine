@@ -4,7 +4,7 @@
     %meta{ content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type' }
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' }
     %title
-      MarkEngine
+      MarktEngine
       = indent_title_section(yield :title) if content_for?(:title)
     = csrf_meta_tags
     = csp_meta_tag
@@ -19,6 +19,7 @@
         .fas.fa-angle-double-right
         = t("admin.#{controller_name.singularize}.action.#{action_name}")
     .container
+      = render 'partials/flash'
       .row.justify-content-center
         %div{ class: content_for?(:main_row_class) ? yield(:main_row_class) : 'col-12' }
           = yield

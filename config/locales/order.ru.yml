@@ -1,0 +1,8 @@
+ru:
+  admin:
+    order:
+      titles:
+        index: 'Заказы'
+      attributes:
+        item: 'Товар'
+        price: 'Цена'

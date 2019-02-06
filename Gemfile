@@ -23,6 +23,9 @@ gem 'will_paginate-bootstrap4'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 
+# authorization
+gem 'pundit'
+
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.1.0'
