@@ -1,6 +1,6 @@
 class Admin::OrderPolicy < ApplicationPolicy
   def index?
-    user.admin? && record.present? && !record.first.purchase.pending?
+    user.admin? && record.present?
   end
 
   class Scope < Scope
