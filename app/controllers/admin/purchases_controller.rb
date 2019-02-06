@@ -3,7 +3,10 @@ module Admin
     before_action :set_purchase, only: %i[complete destroy]
 
     def index
-      @purchases = Purchase.includes(:user, orders: :item).paginate(page: params[:page], per_page: Purchase::PER_PAGE)
+      @purchases = Purchase.with_orders
+                           .with_status(params[:status])
+                           .includes(:user, orders: :item)
+                           .paginate(page: params[:page], per_page: Purchase::PER_PAGE)
       authorize([:admin, @purchases])
     end
 

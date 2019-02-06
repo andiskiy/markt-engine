@@ -20,6 +20,22 @@ class Purchase < ApplicationRecord
   # Validations
   validates :user_id, presence: true
 
+  # Scopes
+  scope :with_orders, -> { joins(:orders).having('COUNT(orders.id) > 0').group('purchases.id') }
+  scope :not_pending, -> { where('purchases.status <> ?', STATUSES.index('pending')) }
+
+  class << self
+    def with_status(status)
+      status_matched?(status) ? where('purchases.status = ?', STATUSES.index(status)) : where.not(status: nil)
+    end
+
+    private
+
+    def status_matched?(status)
+      STATUSES.include?(status)
+    end
+  end
+
   # Methods
   def amount
     orders.inject(0.0) { |sum, order| sum + order.item.price }

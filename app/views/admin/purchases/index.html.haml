@@ -1,3 +1,15 @@
+.row
+  .col-sm-12.col-md-2.mt-3
+    = link_to t('admin.purchase.attributes.pending'), admin_purchases_path(status: 'pending'),
+                                                       class: 'btn btn-warning'
+  .col-sm-12.col-md-2.mt-3
+    = link_to t('admin.purchase.attributes.processing'), admin_purchases_path(status: 'processing'),
+                                                       class: 'btn btn-primary'
+  .col-sm-12.col-md-2.mt-3
+    = link_to t('admin.purchase.attributes.complete'), admin_purchases_path(status: 'completed'),
+                                                       class: 'btn btn-success'
+%hr
+
 %table.table.table-striped
   %thead
     %tr
@@ -21,11 +33,7 @@
           = purchase.orders.map(&:item).pluck(:price).inject(0, :+)
         %td
           = purchase_status(purchase)
-        %td
-          = link_to admin_purchase_orders_path(purchase),
-                    class: 'edit inline-block m-1',
-                    title: t('admin.purchase.actions.order_details') do
-            .far.fa-clipboard
+        %td.text-right
           - if policy([:admin, purchase]).complete?
             = link_to admin_purchase_complete_path(purchase),
                       method: :post,
@@ -33,6 +41,10 @@
                       data: { confirm: t('admin.purchase.messages.complete_confirmation') },
                       title: t('admin.purchase.actions.complete') do
               .fas.fa-check
+          = link_to admin_purchase_orders_path(purchase),
+                    class: 'edit inline-block m-1',
+                    title: t('admin.purchase.actions.order_details') do
+            .far.fa-clipboard
           = link_to admin_purchase_path(purchase),
                     class: 'delete inline-block m-1',
                     method: :delete,

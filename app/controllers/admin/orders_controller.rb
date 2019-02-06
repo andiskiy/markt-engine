@@ -7,6 +7,7 @@ module Admin
                          .includes(:item)
                          .search(params[:value])
                          .paginate(page: params[:page], per_page: Order::PER_PAGE)
+      authorize([:admin, @orders])
       respond_to do |format|
         format.html {}
         format.js do
