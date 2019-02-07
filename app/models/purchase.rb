@@ -6,6 +6,7 @@
 #  created_at  :datetime  not null
 #  updated_at  :datetime  not null
 #  status      :integer   default(0)
+#  ordered_at  :datetime
 #
 
 class Purchase < ApplicationRecord
@@ -19,6 +20,9 @@ class Purchase < ApplicationRecord
 
   # Validations
   validates :user_id, presence: true
+
+  # Callbacks
+  before_save :set_ordered_at, if: -> { status_changed? && processing? }
 
   # Scopes
   scope :with_orders, -> { joins(:orders).having('COUNT(orders.id) > 0').group('purchases.id') }
@@ -53,5 +57,11 @@ class Purchase < ApplicationRecord
     define_method "#{status}!" do
       update(status: status)
     end
+  end
+
+  private
+
+  def set_ordered_at
+    self.ordered_at = Time.current
   end
 end
