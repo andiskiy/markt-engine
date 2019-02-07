@@ -29,15 +29,12 @@ body {
   }
 
   .payment-button {
-    float: right;
-    a {
-      color: #ffffff;
-      padding: 5px;
-      border-radius: 10px 10px 10px 10px;
-      -moz-border-radius: 10px 10px 10px 10px;
-      -webkit-border-radius: 10px 10px 10px 10px;
-      background-color: #fc7121;
-    }
+    color: #ffffff;
+    padding: 5px;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    background-color: #fc7121;
   }
 }
 

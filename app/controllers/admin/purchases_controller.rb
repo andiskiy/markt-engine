@@ -11,7 +11,7 @@ module Admin
     end
 
     def complete
-      if @purchase.complete!
+      if @purchase.completed!
         flash[:success] = t('admin.purchase.flash_messages.complete.success')
       else
         flash[:danger] = t('admin.purchase.flash_messages.complete.danger')

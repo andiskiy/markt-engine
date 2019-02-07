@@ -4,5 +4,9 @@ en:
       index: 'Items in cart'
     actions:
       go_to_main: 'Back to Main'
+      payment: 'Make an order'
     messages:
       no_items: 'No items in you cart'
+    flash_messages:
+      success: 'Order successfully issued'
+      danger: "Order wasn't successfully issued"

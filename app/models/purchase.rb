@@ -49,9 +49,9 @@ class Purchase < ApplicationRecord
     define_method "#{status}?" do
       self.status == status
     end
-  end
 
-  def complete!
-    update(status: 'completed')
+    define_method "#{status}!" do
+      update(status: status)
+    end
   end
 end

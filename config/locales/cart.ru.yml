@@ -4,5 +4,9 @@ ru:
       index: 'Товары в корзине'
     actions:
       go_to_main: 'Вернуться на главную'
+      payment: 'Отправить заказ'
     messages:
       no_items: 'В вашей корзине нет товаров'
+    flash_messages:
+      success: 'Заказ успешно оформлен'
+      danger: 'Заказ не был успешно оформлен'
