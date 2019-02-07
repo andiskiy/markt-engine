@@ -7,6 +7,8 @@
 #  price       :float
 #  category_id :integer
 #  deleted_at  :datetime
+#  created_at  :datetime  not null
+#  updated_at  :datetime  not null
 #
 
 class Item < ApplicationRecord
