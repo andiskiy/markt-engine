@@ -16,6 +16,7 @@ class Purchase < ApplicationRecord
 
   # Associations
   belongs_to :user
+  belongs_to :with_deleted_user, -> { with_deleted }, foreign_key: 'user_id', inverse_of: false, class_name: 'User'
   has_many :orders
 
   # Validations
@@ -41,12 +42,14 @@ class Purchase < ApplicationRecord
   end
 
   # Methods
-  def amount
-    orders.inject(0.0) { |sum, order| sum + order.item.price }
+  def amount_with_deleted_items
+    orders.inject(0.0) { |sum, order| sum + order.with_deleted_item.old_price(ordered_at) }
   end
 
   def datetime_format(str_time)
     str_time.in_time_zone(Time.zone.name).strftime(MarktEngine::DATETIME_FORMAT)
+  rescue NoMethodError
+    'N/A'
   end
 
   STATUSES.each do |status|

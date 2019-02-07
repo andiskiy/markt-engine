@@ -22,11 +22,11 @@
     - @purchases.each do |purchase|
       %tr
         %td.d-none.d-lg-table-cell
-          = purchase.datetime_format(purchase.created_at)
+          = purchase.datetime_format(purchase.ordered_at)
         %td.d-none.d-lg-table-cell
-          #{purchase.user.full_name} (#{purchase.user.email})
+          #{purchase.with_deleted_user.full_name} (#{purchase.with_deleted_user.email})
         %td
-          = purchase.orders.map(&:item).pluck(:price).inject(0, :+)
+          = purchase.amount_with_deleted_items
         %td
           = purchase_status(purchase)
         %td.text-right

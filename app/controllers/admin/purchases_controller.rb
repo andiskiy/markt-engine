@@ -5,7 +5,7 @@ module Admin
     def index
       @purchases = Purchase.with_orders
                            .with_status(params[:status])
-                           .includes(:user, orders: :item)
+                           .includes(:with_deleted_user, orders: [with_deleted_item: :versions])
                            .paginate(page: params[:page], per_page: Purchase::PER_PAGE)
       authorize([:admin, @purchases])
     end

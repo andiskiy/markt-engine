@@ -8,11 +8,8 @@
   %tbody
   - orders.each do |order|
     %tr
-      %td
-        = link_to items_path(order.item) do
-          .fas.fa-gift
-          = order.item.name
-      %td= order.item.price
+      %td= order_item(order.with_deleted_item, purchase)
+      %td= order.with_deleted_item.old_price(purchase.ordered_at)
 
 .text-center
   .inline-block

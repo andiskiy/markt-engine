@@ -22,6 +22,8 @@
 #
 
 class User < ApplicationRecord
+  include Versionable
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -31,6 +33,8 @@ class User < ApplicationRecord
 
   has_paper_trail on:   :update,
                   only: %i[first_name last_name email]
+
+  versionable :first_name, :last_name, :email
 
   # Associations
   has_many :orders
@@ -43,6 +47,10 @@ class User < ApplicationRecord
   # Methods
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def full_name_with_email(date)
+    "#{old_first_name(date)} #{old_last_name(date)} (#{old_email(date)})"
   end
 
   def admin?
