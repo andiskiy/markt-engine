@@ -6,10 +6,21 @@
 #  description :text
 #  price       :float
 #  category_id :integer
+#  deleted_at  :datetime
+#  created_at  :datetime  not null
+#  updated_at  :datetime  not null
 #
 
 class Item < ApplicationRecord
+  include Versionable
   PER_PAGE = 50
+
+  acts_as_paranoid
+
+  has_paper_trail on:   :update,
+                  only: %i[name price]
+
+  versionable :name, :price
 
   # Associations
   belongs_to :category

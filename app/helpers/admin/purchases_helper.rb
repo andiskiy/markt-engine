@@ -12,7 +12,7 @@ module Admin::PurchasesHelper
         concat(" #{t('admin.purchase.attributes.pending')}")
       end
     when purchase.processing?
-      content_tag(:div, class: 'badge badge-warning') do
+      content_tag(:div, class: 'badge badge-primary') do
         concat(content_tag(:i, class: 'far fa-circle') {})
         concat(" #{t('admin.purchase.attributes.processing')}")
       end

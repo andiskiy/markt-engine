@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :orders
   resources :items, only: :index
   resources :carts
+  resources :purchases, only: :update
 
   root 'main#index'
 end

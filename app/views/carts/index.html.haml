@@ -1,12 +1,14 @@
 .page_head
   .row
     .col-sm-4= link_to t('cart.actions.go_to_main'), root_path, class: 'header-actions'
-    .col-sm-4
-      %center
-        = t('cart.titles.index')
-    .col-sm-4
-      .payment-button
-        = pay_url 'Payment', @purchase.id, @purchase.amount
+    .col-sm-4.text-center
+      = t('cart.titles.index')
+    .col-sm-4.text-right
+      - if policy(@purchase).update?
+        = link_to t('cart.actions.payment'), purchase_path(@purchase),
+                                             method: :put,
+                                             class: 'btn payment-button',
+                                             data: { confirm: t('shared.messages.confirm') }
 .content
   .items-list
     - if @orders.present?

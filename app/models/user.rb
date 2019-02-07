@@ -18,13 +18,23 @@
 #  last_sign_in_at         :datetime
 #  current_sign_in_ip      :inet
 #  last_sign_in_ip         :inet
+#  deleted_at              :datetime
 #
 
 class User < ApplicationRecord
+  include Versionable
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  acts_as_paranoid
+
+  has_paper_trail on:   :update,
+                  only: %i[first_name last_name email]
+
+  versionable :first_name, :last_name, :email
 
   # Associations
   has_many :orders
@@ -37,6 +47,10 @@ class User < ApplicationRecord
   # Methods
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def full_name_with_email(date)
+    "#{old_first_name(date)} #{old_last_name(date)} (#{old_email(date)})"
   end
 
   def admin?

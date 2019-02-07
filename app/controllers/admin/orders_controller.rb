@@ -4,8 +4,8 @@ module Admin
 
     def index
       @orders = @purchase.orders
-                         .includes(:item)
-                         .search(params[:value])
+                         .includes(with_deleted_item: %i[category versions])
+                         .search_with_deleted(params[:value])
                          .paginate(page: params[:page], per_page: Order::PER_PAGE)
       authorize([:admin, @orders])
       respond_to do |format|

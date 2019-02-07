@@ -1,13 +1,9 @@
-.row
-  .col-sm-12.col-md-2.mt-3
-    = link_to t('admin.purchase.attributes.pending'), admin_purchases_path(status: 'pending'),
-                                                       class: 'btn btn-warning'
-  .col-sm-12.col-md-2.mt-3
-    = link_to t('admin.purchase.attributes.processing'), admin_purchases_path(status: 'processing'),
-                                                       class: 'btn btn-primary'
-  .col-sm-12.col-md-2.mt-3
-    = link_to t('admin.purchase.attributes.complete'), admin_purchases_path(status: 'completed'),
-                                                       class: 'btn btn-success'
+= link_to t('admin.purchase.attributes.pending'), admin_purchases_path(status: 'pending'),
+                                                   class: 'btn btn-warning mb-3'
+= link_to t('admin.purchase.attributes.processing'), admin_purchases_path(status: 'processing'),
+                                                   class: 'btn btn-primary mb-3'
+= link_to t('admin.purchase.attributes.complete'), admin_purchases_path(status: 'completed'),
+                                                   class: 'btn btn-success mb-3'
 %hr
 
 %table.table.table-striped
@@ -26,11 +22,11 @@
     - @purchases.each do |purchase|
       %tr
         %td.d-none.d-lg-table-cell
-          = purchase.datetime_format(purchase.created_at)
+          = purchase.datetime_format(purchase.ordered_at)
         %td.d-none.d-lg-table-cell
-          #{purchase.user.full_name} (#{purchase.user.email})
+          #{purchase.with_deleted_user.full_name} (#{purchase.with_deleted_user.email})
         %td
-          = purchase.orders.map(&:item).pluck(:price).inject(0, :+)
+          = purchase.amount_with_deleted_items
         %td
           = purchase_status(purchase)
         %td.text-right

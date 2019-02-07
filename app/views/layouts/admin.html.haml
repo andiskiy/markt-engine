@@ -24,11 +24,4 @@
         %div{ class: content_for?(:main_row_class) ? yield(:main_row_class) : 'col-12' }
           = yield
 
-    = modal 'message', size: 'sm' do
-      .modal-body
-        .message
-      .modal-footer
-        %button.btn.btn-light{ type: 'button', data: { dismiss: 'modal', btn: { text: t('shared.actions.cancel') } } }
-          = t('shared.actions.cancel')
-        %button.btn.btn-danger.js-confirm{ type: 'button' }
-          = t('shared.actions.confirm')
+    = render partial: 'partials/message_modal'

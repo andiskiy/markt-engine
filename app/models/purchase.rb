@@ -6,6 +6,7 @@
 #  created_at  :datetime  not null
 #  updated_at  :datetime  not null
 #  status      :integer   default(0)
+#  ordered_at  :datetime
 #
 
 class Purchase < ApplicationRecord
@@ -15,10 +16,14 @@ class Purchase < ApplicationRecord
 
   # Associations
   belongs_to :user
+  belongs_to :with_deleted_user, -> { with_deleted }, foreign_key: 'user_id', inverse_of: false, class_name: 'User'
   has_many :orders
 
   # Validations
   validates :user_id, presence: true
+
+  # Callbacks
+  before_save :set_ordered_at, if: -> { status_changed? && processing? }
 
   # Scopes
   scope :with_orders, -> { joins(:orders).having('COUNT(orders.id) > 0').group('purchases.id') }
@@ -37,21 +42,29 @@ class Purchase < ApplicationRecord
   end
 
   # Methods
-  def amount
-    orders.inject(0.0) { |sum, order| sum + order.item.price }
+  def amount_with_deleted_items
+    orders.inject(0.0) { |sum, order| sum + order.with_deleted_item.old_price(ordered_at) }
   end
 
   def datetime_format(str_time)
     str_time.in_time_zone(Time.zone.name).strftime(MarktEngine::DATETIME_FORMAT)
+  rescue NoMethodError
+    'N/A'
   end
 
   STATUSES.each do |status|
     define_method "#{status}?" do
       self.status == status
     end
+
+    define_method "#{status}!" do
+      update(status: status)
+    end
   end
 
-  def complete!
-    update(status: 'completed')
+  private
+
+  def set_ordered_at
+    self.ordered_at = Time.current
   end
 end
