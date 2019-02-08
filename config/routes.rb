@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       post :complete
       resources :orders, only: :index
     end
-    resources :users
+    resources :users, except: %i[edit new create]
   end
 
   devise_for :users, controllers: { registrations: 'users/registrations' }

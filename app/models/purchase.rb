@@ -27,17 +27,17 @@ class Purchase < ApplicationRecord
 
   # Scopes
   scope :with_orders, -> { joins(:orders).having('COUNT(orders.id) > 0').group('purchases.id') }
-  scope :not_pending, -> { where('purchases.status <> ?', STATUSES.index('pending')) }
+  scope :not_pending, -> { where('purchases.status <> ?', Purchase.statuses['pending']) }
 
   class << self
     def with_status(status)
-      status_matched?(status) ? where('purchases.status = ?', STATUSES.index(status)) : where.not(status: nil)
+      status_matched?(status) ? where('purchases.status = ?', Purchase.statuses[status]) : where.not(status: nil)
     end
 
     private
 
     def status_matched?(status)
-      STATUSES.include?(status)
+      Purchase.statuses[status]
     end
   end
 

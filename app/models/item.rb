@@ -35,7 +35,7 @@ class Item < ApplicationRecord
 
   class << self
     def search(value, category_id)
-      items = Item.where('name ILIKE :value', value: "%#{value}%")
+      items = where('name ILIKE :value', value: "%#{value}%")
       category_id.present? ? items.where(category_id: category_id) : items
     end
   end

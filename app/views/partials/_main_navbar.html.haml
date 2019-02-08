@@ -20,7 +20,7 @@
                 .fas.fa-user
                 = current_user.full_name
               .dropdown-menu
-                - if current_user.admin?
+                - if current_user.admin_or_higher?
                   = link_to admin_path, class: 'dropdown-item' do
                     .fas.fa-cogs
                     = t('shared.navbar.admin_panel')

@@ -1,0 +1,15 @@
+- page_cols(md: 12, lg: 8)
+- title(@user.full_name)
+
+= link_to t('shared.actions.back'), admin_users_path, class: 'btn btn-light'
+
+%hr
+%p
+  %strong #{t('admin.user.attributes.name')}:
+  = @user.full_name
+%p
+  %strong #{t('admin.user.attributes.email')}:
+  = @user.email
+%p
+  %strong #{t('admin.user.attributes.role')}:
+  = t("admin.user.roles.#{@user.role}")

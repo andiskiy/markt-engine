@@ -1,6 +1,6 @@
 class Admin::OrderPolicy < ApplicationPolicy
   def index?
-    user.admin? && record.present?
+    user.admin_or_higher? && record.present?
   end
 
   class Scope < Scope

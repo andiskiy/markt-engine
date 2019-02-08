@@ -1,6 +1,6 @@
 class Admin::PurchasePolicy < ApplicationPolicy
   def index?
-    user.admin?
+    user.admin_or_higher?
   end
 
   def complete?
