@@ -1,27 +1,30 @@
-.row
-  .col-sm-12
-    .bg-secondary.text-white
-      = t('admin.user.titles.index')
-      .fas.fa-angle-double-right
+= link_to t('admin.user.roles.super'), admin_users_path(role: 'super'),
+                                                   class: 'btn btn-warning mb-3'
+= link_to t('admin.user.roles.admin'), admin_users_path(role: 'admin'),
+                                       class: 'btn btn-primary mb-3'
+= link_to t('admin.user.roles.standard'), admin_users_path(role: 'standard'),
+                                          class: 'btn btn-success mb-3'
 
-%table.table
-  %thead.thead-dark
+%table.table.table-striped
+  %thead
     %tr
-      %th
-        = t('admin.user.attributes.name')
-      %th
-        = t('admin.user.attributes.email')
+      %th= t('admin.user.attributes.name')
+      %th= t('admin.user.attributes.email')
+      %th= t('admin.user.attributes.role')
       %th
   %tbody
     - @users.each do |user|
       %tr
-        %td
-          = user.full_name
-        %td
-          = user.email
+        %td= link_to user.full_name, admin_user_path(user)
+        %td= user.email
+        %td= t("admin.user.roles.#{user.role}")
         %td
           = link_to admin_user_path(user),
-                    class: 'btn btn-danger',
+                    class: 'delete',
                     method: :delete,
                     data: { confirm: t('shared.messages.confirm') } do
             .fas.fa-trash-alt
+
+.text-center
+  .inline-block
+    = will_paginate(@users, renderer: WillPaginate::ActionView::BootstrapLinkRenderer)

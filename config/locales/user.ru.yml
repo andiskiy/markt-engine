@@ -12,6 +12,15 @@ ru:
         name: 'Имя'
         email: 'Email'
         price: 'Цена'
+        role: 'Роль'
+      roles:
+        super: 'Супер пользователь'
+        admin: 'Администратор'
+        standard: 'Стандартный пользователь'
+      flash_messages:
+        delete:
+          success: 'Пользователь успешно удален'
+          danger: 'Не удалось удалить пользователя'
 
   user:
     password:

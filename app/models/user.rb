@@ -6,7 +6,7 @@
 #  last_name               :string
 #  email                   :string
 #  password                :string
-#  role                    :integer   default(1)
+#  role                    :integer   default(2)
 #  created_at              :datetime  not null
 #  updated_at              :datetime  not null
 #  encrypted_password      :string   default(''), not null
@@ -22,7 +22,10 @@
 #
 
 class User < ApplicationRecord
+  include User::Roles
   include Versionable
+
+  PER_PAGE = 50
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -44,6 +47,11 @@ class User < ApplicationRecord
   # Validations
   validates :first_name, :last_name, presence: true
 
+  # Scopes
+  scope :with_role, lambda { |role|
+    User.roles[role] ? where(role: role) : where.not(role: nil)
+  }
+
   # Methods
   def full_name
     "#{first_name} #{last_name}"
@@ -51,9 +59,5 @@ class User < ApplicationRecord
 
   def full_name_with_email(date)
     "#{old_first_name(date)} #{old_last_name(date)} (#{old_email(date)})"
-  end
-
-  def admin?
-    role.zero?
   end
 end
