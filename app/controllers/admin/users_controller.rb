@@ -3,14 +3,29 @@ module Admin
     before_action :set_user, only: %i[show update destroy]
 
     def index
-      @users = User.with_role(params[:role]).paginate(page: params[:page], per_page: User::PER_PAGE)
+      @users = User.with_role(params[:role])
+                   .admin_or_lower
+                   .order_by_id
+                   .paginate(page: params[:page], per_page: User::PER_PAGE)
+      authorize([:admin, @users])
     end
 
     def show; end
 
     def update
-      @user.update(role: params[:role])
-      # ...
+      respond_to do |format|
+        if @user.update(role: params[:role])
+          format.html do
+            redirect_to admin_users_path, flash: { success: t('admin.user.flash_messages.update.success') }
+          end
+          format.json { render json: { status: :updated, user: @user } }
+        else
+          format.html do
+            redirect_to admin_users_path, flash: { danger: t('admin.user.flash_messages.update.danger') }
+          end
+          format.json { render json: { errors: @user.errors, status: :unprocessable_entity } }
+        end
+      end
     end
 
     def destroy
@@ -19,12 +34,12 @@ module Admin
           format.html do
             redirect_to admin_users_path, flash: { success: t('admin.user.flash_messages.delete.success') }
           end
-          format.json { render json: { status: :destroyed, users: User.all } }
+          format.json { render json: { status: :destroyed, user: @user } }
         else
           format.html do
             redirect_to admin_users_path, flash: { danger: t('admin.user.flash_messages.delete.danger') }
           end
-          format.json { render json: @user.errors, status: :unprocessable_entity }
+          format.json { render json: { errors: @user.errors, status: :unprocessable_entity } }
         end
       end
     end
@@ -33,6 +48,7 @@ module Admin
 
     def set_user
       @user = User.find(params[:id])
+      authorize([:admin, @user])
     end
   end
 end

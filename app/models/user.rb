@@ -46,8 +46,10 @@ class User < ApplicationRecord
 
   # Validations
   validates :first_name, :last_name, presence: true
+  validates :role, inclusion: { in: User::ROLES }
 
   # Scopes
+  scope :order_by_id, -> { order(id: :asc) }
   scope :with_role, lambda { |role|
     User.roles[role] ? where(role: role) : where.not(role: nil)
   }

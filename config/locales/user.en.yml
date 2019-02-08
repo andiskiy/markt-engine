@@ -21,6 +21,9 @@ en:
         delete:
           success: 'User successfully deleted'
           danger: "User wasn't successfully deleted"
+        update:
+          success: 'User role successfully updated'
+          danger: "User role wasn't successfully updated"
 
   user:
     password:
@@ -56,3 +59,5 @@ en:
               too_long: 'too long'
             password_confirmation:
               confirmation: "^doesn't match Password"
+            role:
+              inclusion: "Value should be 'super', 'admin' or 'standard'"

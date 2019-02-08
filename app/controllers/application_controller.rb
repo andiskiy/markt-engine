@@ -15,8 +15,7 @@ class ApplicationController < ActionController::Base
     respond_to do |format|
       if @current_user
         flash.now[:warning] = exception_message(exception)
-        referer_page = request.referer || root_path
-        format.any(:json, :js) { redirect_to(referer_page) }
+        format.any(:json, :js) { render json: { error: t('pundit.default'), status: :not_authorized } }
         format.html { render 'users/sessions/access_denied', layout: @layout ? false : current_layout }
       else
         format.any(:html, :json, :js) do
@@ -37,6 +36,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_layout
-    @current_user.admin_or_higher? ? 'admin' : 'application'
+    controller_path.split('/')[0] == 'admin' ? 'admin' : 'application'
   end
 end

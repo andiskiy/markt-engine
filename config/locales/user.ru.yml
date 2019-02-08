@@ -21,6 +21,9 @@ ru:
         delete:
           success: 'Пользователь успешно удален'
           danger: 'Не удалось удалить пользователя'
+        update:
+          success: 'Роль пользователя успешно обновлена'
+          danger: 'Не удалось обновить роль пользователя'
 
   user:
     password:
@@ -56,3 +59,5 @@ ru:
               too_long: 'слишком длинный'
             password_confirmation:
               confirmation: '^Пароли не совпадают'
+            role:
+              inclusion: 'Значение должно быть super, admin или standard'
