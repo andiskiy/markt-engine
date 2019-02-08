@@ -53,6 +53,10 @@ class User < ApplicationRecord
   scope :with_role, lambda { |role|
     User.roles[role] ? where(role: role) : where.not(role: nil)
   }
+  scope :search, lambda { |value|
+    where("CONCAT(first_name,' ',last_name) ILIKE :value OR
+           email ILIKE :value", value: "%#{value}%")
+  }
 
   # Methods
   def full_name

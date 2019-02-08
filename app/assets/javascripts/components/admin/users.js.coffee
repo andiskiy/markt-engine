@@ -1,9 +1,11 @@
-class MarktEngine.AdminUsersIndex
+class MarktEngine.AdminUsersIndex extends MarktEngine.Searchable
   @init: ->
+    @setElements('.user-searchbar', '#users-management', '/admin/users')
     @bind()
 
   @bind: ->
     $('#users-management').on 'click', '.user-role', @changeRole
+    super
 
   @changeRole: (e) ->
     input = $(e.target)

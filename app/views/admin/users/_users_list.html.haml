@@ -1,0 +1,47 @@
+%table.table.table-striped
+  %thead.table-bordered
+    %tr
+      %th{ rowspan: 2 }= t('admin.user.attributes.name')
+      %th.d-none.d-lg-table-cell{ rowspan: 2 }= t('admin.user.attributes.email')
+      %th{ colspan: 2 }
+        = t('admin.user.attributes.role')
+      %th{ rowspan: 2 }
+    %tr
+      %th= t('admin.user.roles.admin')
+      %th= t('admin.user.roles.standard')
+  %tbody
+    - users.each do |user|
+      %tr
+        %td= link_to user.full_name, admin_user_path(user)
+        %td.d-none.d-lg-table-cell= user.email
+        %td
+          - if policy([:admin, user]).update?
+            .form-check.form-check-inline
+              %input.user-role.form-check-input{ id: "user_admin_#{user.id}",
+                                                   type: 'radio',
+                                                   name: "role_#{user.id}",
+                                                   value: 'admin',
+                                                   checked: user.admin?,
+                                                   data: { user: { id: user.id,
+                                                                   input: "#user_standard_#{user.id}" } } }
+        %td
+          - if policy([:admin, user]).update?
+            .form-check.form-check-inline
+              %input.user-role.form-check-input{ id: "user_standard_#{user.id}",
+                                                   type: 'radio',
+                                                   name: "role_#{user.id}",
+                                                   value: 'standard',
+                                                   checked: user.standard?,
+                                                   data: { user: { id: user.id,
+                                                                   input: "#user_admin_#{user.id}" } } }
+        %td
+          - if policy([:admin, user]).destroy?
+            = link_to admin_user_path(user),
+                        class: 'delete',
+                        method: :delete,
+                        data: { confirm: t('shared.messages.confirm') } do
+              .fas.fa-trash-alt
+
+.text-center
+  .inline-block
+    = will_paginate(users, renderer: WillPaginate::ActionView::BootstrapLinkRenderer)
