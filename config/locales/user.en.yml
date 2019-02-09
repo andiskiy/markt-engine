@@ -8,12 +8,17 @@ en:
       actions:
         add: 'Add user'
         save: 'Save'
-      attributes:
+      attributes: &user_attributes
         name: 'Name'
         email: 'Email'
         price: 'Price'
         role: 'Role'
-      roles:
+        phone: 'Phone'
+        country: 'Country'
+        city: 'City'
+        address: 'Address'
+        zip_code: 'Zip code'
+      roles: &user_roles
         super: 'Super Admin'
         admin: 'Admin'
         standard: 'Standard'
@@ -26,8 +31,22 @@ en:
           danger: "User role wasn't successfully updated"
 
   user:
+    attributes:
+      <<: *user_attributes
+      edit: 'Edit'
+    roles:
+      <<: *user_roles
+    titles:
+      edit: 'Edit User'
+    actions:
+      update: 'Update'
+      cancel_account: 'Cancel my account'
+      back: 'Back'
     password:
-      hint: '%{count} characters minimum'
+      character_minimum: '%{count} characters minimum'
+      password_hint: "leave it blank if you don't want to change it"
+      current_password_hint: 'we need your current password to confirm your changes'
+      unconfirmed_email: 'Currently waiting confirmation for: %{email}'
 
   activerecord:
     attributes:
@@ -39,24 +58,41 @@ en:
         password_confirmation: 'Confirm Password'
         role: 'Role'
         remember_me: 'Remember me'
+        current_password: 'Current password'
+        phone: 'Phone'
+        country_code: 'Country'
+        city: 'City'
+        address: 'Address'
+        zip_code: 'Zip code'
     errors:
       models:
         user:
           attributes:
-            attribute_blanks: &blanks
+            first_name: &blanks
               blank: "^can't be blank"
-            first_name:
-              <<: *blanks
             last_name:
               <<: *blanks
             email:
               <<: *blanks
               taken: 'is already taken'
               invalid: '^Incorrect Email Address'
+            phone:
+              <<: *blanks
+            country_code:
+              <<: *blanks
+            city:
+              <<: *blanks
+            address:
+              <<: *blanks
+            zip_code:
+              <<: *blanks
             password:
               <<: *blanks
               too_short: 'too short'
               too_long: 'too long'
+            current_password:
+              <<: *blanks
+              invalid: '^wrong password'
             password_confirmation:
               confirmation: "^doesn't match Password"
             role:

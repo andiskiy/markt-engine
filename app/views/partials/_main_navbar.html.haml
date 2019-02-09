@@ -20,9 +20,12 @@
                 .fas.fa-user
                 = current_user.full_name
               .dropdown-menu
+                = link_to my_account_path, class: 'dropdown-item' do
+                  .fas.fa-cogs
+                  = t('shared.navbar.my_account')
                 - if current_user.admin_or_higher?
                   = link_to admin_path, class: 'dropdown-item' do
-                    .fas.fa-cogs
+                    .fas.fa-user-secret
                     = t('shared.navbar.admin_panel')
                 = link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do
                   .fas.fa-sign-out-alt

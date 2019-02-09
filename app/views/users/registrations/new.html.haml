@@ -10,7 +10,7 @@
         = f.input :first_name, required: true, autofocus: true
         = f.input :last_name, required: true
         = f.input :email, required: true
-        - hint_msg = format(t('user.password.hint'), count: @minimum_password_length)
+        - hint_msg = t('user.password.character_minimum', count: @minimum_password_length)
         = f.input :password, required: true,
                   hint: (hint_msg if @minimum_password_length)
         = f.input :password_confirmation, required: true

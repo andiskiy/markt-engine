@@ -47,6 +47,7 @@ class User < ApplicationRecord
   # Validations
   validates :first_name, :last_name, presence: true
   validates :role, inclusion: { in: User::ROLES }
+  validates :country_code, :address, :city, :zip_code, :phone, presence: true, on: :update
 
   # Scopes
   scope :order_by_id, -> { order(id: :asc) }
@@ -65,5 +66,12 @@ class User < ApplicationRecord
 
   def full_name_with_email(date)
     "#{old_first_name(date)} #{old_last_name(date)} (#{old_email(date)})"
+  end
+
+  def country
+    return unless country_code
+
+    country_name = ISO3166::Country[country_code]
+    country_name.translations[I18n.locale.to_s] || country_name.name
   end
 end

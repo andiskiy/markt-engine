@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, controllers: { registrations: 'users/registrations' }
+  devise_scope :user do
+    get :my_account, to: 'users/registrations#show', as: 'my_account'
+  end
 
   resources :categories
   resources :orders

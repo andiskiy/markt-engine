@@ -1,21 +1,31 @@
 %h2
-  Edit #{resource_name.to_s.humanize}
+  = t('user.titles.edit')
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
   = f.error_notification
   .form-inputs
-    = f.input :email, required: true, autofocus: true
+    = f.input :first_name
+    = f.input :last_name
+    = f.input :email, required: true
     - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-      %p
-        Currently waiting confirmation for: #{resource.unconfirmed_email}
-    = f.input :password, autocomplete: 'off', hint: "leave it blank if you don't want to change it", required: false
+      %p.text-danger
+        = t('user.password.unconfirmed_email', email: resource.unconfirmed_email)
+    = f.input :phone, required: true
+    = f.input :country_code, priority: [I18n.locale], required: true
+    = f.input :city, required: true
+    = f.input :address, required: true
+    = f.input :zip_code, required: true
+    = f.input :password, autocomplete: 'off', hint: t('user.password.password_hint'), required: false
     = f.input :password_confirmation, required: false
-    = f.input :current_password, hint: 'we need your current password to confirm your changes', required: true
+    = f.input :current_password, hint: t('user.password.current_password_hint'), required: true
   .form-actions
-    = f.button :submit, 'Update'
-%h3 Cancel my account
-- url = link_to 'Cancel my account', registration_path(resource_name),
-                                     method: :delete,
-                                     data: { confirm: t('shared.messages.confirm') }
-%p
-  Unhappy? #{url}
-= link_to 'Back', :back
+    = f.button :submit, t('user.actions.update'), class: 'btn btn-primary'
+
+%hr
+
+= link_to t('user.actions.back'), my_account_path, class: 'btn btn-light'
+
+= link_to t('user.actions.cancel_account'), registration_path(resource_name),
+                                            method: :delete,
+                                            class: 'btn btn-danger',
+                                            data: { confirm: t('shared.messages.confirm') }
+
