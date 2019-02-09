@@ -3,6 +3,7 @@ en:
     navbar:
       cart: 'Cart'
       admin_panel: 'Admin'
+      my_account: 'My account'
       login: 'Login'
       logout: 'Logout'
       search: 'Search'

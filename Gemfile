@@ -32,6 +32,10 @@ gem 'paranoia', '~> 2.2'
 # track versions
 gem 'paper_trail'
 
+# countries list
+gem 'country_select', '~> 4.0'
+
+
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.1.0'

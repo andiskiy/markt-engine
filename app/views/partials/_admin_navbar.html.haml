@@ -29,6 +29,9 @@
             .fas.fa-user
             = current_user.full_name
           .dropdown-menu
+            = link_to my_account_path, class: 'dropdown-item' do
+              .fas.fa-cogs
+              = t('shared.navbar.my_account')
             = link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do
               .fas.fa-sign-out-alt
               = t('shared.navbar.logout')

@@ -8,8 +8,12 @@
   %strong #{t('admin.user.attributes.name')}:
   = @user.full_name
 %p
-  %strong #{t('admin.user.attributes.email')}:
-  = @user.email
-%p
   %strong #{t('admin.user.attributes.role')}:
-  = t("admin.user.roles.#{@user.role}")
+  %span.badge.badge-warning
+    %i.far.fa-circle
+    = t("admin.user.roles.#{@user.role}")
+
+- %w[email phone country city address zip_code].each do |attr|
+  %p
+    %strong #{t("admin.user.attributes.#{attr}")}:
+    = @user.send(attr)

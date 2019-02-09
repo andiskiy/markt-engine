@@ -3,6 +3,7 @@ ru:
     navbar:
       cart: 'Корзина'
       admin_panel: 'Администрирование'
+      my_account: 'Мой аккаунт'
       login: 'Войти'
       logout: 'Выйти'
       search: 'Поиск'

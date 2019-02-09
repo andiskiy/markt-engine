@@ -8,12 +8,17 @@ ru:
       actions:
         add: 'Добавить пользователя'
         save: 'Сохранить пользователя'
-      attributes:
+      attributes: &user_attributes
         name: 'Имя'
         email: 'Email'
         price: 'Цена'
         role: 'Роль'
-      roles:
+        phone: 'Телефон'
+        country: 'Страна'
+        city: 'Город'
+        address: 'Адрес'
+        zip_code: 'Индекс'
+      roles: &user_roles
         super: 'Супер пользователь'
         admin: 'Администратор'
         standard: 'Стандартный пользователь'
@@ -26,8 +31,22 @@ ru:
           danger: 'Не удалось обновить роль пользователя'
 
   user:
+    attributes:
+      <<: *user_attributes
+      edit: 'Редактировать'
+    roles:
+      <<: *user_roles
+    titles:
+      edit: 'Редактирование пользователя'
+    actions:
+      update: 'Обновить'
+      cancel_account: 'Удалить мой аккаунт'
+      back: 'Назад'
     password:
-      hint: 'минимум %{count} символов'
+      character_minimum: 'минимум %{count} символов'
+      password_hint: 'оставьте это поле пустым, если вы не хотите менять пароль'
+      current_password_hint: 'нам нужен ваш текущий пароль для подтверждения ваших изменений'
+      unconfirmed_email: 'В настоящий момент ожидает подтверждения для: %{email}'
 
   activerecord:
     attributes:
@@ -39,24 +58,41 @@ ru:
         password_confirmation: 'Подтвердите пароль'
         role: 'Роль'
         remember_me: 'Запомнить'
+        current_password: 'Текущий пароль'
+        phone: 'Номер телефона'
+        country_code: 'Страна'
+        city: 'Город'
+        address: 'Адрес'
+        zip_code: 'Индекс'
     errors:
       models:
         user:
           attributes:
-            attribute_blanks: &blanks
+            first_name: &blanks
               blank: '^не должно быть пустым'
-            first_name:
-              <<: *blanks
             last_name:
               <<: *blanks
             email:
               <<: *blanks
               taken: 'уже существует'
               invalid: '^Не корректный Email'
+            phone:
+              <<: *blanks
+            country_code:
+              <<: *blanks
+            city:
+              <<: *blanks
+            address:
+              <<: *blanks
+            zip_code:
+              <<: *blanks
             password:
               <<: *blanks
               too_short: 'слишком короткий'
               too_long: 'слишком длинный'
+            current_password:
+              <<: *blanks
+              invalid: '^неверный пароль'
             password_confirmation:
               confirmation: '^Пароли не совпадают'
             role:
