@@ -74,4 +74,9 @@ class User < ApplicationRecord
     country_name = ISO3166::Country[country_code]
     country_name.translations[I18n.locale.to_s] || country_name.name
   end
+
+  def can_make_order?
+    phone.present? && country_code.present? &&
+      city.present? && address.present? && zip_code.present?
+  end
 end

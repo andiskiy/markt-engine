@@ -7,6 +7,7 @@ en:
       payment: 'Make an order'
     messages:
       no_items: 'No items in you cart'
+      warning_message: 'Please add the full address and phone number to your account to make the order'
     flash_messages:
       success: 'Order successfully issued'
       danger: "Order wasn't successfully issued"
