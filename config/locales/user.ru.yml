@@ -34,14 +34,22 @@ ru:
     attributes:
       <<: *user_attributes
       edit: 'Редактировать'
+      password_label: 'Новый пароль'
+      password_confirmation_label: 'Подтвердить новый пароль'
     roles:
       <<: *user_roles
     titles:
       edit: 'Редактирование пользователя'
+      forgot_your_password: 'Забыли свой пароль?'
+      change_your_password: 'Изменить пароль'
+      resend_confirm_instructions: 'Отправить повторно инструкцию по восстановлению пароля'
     actions:
       update: 'Обновить'
       cancel_account: 'Удалить мой аккаунт'
       back: 'Назад'
+      send_me: 'Отправить инструкцию по сбросу пароля'
+      change_my_password: 'Изменить мой пароль'
+      resend_confirm_instructions: 'Отправить повторно'
     password:
       character_minimum: 'минимум %{count} символов'
       password_hint: 'оставьте это поле пустым, если вы не хотите менять пароль'

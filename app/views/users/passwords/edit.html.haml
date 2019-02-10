@@ -1,14 +1,20 @@
-%h2 Change your password
-= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-  = f.error_notification
-  = f.input :reset_password_token, as: :hidden
-  = f.full_error :reset_password_token
-  .form-inputs
-    = f.input :password, label: 'New password',
-                         required: true,
-                         autofocus: true,
-                         hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
-    = f.input :password_confirmation, label: 'Confirm your new password', required: true
-  .form-actions
-    = f.button :submit, 'Change my password'
-= render 'users/shared/links'
+- page_cols(sm: 12, lg: 6, xl: 4)
+- title(t('user.titles.change_your_password'))
+
+.shadow-sm.auth-form
+  %h2= t('user.titles.change_your_password')
+  = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+    = f.error_notification
+    = f.input :reset_password_token, as: :hidden
+    = f.full_error :reset_password_token
+    .form-inputs
+      - hint_msg = t('user.password.character_minimum', count: @minimum_password_length)
+      = f.input :password, label: t('user.attributes.password_label'),
+                           required: true,
+                           autofocus: true,
+                           hint: (hint_msg if @minimum_password_length)
+      = f.input :password_confirmation, label: t('user.attributes.password_confirmation_label'), required: true
+    .form-actions.text-center
+      = f.button :submit, t('user.actions.change_my_password'), class: 'btn auth-btn-primary'
+  .text-center.mt-3
+    = render 'users/shared/links'

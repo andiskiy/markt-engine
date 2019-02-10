@@ -1,38 +1,36 @@
-.page_head
-  - unless current_user.can_make_order?
-    .alert.alert-danger.text-center
-      = t('cart.messages.warning_message')
-  .row
-    .col-sm-4= link_to t('cart.actions.go_to_main'), root_path, class: 'header-actions'
-    .col-sm-4.text-center
-      = t('cart.titles.index')
-    .col-sm-4.text-right
-      - if policy(@purchase).update?
-        = link_to t('cart.actions.payment'), purchase_path(@purchase),
-                                             method: :put,
-                                             class: 'btn payment-button',
-                                             data: { confirm: t('shared.messages.confirm') }
-.content
-  .items-list
-    - if @orders.present?
-      .row
-        - @orders.each do |order|
-          .col-sm-4
-            .item
-              .row
-                .col-sm-2
-                .col-sm-8
+#carts
+  .page_head
+    - unless current_user.can_make_order?
+      .alert.alert-danger.text-center
+        = t('cart.messages.warning_message')
+    .row
+      .col-sm-4= link_to t('cart.actions.go_to_main'), root_path, class: 'header-actions'
+      .col-sm-4.text-center
+        = t('cart.titles.index')
+      .col-sm-4.text-right
+        - if policy(@purchase).update?
+          = link_to t('cart.actions.payment'), purchase_path(@purchase),
+                                               method: :put,
+                                               class: 'btn btn-primary-markt',
+                                               data: { confirm: t('shared.messages.confirm') }
+  .container
+    .items-list
+      - if @orders.present?
+        .row
+          - @orders.each do |order|
+            .col-sm-4
+              .item
+                .text-center
                   .item-header= order.item.name
-                .col-sm-2
                   = link_to order_path(order), method: :delete, class: 'item-close' do
                     .far.fa-times-circle
-              .item-photo
-                .fas.fa-images
-                = t('item.messages.no_image')
-              .item-price
-                = t('item.helpers.price', price: order.item.price)
-    - else
-      %center
-        .notice-info
-          .fas.fa-exclamation-circle
-          = t('cart.messages.no_items')
+                .item-photo
+                  .fas.fa-images
+                  = t('item.messages.no_image')
+                .item-price
+                  = t('item.helpers.price', price: order.item.price)
+      - else
+        %center
+          .notice-info
+            .fas.fa-exclamation-circle
+            = t('cart.messages.no_items')

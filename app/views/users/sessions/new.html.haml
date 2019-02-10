@@ -1,15 +1,14 @@
-.row
-  .col-sm-4
-  .col-sm-4.shadow-sm.auth-form
-    %center
-      %h2
-        = t('shared.actions.login')
-    = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      .auth-form-inputs
-        = f.input :email, required: true, autofocus: true
-        = f.input :password, required: true
-        = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
-      .auth-form-actions
-        = f.button :submit, t('shared.actions.login'), class: 'auth-btn-primary'
-        = render 'users/shared/links'
-  .col-sm-4
+- page_cols(sm: 12, lg: 6, xl: 5)
+- title(t('shared.actions.login'))
+
+.shadow-sm.auth-form
+  %h2.text-center= t('shared.actions.login')
+  = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    .auth-form-inputs
+      = f.input :email, required: true, autofocus: true
+      = f.input :password, required: true
+      = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+    .form-actions.text-center
+      = f.button :submit, t('shared.actions.login'), class: 'btn auth-btn-primary'
+  .text-center.mt-3
+    = render 'users/shared/links'

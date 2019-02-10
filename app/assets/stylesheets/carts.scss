@@ -1,0 +1,28 @@
+#carts {
+  .page_head {
+    .header-actions {
+      color: $grey-color;
+
+      &:hover {
+        color: #666666;
+      }
+    }
+  }
+
+  .items-list {
+    .item {
+      position: relative;
+      .item-close {
+        position: absolute;
+        top: 0;
+        right: 5px;
+        color: #BBBBBB;
+        font-size: 25px;
+
+        &:hover {
+          color: $orange-color;
+        }
+      }
+    }
+  }
+}

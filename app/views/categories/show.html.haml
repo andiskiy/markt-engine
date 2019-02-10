@@ -4,7 +4,6 @@
     - if @items.present?
       = render partial: 'partials/items', locals: { items: @items }
     - else
-      %center
-        .notice-info
-          .fas.fa-exclamation-circle
-          = t('category.messages.no_items')
+      .notice-info.text-center
+        .fas.fa-exclamation-circle
+        = t('category.messages.no_items')

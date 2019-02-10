@@ -1,47 +1,28 @@
 html {
-  background-color: #f8f8f8 !important;
+  background-color: $background-body-color !important;
 }
 
 body {
-  background-color: #f8f8f8 !important;
+  background-color: $background-body-color !important;
 }
 
-.content {
-  min-width: 965px;
-  max-width: 1280px;
-  margin: auto;
+main[role='main'] {
+  margin-top: 9px;
+  padding-top: 7px;
 }
 
 .page_head {
-  //font-family: 'Yanone Kaffeesatz', sans-serif;
   font-family: 'Oswald', sans-serif;
   font-weight: 200;
-  color: #999999;
+  color: $grey-color;
   font-size: 20px;
   margin: 5px;
   padding: 10px;
-
-  .header-actions {
-      color: #999999;
-      &:hover {
-        color: #666666;
-      }
-  }
-
-  .payment-button {
-    color: #ffffff;
-    padding: 5px;
-    border-radius: 10px 10px 10px 10px;
-    -moz-border-radius: 10px 10px 10px 10px;
-    -webkit-border-radius: 10px 10px 10px 10px;
-    background-color: #fc7121;
-  }
 }
 
 .notice-info {
   font-size: 16px;
-  color: #999999;
-  //text-shadow: 0px 1px 0px #ffffff;
+  color: $grey-color;
 }
 
 a:hover {
@@ -49,28 +30,18 @@ a:hover {
 }
 
 .items-list {
-  padding: 0px 15px;
+  padding: 0 15px;
 
   .item {
-    border: 1px solid #fc7121;
-    border-radius: 10px 10px 10px 10px;
-    -moz-border-radius: 10px 10px 10px 10px;
-    -webkit-border-radius: 10px 10px 10px 10px;
-    background-color: #FFFFFF;
+    border: 1px solid $orange-color;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    background-color: $white-color;
     margin: 5px;
     text-align: center;
     font-size: 18px;
     padding: 5px;
-    //text-shadow: 0px -1px 0px #666666;
-
-    .item-close {
-      color: #BBBBBB;
-      font-size: 25px;
-
-      &:hover {
-        color: #fc7121;
-      }
-    }
 
     .item-header {
       font-size: 20px;
@@ -81,7 +52,7 @@ a:hover {
     }
 
     .item-photo {
-      color: #DADADA;
+      color: #dadada;
       background-color: #fbfbfb;
       width: 100%;
       height: 240px;
@@ -95,25 +66,35 @@ a:hover {
 
     .item-price {
       font-family: 'Oswald', sans-serif;
-
       color: #34dbae;
       padding: 10px;
-      //background-color: lightseagreen;
     }
 
     .item-button {
       font-family: 'Oswald', sans-serif;
       padding: 5px;
-      border-radius: 10px 10px 10px 10px;
-      -moz-border-radius: 10px 10px 10px 10px;
-      -webkit-border-radius: 10px 10px 10px 10px;
-      color: #fc7121;
-      //background-color: #F7F7F7;
+      border-radius: 10px;
+      -moz-border-radius: 10px;
+      -webkit-border-radius: 10px;
+      color: $orange-color;
+
       &:hover {
-        color: #de5b30;
+        color: $orange-color-hover;
       }
     }
-
   }
+}
 
+.btn-primary-markt {
+  color: $white-color;
+  background-color: $orange-color;
+
+  &:hover{
+    color: $white-color;
+    background-color: $orange-color-hover;
+  }
+}
+
+.btn-light {
+  border-color: $orange-color !important;
 }

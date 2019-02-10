@@ -1,18 +1,19 @@
 - page_cols(sm: 12, md: 10, lg: 6)
 - title(t('shared.navbar.my_account'))
 
-%h4= current_user.full_name
+%h4.mt-2= current_user.full_name
 %hr
 
-%p
-  %strong #{t('user.attributes.role')}:
-  %span.badge.badge-warning
-    %i.far.fa-circle
-    = t("user.roles.#{current_user.role}")
-
-- %w[email phone country city address zip_code].each do |attr|
+.mb-5
   %p
-    %strong #{t("user.attributes.#{attr}")}:
-    = current_user.send(attr)
+    %strong #{t('user.attributes.role')}:
+    %span.badge.badge-warning
+      %i.far.fa-circle
+      = t("user.roles.#{current_user.role}")
 
-= link_to t('user.attributes.edit'), edit_user_registration_path, class: 'btn btn-primary'
+  - %w[email phone country city address zip_code].each do |attr|
+    %p
+      %strong #{t("user.attributes.#{attr}")}:
+      = current_user.send(attr)
+
+  = link_to t('user.attributes.edit'), edit_user_registration_path, class: 'btn btn-primary-markt'

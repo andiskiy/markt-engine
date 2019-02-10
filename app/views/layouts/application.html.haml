@@ -3,7 +3,9 @@
   %head
     %meta{ content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type' }
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' }
-    %title MarktEngine
+    %title
+      MarktEngine
+      = indent_title_section(yield :title) if content_for?(:title)
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
@@ -14,11 +16,18 @@
                  controller: body_controller } }
     = render 'partials/main_navbar'
     - if @categories
-      = render 'partials/categories'
+      .container-fluid
+        .row
+          = render 'partials/navmenu'
+          %main.col-12.col-lg-9{ role: 'main' }
+            = render 'partials/flash'
+            = yield
     - else
-      .container
+      .container.mt-2
         = render 'partials/flash'
-        = yield
+        .row.justify-content-center
+          %div{ class: content_for?(:main_row_class) ? yield(:main_row_class) : 'col-12' }
+            = yield
 
     = yield :modals if content_for? :modals
     = render partial: 'partials/message_modal'

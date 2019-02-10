@@ -34,14 +34,22 @@ en:
     attributes:
       <<: *user_attributes
       edit: 'Edit'
+      password_label: 'New password'
+      password_confirmation_label: 'Confirm your new password'
     roles:
       <<: *user_roles
     titles:
       edit: 'Edit User'
+      forgot_your_password: 'Forgot your password?'
+      change_your_password: 'Change your password'
+      resend_confirm_instructions: 'Resend confirmation instructions'
     actions:
       update: 'Update'
       cancel_account: 'Cancel my account'
       back: 'Back'
+      send_me: 'Send me reset password instructions'
+      change_my_password: 'Change my password'
+      resend_confirm_instructions: 'Resend confirmation instructions'
     password:
       character_minimum: '%{count} characters minimum'
       password_hint: "leave it blank if you don't want to change it"

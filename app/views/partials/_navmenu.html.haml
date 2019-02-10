@@ -1,0 +1,12 @@
+.col-12.col-lg-3.bd-sidebar.categories#navmenu
+  .navmenu
+    .navmenu-header
+      .fas.fa-bars.mr-2{ aria: { controls: 'main-navmenu', expanded: 'false', label: 'Toggle navigation' },
+                         data: { target: '#main-navmenu', toggle: 'collapse' } }
+      = t('category.titles.index')
+    %nav.collapse.bd-links#main-navmenu
+      .navmenu-item
+        = link_to t('item.titles.index'), root_path
+      - @categories.each do |category|
+        .navmenu-item
+          = link_to category.name, category_path(category), title: category.name
