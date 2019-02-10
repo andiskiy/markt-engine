@@ -1,107 +1,155 @@
-.general {
-  .navbar {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 200;
-    font-size: 18px;
-    height: 70px;
-    background-color: #ffffff;
-    border-bottom: 1px solid #fc7121;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffa84c', endColorstr='#ff7b0d', GradientType=0);
+.navbar#navbar {
+  font-weight: 200;
+  font-size: 18px;
+  font-family: 'Oswald', sans-serif;
+  background-color: $white-color;
+  border-bottom: 1px solid $orange-color;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffa84c', endColorstr='#ff7b0d', GradientType=0);
 
+  &.bd-navbar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1071;
+  }
+
+  .input-group {
     .searchbar {
-      width: 100%;
       height: 40px;
       line-height: 40px;
-      color: #fc7121;
+      color: $orange-color;
       background-color: #fbfbfb;
-      border-radius: 20px 20px 20px 20px;
-      -moz-border-radius: 20px 20px 20px 20px;
-      -webkit-border-radius: 20px 20px 20px 20px;
-      border: 1px solid #fc7121;
-      position: relative;
+      border-radius: 20px;
+      -moz-border-radius: 20px;
+      -webkit-border-radius: 20px;
+      border: 1px solid $orange-color;
       padding: 10px;
-      font-family: 'Oswald', sans-serif;
       font-weight: 200;
 
       &:hover {
-        background: rgba(255, 255, 255, 1.0);
+        background: $white-color;
       }
 
       &:focus {
-        outline: none !important;
-        box-shadow: 0 0 10px #fc7121;
+        box-shadow: 0 0 10px $orange-color;
+        z-index: 0;
       }
-
     }
 
     .search-icon {
-      color: #fc7121;
+      color: $orange-color;
       right: 25px;
-      bottom: 8px;
+      bottom: 6px;
       position: absolute;
 
       .fa-times:hover {
         cursor: pointer;
       }
     }
-
-    a {
-      padding: 5px;
-      color: #fc7121;
-      text-decoration: none;
-      &:hover {
-        color: #ee6233;
-      }
-    }
-
-    .dropdown-menu {
-      a {
-        font-family: 'Oswald', sans-serif;
-        font-weight: 200;
-        text-decoration: none;
-        color: #fc7121;
-      }
-    }
-
-    .user-tools {
-      float: right;
-      display: inline-block;
-    }
-  }
-}
-
-.navmenu {
-
-  //font-family: 'PT Sans Narrow', sans-serif;
-  font-family: 'Yanone Kaffeesatz', sans-serif;
-  font-size: 20px;
-
-  margin: 10px;
-  background-color: #FFFFFF;
-  min-height: 300px;
-
-  .navmenu-header {
-    width: 100%;
-    padding: 10px;
-    border-bottom: 1px solid #fc7121;
-    color: #fc7121;
   }
 
+  button.navbar-toggler {
+    border:  1px $orange-color solid;
+    color: $orange-color;
+  }
 
-  text-decoration: none;
-
-
-  .navmenu-item {
-    //background-color: #EFEFEF;
-    width: 100%;
-    padding: 10px;
-    color: #999999;
-    font-family: 'Oswald', sans-serif;
-    font-weight: 200;
+  a {
+    padding: 5px;
+    color: $orange-color;
+    text-decoration: none;
 
     &:hover {
-      background-color: #FDFCFA;
+      color: $orange-color-hover;
+    }
+  }
+
+  .dropdown-menu {
+    .dropdown-item {
+      font-weight: 200;
+      text-decoration: none;
+      color: $orange-color;
+
+      &:active {
+        color: $white-color;
+        background-color: $orange-color;
+      }
     }
   }
 }
 
+#navmenu {
+  &.bd-sidebar {
+    -webkit-box-ordinal-group: 1;
+    -ms-flex-order: 0;
+    order: 0;
+
+    @media (min-width: 1200px) {
+      -webkit-box-flex: 0;
+      -ms-flex: 0 1 320px;
+      flex: 0 1 320px;
+    }
+
+    @media (min-width: 992px) {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 4rem;
+      z-index: 1000;
+      height: calc(100vh - 4rem);
+    }
+  }
+
+  .navmenu {
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 20px;
+    margin: 10px;
+    background-color: $white-color;
+
+    .bd-links#main-navmenu {
+      @media (min-width: 992px) {
+      display: block !important;
+      max-height: calc(100vh - 9rem);
+      overflow-y: auto;
+    }
+  }
+
+    ::-webkit-scrollbar {
+      width: 15px;
+    }
+
+    ::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 5px $grey-color;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: $orange-color;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: $orange-color-hover;
+    }
+
+    .navmenu-header {
+      width: 100%;
+      padding: 10px;
+      border-bottom: 1px solid $orange-color;
+      color: $orange-color;
+    }
+
+    .navmenu-item {
+      padding: 10px;
+
+      a {
+        display: block;
+        color: $grey-color;
+        font-family: 'Oswald', sans-serif;
+        font-weight: 200;
+      }
+
+      &:hover {
+        background-color: #f6f5f3;
+      }
+    }
+  }
+}

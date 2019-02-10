@@ -1,35 +1,44 @@
-.general
-  .navbar.navbar-expand-sm
-    .container-fluid
-      .col-sm-3
-        %center
-          = link_to 'Logo', root_path, class: 'navbar-brand'
-      .col-sm-6
-        - unless @items.nil?
-          %input.searchbar{ type: 'text', placeholder: t('shared.navbar.search') }
-          .search-icon
-            .fas.fa-search
-      .col-sm-3
+%nav.navbar.navbar-expand-lg.bd-navbar#navbar{ role: 'navigation' }
+  .container-fluid
+    = link_to 'Logo', root_path, class: 'navbar-brand'
+    - unless @items.nil?
+      .col-8
+        .row.justify-content-center
+          .col-9
+            %form.navbar-form
+              .input-group
+                %input.form-control.searchbar{ type: 'search', placeholder: t('shared.navbar.search') }
+                .search-icon
+                  .fas.fa-search
+    %button.navbar-toggler{ type: 'button',
+                            aria: { controls: 'main-navbar', expanded: 'false', label: 'Toggle navigation' },
+                            data: { target: '#main-navbar', toggle: 'collapse' } }
+      %i.fas.fa-bars
+    .collapse.navbar-collapse#main-navbar
+      %ul.navbar-nav.ml-auto
         - if user_signed_in?
-          .user-tools.ml-auto
-            = link_to carts_path do
+          %li.nav-item
+            = link_to carts_path, class: 'nav-link' do
               .fas.fa-shopping-cart
               = t('shared.navbar.cart')
-            %span.dropdown
-              = link_to '#', class: 'dropdown-toggle', id: 'navbardrop', data: { toggle: 'dropdown' } do
-                .fas.fa-user
-                = current_user.full_name
-              .dropdown-menu
-                = link_to my_account_path, class: 'dropdown-item' do
-                  .fas.fa-cogs
-                  = t('shared.navbar.my_account')
-                - if current_user.admin_or_higher?
-                  = link_to admin_path, class: 'dropdown-item' do
-                    .fas.fa-user-secret
-                    = t('shared.navbar.admin_panel')
-                = link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do
-                  .fas.fa-sign-out-alt
-                  = t('shared.navbar.logout')
+          %li.nav-item.dropdown
+            = link_to '#', class: 'nav-link dropdown-toggle',
+                           id: 'user-full-name',
+                           aria: { expanded: 'false', haspopup: 'true' },
+                           data: { toggle: 'dropdown' } do
+              .fas.fa-user
+              = current_user.full_name
+            .dropdown-menu{ aria: { labelledby: 'navbarDropdown' } }
+              = link_to my_account_path, class: 'dropdown-item' do
+                .fas.fa-cogs
+                = t('shared.navbar.my_account')
+              - if current_user.admin_or_higher?
+                = link_to admin_path, class: 'dropdown-item' do
+                  .fas.fa-user-secret
+                  = t('shared.navbar.admin_panel')
+              = link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do
+                .fas.fa-sign-out-alt
+                = t('shared.navbar.logout')
         - else
           .user-tools
             = link_to new_user_session_path do

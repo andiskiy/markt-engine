@@ -1,20 +1,18 @@
-.row
-  .col-sm-4
-  .col-sm-4.shadow-sm.auth-form
-    %center
-      %h2
-        = t('shared.actions.sign_up')
-    = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-      = f.error_notification
-      .auth-form-inputs
-        = f.input :first_name, required: true, autofocus: true
-        = f.input :last_name, required: true
-        = f.input :email, required: true
-        - hint_msg = t('user.password.character_minimum', count: @minimum_password_length)
-        = f.input :password, required: true,
-                  hint: (hint_msg if @minimum_password_length)
-        = f.input :password_confirmation, required: true
-      .auth-form-actions
-        = f.button :submit, t('shared.actions.sign_up'), class: 'auth-btn-primary'
-        = render 'users/shared/links'
-  .col-sm-4
+- page_cols(sm: 12, lg: 6, xl: 5)
+- title(t('shared.actions.sign_up'))
+
+.shadow-sm.auth-form
+  %h2.text-center= t('shared.actions.sign_up')
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = f.error_notification
+    .auth-form-inputs
+      = f.input :first_name, required: true, autofocus: true
+      = f.input :last_name, required: true
+      = f.input :email, required: true
+      - hint_msg = t('user.password.character_minimum', count: @minimum_password_length)
+      = f.input :password, required: true,
+                hint: (hint_msg if @minimum_password_length)
+      = f.input :password_confirmation, required: true
+    .form-actions
+      = render 'users/shared/links'
+      = f.button :submit, t('shared.actions.sign_up'), class: 'btn auth-btn-primary float-right'

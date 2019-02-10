@@ -2,26 +2,20 @@
   margin-top: 40px;
   padding: 20px;
   font-family: 'PT Sans Narrow', sans-serif;
-  background-color: #ffffff;
+  background-color: $white-color;
   color: #666666;
 
   .form-group {
     input {
       background-color: #fafafa;
-      border: 0px;
-      border-radius: 0px;
-      border-bottom: 2px solid #fc7121;
-      color: #fc7121;
+      border: 0;
+      border-radius: 0;
+      border-bottom: 2px solid $orange-color;
+      color: $orange-color;
     }
   }
 
   .auth-btn-primary {
-
-    font-size: 25px;
-    color: #fc7121;
-    //border: 2px solid #fc7121;
-    padding: 0px;
-    float: right;
+    @extend .btn-primary-markt;
   }
-
 }
