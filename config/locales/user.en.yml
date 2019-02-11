@@ -33,6 +33,8 @@ en:
         user: 'Users management'
         index: 'All users'
         show: 'Show user'
+      messages:
+        no_address: 'No full address'
 
   user:
     attributes:

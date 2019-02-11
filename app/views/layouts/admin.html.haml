@@ -26,3 +26,4 @@
 
     = yield :modals if content_for? :modals
     = render partial: 'partials/message_modal'
+    = modal 'show-user', size: :lg, body: true
