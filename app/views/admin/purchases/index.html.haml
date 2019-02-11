@@ -24,7 +24,7 @@
         %td.d-none.d-lg-table-cell
           = purchase.datetime_format(purchase.ordered_at)
         %td.d-none.d-lg-table-cell
-          #{purchase.with_deleted_user.full_name} (#{purchase.with_deleted_user.email})
+          = customer(purchase.with_deleted_user, purchase)
         %td
           = purchase.amount_with_deleted_items
         %td

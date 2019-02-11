@@ -7,9 +7,9 @@
 %div
   %strong #{t('admin.purchase.attributes.status')}:
   = purchase_status(@purchase)
-%div
+%div.inline-block
   %strong #{t('admin.purchase.attributes.user')}:
-  = @purchase.with_deleted_user.full_name_with_email(@purchase.ordered_date)
+  = customer(@purchase.with_deleted_user, @purchase)
 %div.mb-4
   %strong #{t('admin.purchase.attributes.total_price')}:
   = @purchase.amount_with_deleted_items

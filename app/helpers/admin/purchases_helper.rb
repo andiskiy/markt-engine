@@ -18,4 +18,13 @@ module Admin::PurchasesHelper
       end
     end
   end
+
+  def customer(user, purchase, status = true)
+    case status
+    when user.deleted?
+      content_tag(:div, class: 'inline-block') { user.full_name_with_email(purchase.ordered_date) }
+    else
+      content_tag(:a, href: admin_user_path(user)) { user.full_name_with_email(purchase.ordered_date) }
+    end
+  end
 end
