@@ -24,4 +24,5 @@
         %div{ class: content_for?(:main_row_class) ? yield(:main_row_class) : 'col-12' }
           = yield
 
+    = yield :modals if content_for? :modals
     = render partial: 'partials/message_modal'

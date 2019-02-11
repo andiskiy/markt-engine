@@ -24,6 +24,7 @@ class Item < ApplicationRecord
 
   # Associations
   belongs_to :category
+  belongs_to :prev_category, class_name: 'Category', optional: true
   has_many :item_photos
   has_many :users, through: :orders
   has_many :orders

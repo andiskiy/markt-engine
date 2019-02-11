@@ -2,9 +2,15 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :reset_session
   include Pundit
 
+  layout :set_layout
+
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   private
+
+  def set_layout
+    request.xhr? ? false : 'application'
+  end
 
   def admin_user!
     redirect_to(root_path) unless current_user.admin_or_higher?

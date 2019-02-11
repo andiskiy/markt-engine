@@ -12,6 +12,7 @@ ru:
         new: 'Создать категорию'
         edit: 'Изменить категорию'
         show: 'Показать категорию'
+        move_items: 'Переместить товары категории'
       actions:
         add: 'Добавить категорию'
         save: 'Сохранить категорию'
@@ -19,25 +20,34 @@ ru:
         delete: 'Удалить категорию'
         show: 'Показать категорию'
         show_items: 'Показать товары данной категории'
+        move_items: 'Переместить товары'
       attributes:
         name: 'Название'
         description: 'Описание'
       flash_messages:
         delete:
+          success: 'Категория была успешно обновлена'
+          danger: 'Категория не была успешно обновлена'
+        delete:
           success: 'Категория была успешно удалена'
           danger: 'Категория не была успешно удалена'
+        update_items:
+          success: 'Товары из категории %{category} успешно были перемещены в другую категорию'
       nav_path:
         category: 'Управление категориями'
         <<: *titles
         index: 'Все категории'
         create: 'Создать категорию'
         update: 'Обновить категорию'
+      messages:
+        move_items_html: 'Переместить товары из категории <strong>%{category}</strong> в:'
 
   activerecord:
     attributes:
       category:
         name: 'Имя'
         description: 'Описание'
+        category_id: 'Категории'
     errors:
       models:
         category:
