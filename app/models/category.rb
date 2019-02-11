@@ -14,6 +14,9 @@ class Category < ApplicationRecord
 
   acts_as_paranoid
 
+  # Attributes
+  attr_accessor :category_id
+
   # Associations
   has_many :items
 

@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   namespace :admin, controller: 'admin' do
     get '/', controller: 'admin/categories', to: 'categories#index'
     resources :categories do
+      get :move_items
+      patch :update_items
       resources :items
     end
     get :items, controller: 'admin/items', to: 'items#all_items'

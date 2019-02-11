@@ -1,0 +1,13 @@
+- page_cols(lg: 6, md: 10, sm: 12)
+- title(t('admin.category.titles.move_items'))
+
+.text-right
+  %a.cursor.close{ data: { dismiss: 'modal' } }×
+#move-items
+  %p= t('admin.category.messages.move_items_html', category: @category.name)
+  = simple_form_for @category, url: admin_category_update_items_path(@category) do |f|
+    = f.input :category_id, collection: @categories, include_blank: false
+    .text-right
+      = f.submit t('admin.category.actions.move_items'),
+                 class: 'btn btn-primary',
+                 data: { confirm: t('shared.actions.confirm') }

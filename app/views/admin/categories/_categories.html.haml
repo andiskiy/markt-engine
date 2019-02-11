@@ -8,7 +8,7 @@
               aria: { expanded: 'false', controls: "collapse-#{category.id}" } }
             %i.fa{ aria: { hidden: 'true' } }
             = category.name
-        .col-6.col-md-4.text-right
+        .col-6.col-md-4.text-right.actions
           = link_to admin_category_path(category),
                       class: 'show-entity m-1 inline-block',
                       title: t('admin.category.actions.show') do
@@ -29,12 +29,18 @@
                       title: t('admin.category.actions.edit') do
             %i.fas.fa-edit
 
-          = link_to admin_category_path(category),
-                      class: 'delete m-1 inline-block',
-                      method: :delete,
-                      data: { confirm: t('shared.messages.confirm') },
-                      title: t('admin.category.actions.delete') do
-            %i.fas.fa-trash-alt
+          - if policy([:admin, category]).destroy?
+            = link_to admin_category_path(category),
+                        class: 'delete m-1 inline-block',
+                        method: :delete,
+                        data: { confirm: t('shared.messages.confirm') },
+                        title: t('admin.category.actions.delete') do
+              %i.fas.fa-trash-alt
+          - else
+            = link_to admin_category_move_items_path(category),
+                      class: 'show-entity m-1 inline-block move-items',
+                      title: 'Move items to another category' do
+              %i.fas.fa-exchange-alt
 
     .collapse{ id: "collapse-#{category.id}",
                  data: { parent: '#accordion-categories' },

@@ -11,6 +11,7 @@ en:
         new: 'Create category'
         edit: 'Edit category'
         show: 'Show category'
+        move_items: 'Move items category'
       actions:
         add: 'Add category'
         save: 'Save'
@@ -18,25 +19,34 @@ en:
         delete: 'Delete category'
         show: 'Show category'
         show_items: 'Show items of this category'
+        move_items: 'Move items'
       attributes:
         name: 'Name'
         description: 'Description'
       flash_messages:
+        update:
+          success: 'Category was successfully updated'
+          danger: "Category wasn't successfully updated"
         delete:
           success: 'Category was successfully deleted'
           danger: "Category wasn't successfully deleted"
+        update_items:
+          success: 'Items from category %{category} was successfully moved to another category'
       nav_path:
         category: 'Categories management'
         <<: *titles
         index: 'All categories'
         create: 'Create category'
         update: 'Update category'
+      messages:
+        move_items_html: 'Move Items from category <strong>%{category}</strong> to:'
 
   activerecord:
     attributes:
       category:
         name: 'Name'
         description: 'Description'
+        category_id: 'Categories'
     errors:
       models:
         category:

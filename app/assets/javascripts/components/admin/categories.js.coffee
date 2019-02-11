@@ -3,9 +3,26 @@ class MarktEngine.AdminCategoriesIndex extends MarktEngine.Searchable
     @setElements('.category-searchbar', '#accordion-categories', '/admin/categories')
     @bind()
 
+  @setElements: (inputClass, dataList, url) ->
+    @modal = $('#move-items-modal')
+    super(inputClass, dataList, url)
+
   @bind: ->
+    $('#accordion-categories').on 'click', '.move-items', (e) =>
+      @openModal($(e.target).closest('.actions').find('.move-items').attr('href'))
+      false
+    @modal.on 'hidden.bs.modal', @clearModal
     $('#accordion-categories').on 'click', '.load-more:not([disabled])', @loadModeData
     super
+
+  @openModal: (href) =>
+    @modal.find('.modal-content').load(href)
+    @modal.modal('show')
+
+  @clearModal: ->
+    modal = $(this)
+    modal.removeData('bs.modal')
+    modal.find('.modal-content').html('')
 
   @loadModeData: (e) ->
     loadMore = $((e.target))

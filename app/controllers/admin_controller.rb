@@ -1,5 +1,10 @@
 class AdminController < ApplicationController
   before_action :authenticate_user!
   before_action :admin_user!
-  layout 'admin'
+
+  private
+
+  def set_layout
+    request.xhr? ? false : 'admin'
+  end
 end
