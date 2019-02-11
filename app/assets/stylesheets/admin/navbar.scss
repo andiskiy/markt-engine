@@ -16,6 +16,7 @@
 @media (min-width: 992px) {
   .nav-path {
     @include bd-navbar;
+    z-index: 1019;
     top: 56px;
   }
 }
