@@ -13,9 +13,10 @@ ru:
     item:
       attribute_edit: &edit
         edit: 'Изменить товар'
-      titles:
+      titles: &titles
         index: 'Управление товарами'
-        new: 'Создать товара'
+        new: 'Создать товар'
+        show: 'Показать товар'
         <<: *edit
       actions:
         add: 'Добавить товар'
@@ -31,6 +32,13 @@ ru:
         delete:
           success: 'Товар был успешно удален'
           danger: 'Товар не был успешно удален'
+      nav_path:
+        item: 'Управление товарами'
+        <<: *titles
+        index: 'Товары одной категории'
+        all_items: 'Все товары'
+        create: 'Создать товар'
+        update: 'Обновить товар'
 
   activerecord:
     attributes:

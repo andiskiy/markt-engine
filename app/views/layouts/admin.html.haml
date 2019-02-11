@@ -15,9 +15,9 @@
                  controller: body_controller } }
     = render layout: 'partials/admin_navbar' do
       .nav-path.mb-5
-        = t("admin.#{controller_name.singularize}.titles.#{action_name}")
+        = t("admin.#{controller_name.singularize}.nav_path.#{controller_name.singularize}")
         .fas.fa-angle-double-right
-        = t("admin.#{controller_name.singularize}.action.#{action_name}")
+        = t("admin.#{controller_name.singularize}.nav_path.#{action_name}")
     .container
       = render 'partials/flash'
       .row.justify-content-center

@@ -29,6 +29,10 @@ en:
         update:
           success: 'User role successfully updated'
           danger: "User role wasn't successfully updated"
+      nav_path:
+        user: 'Users management'
+        index: 'All users'
+        show: 'Show user'
 
   user:
     attributes:

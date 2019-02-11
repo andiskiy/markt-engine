@@ -7,10 +7,11 @@ ru:
 
   admin:
     category:
-      titles:
+      titles: &titles
         index: 'Управление категориями'
         new: 'Создать категорию'
         edit: 'Изменить категорию'
+        show: 'Показать категорию'
       actions:
         add: 'Добавить категорию'
         save: 'Сохранить категорию'
@@ -25,6 +26,12 @@ ru:
         delete:
           success: 'Категория была успешно удалена'
           danger: 'Категория не была успешно удалена'
+      nav_path:
+        category: 'Управление категориями'
+        <<: *titles
+        index: 'Все категории'
+        create: 'Создать категорию'
+        update: 'Обновить категорию'
 
   activerecord:
     attributes:

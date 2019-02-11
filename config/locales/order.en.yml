@@ -6,3 +6,6 @@ en:
       attributes:
         item: 'Item'
         price: 'Price'
+      nav_path:
+        order: 'Orders management'
+        index: 'Orders by purchase'
