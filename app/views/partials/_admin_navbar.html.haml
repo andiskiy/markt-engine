@@ -1,45 +1,45 @@
-.navbar.navbar-expand-sm.bg-dark.navbar-dark
-  = link_to 'Logo', root_path, class: 'navbar-brand'
-  .navbar-nav
-    .nav-item
-      = link_to admin_categories_path, class: 'nav-link' do
-        .fas.fa-book
-        = t('shared.admin.categories')
-    .nav-item
-      = link_to admin_items_path, class: 'nav-link' do
-        .fas.fa-tag
-        = t('shared.admin.items')
-    .nav-item
-      = link_to admin_purchases_path, class: 'nav-link' do
-        .fas.fa-clipboard-list
-        = t('shared.admin.purchases')
-    .nav-item
-      = link_to admin_users_path, class: 'nav-link' do
-        .fas.fa-user
-        = t('shared.admin.users')
-  - if user_signed_in?
-    .ml-auto
-      .navbar-nav
-        .nav-item
-          = link_to carts_path, class: 'nav-link' do
-            .fas.fa-shopping-cart
-            = t('shared.navbar.cart')
-        .nav-item.dropdown
-          = link_to '#', class: 'nav-link dropdown-toggle', id: 'navbardrop', data: { toggle: 'dropdown' } do
+%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark#navbar{ role: 'navigation' }
+  .container
+    = link_to 'Logo', admin_path, class: 'navbar-brand'
+    %button.navbar-toggler{ type: 'button',
+                            aria: { controls: 'admin-navbar', expanded: 'false', label: 'Toggle navigation' },
+                            data: { target: '#admin-navbar', toggle: 'collapse' } }
+      %span.navbar-toggler-icon
+    .collapse.navbar-collapse#admin-navbar
+      %ul.navbar-nav
+        %li.nav-item
+          = link_to root_path, class: 'nav-link' do
+            .fas.fa-shopping-bag
+            = t('shared.admin.shop')
+        %li.nav-item
+          = link_to admin_categories_path, class: 'nav-link' do
+            .fas.fa-book
+            = t('shared.admin.categories')
+        %li.nav-item
+          = link_to admin_items_path, class: 'nav-link' do
+            .fas.fa-tag
+            = t('shared.admin.items')
+        %li.nav-item
+          = link_to admin_purchases_path, class: 'nav-link' do
+            .fas.fa-clipboard-list
+            = t('shared.admin.purchases')
+        %li.nav-item
+          = link_to admin_users_path, class: 'nav-link' do
+            .fas.fa-user
+            = t('shared.admin.users')
+      %ul.navbar-nav.ml-auto
+        %li.nav-item.dropdown
+          = link_to '#', class: 'nav-link dropdown-toggle',
+                           id: 'user-full-name',
+                           aria: { expanded: 'false', haspopup: 'true' },
+                           data: { toggle: 'dropdown' } do
             .fas.fa-user
             = current_user.full_name
-          .dropdown-menu
+          .dropdown-menu{ aria: { labelledby: 'navbarDropdown' } }
             = link_to my_account_path, class: 'dropdown-item' do
               .fas.fa-cogs
               = t('shared.navbar.my_account')
             = link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do
               .fas.fa-sign-out-alt
               = t('shared.navbar.logout')
-  - else
-    .ml-auto
-      .navbar-nav
-        .nav-item
-          = link_to new_user_session_path, class: 'nav-link' do
-            .fas.fa-sign-in-alt
-            Login
 = yield

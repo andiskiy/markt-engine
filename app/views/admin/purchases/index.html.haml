@@ -9,11 +9,11 @@
 %table.table.table-striped
   %thead
     %tr
-      %th
+      %th.d-none.d-lg-table-cell
         = t('admin.purchase.attributes.date')
       %th.d-none.d-lg-table-cell
         = t('admin.purchase.attributes.user')
-      %th.d-none.d-lg-table-cell
+      %th
         = t('admin.purchase.attributes.total_price')
       %th
         = t('admin.purchase.attributes.status')
@@ -24,7 +24,7 @@
         %td.d-none.d-lg-table-cell
           = purchase.datetime_format(purchase.ordered_at)
         %td.d-none.d-lg-table-cell
-          #{purchase.with_deleted_user.full_name} (#{purchase.with_deleted_user.email})
+          = customer(purchase.with_deleted_user, purchase)
         %td
           = purchase.amount_with_deleted_items
         %td

@@ -43,13 +43,17 @@ class Purchase < ApplicationRecord
 
   # Methods
   def amount_with_deleted_items
-    orders.inject(0.0) { |sum, order| sum + order.with_deleted_item.old_price(ordered_at) }
+    orders.inject(0.0) { |sum, order| sum + order.with_deleted_item.old_price(ordered_date) }
   end
 
   def datetime_format(str_time)
     str_time.in_time_zone(Time.zone.name).strftime(MarktEngine::DATETIME_FORMAT)
   rescue NoMethodError
     'N/A'
+  end
+
+  def ordered_date
+    ordered_at || Time.current
   end
 
   STATUSES.each do |status|

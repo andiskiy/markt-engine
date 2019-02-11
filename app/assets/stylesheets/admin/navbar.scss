@@ -1,0 +1,22 @@
+@mixin bd-navbar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+}
+
+%bd-navbar {
+  @include bd-navbar;
+}
+
+#navbar {
+  @extend %bd-navbar
+}
+
+@media (min-width: 992px) {
+  .nav-path {
+    @include bd-navbar;
+    z-index: 1019;
+    top: 56px;
+  }
+}

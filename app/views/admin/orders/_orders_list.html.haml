@@ -8,8 +8,9 @@
   %tbody
   - orders.each do |order|
     %tr
-      %td= order_item(order.with_deleted_item, purchase)
-      %td= order.with_deleted_item.old_price(purchase.ordered_at)
+      %td.text-truncate.mw-responsive
+        = order_item(order.with_deleted_item, purchase)
+      %td= order.with_deleted_item.old_price(purchase.ordered_date)
 
 .text-center
   .inline-block

@@ -13,13 +13,15 @@ en:
     item:
       attribute_edit: &edit
         edit: 'Edit item'
-      titles:
+      titles: &titles
         index: 'Items management'
         new: 'Create item'
+        show: 'Show item'
         <<: *edit
       actions:
         add: 'Add item'
         save: 'Save'
+        delete: 'Delete item'
         <<: *edit
       attributes:
         name: 'Name'
@@ -30,6 +32,13 @@ en:
         delete:
           success: 'Item was successfully deleted'
           danger: "Item wasn't successfully deleted"
+      nav_path:
+        item: 'Items management'
+        <<: *titles
+        index: 'Items by category'
+        all_items: 'All items'
+        create: 'New item'
+        update: 'Update item'
 
   activerecord:
     attributes:

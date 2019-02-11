@@ -18,6 +18,7 @@ en:
       confirm: 'Are you sure?'
 
     admin:
+      shop: 'Shop'
       categories: 'Categories'
       items: 'Items'
       purchases: 'Purchases'

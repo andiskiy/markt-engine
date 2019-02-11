@@ -3,13 +3,13 @@
 
 %div
   %strong #{t('admin.purchase.attributes.date')}:
-  = @purchase.datetime_format(@purchase.ordered_at)
+  = @purchase.datetime_format(@purchase.ordered_date)
 %div
   %strong #{t('admin.purchase.attributes.status')}:
   = purchase_status(@purchase)
-%div
+%div.inline-block
   %strong #{t('admin.purchase.attributes.user')}:
-  = @purchase.with_deleted_user.full_name_with_email(@purchase.ordered_at)
+  = customer(@purchase.with_deleted_user, @purchase)
 %div.mb-4
   %strong #{t('admin.purchase.attributes.total_price')}:
   = @purchase.amount_with_deleted_items

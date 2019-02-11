@@ -6,10 +6,11 @@ en:
       no_items: 'No items found on this category'
   admin:
     category:
-      titles:
+      titles: &titles
         index: 'Categories management'
         new: 'Create category'
         edit: 'Edit category'
+        show: 'Show category'
       actions:
         add: 'Add category'
         save: 'Save'
@@ -24,7 +25,12 @@ en:
         delete:
           success: 'Category was successfully deleted'
           danger: "Category wasn't successfully deleted"
-
+      nav_path:
+        category: 'Categories management'
+        <<: *titles
+        index: 'All categories'
+        create: 'Create category'
+        update: 'Update category'
 
   activerecord:
     attributes:
