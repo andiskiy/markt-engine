@@ -68,6 +68,10 @@ class User < ApplicationRecord
     "#{old_first_name(date)} #{old_last_name(date)} (#{old_email(date)})"
   end
 
+  def full_address
+    full_address_exists? ? [address, city, country, zip_code].join(', ') : I18n.t('admin.user.messages.no_address')
+  end
+
   def country
     return unless country_code
 
@@ -78,5 +82,11 @@ class User < ApplicationRecord
   def can_make_order?
     phone.present? && country_code.present? &&
       city.present? && address.present? && zip_code.present?
+  end
+
+  private
+
+  def full_address_exists?
+    address.present? && city.present? && country_code.present? && zip_code.present?
   end
 end

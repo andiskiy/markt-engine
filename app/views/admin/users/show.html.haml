@@ -1,19 +1,29 @@
 - page_cols(md: 12, lg: 8)
 - title(@user.full_name)
 
-= link_to t('shared.actions.back'), admin_users_path, class: 'btn btn-light'
-%hr
-
-%p
-  %strong #{t('admin.user.attributes.name')}:
-  = @user.full_name
-%p
-  %strong #{t('admin.user.attributes.role')}:
-  %span.badge.badge-warning
-    %i.far.fa-circle
-    = t("admin.user.roles.#{@user.role}")
-
-- %w[email phone country city address zip_code].each do |attr|
-  %p
-    %strong #{t("admin.user.attributes.#{attr}")}:
-    = @user.send(attr)
+.modal-header
+  %h3.inline-block= @user.full_name
+  .text-right
+    %a.cursor.close{ data: { dismiss: 'modal' } }×
+.card
+  .card-body
+    .row.mt-3
+      .col-md-8.address
+        %i.fas.fa-map-marker-alt
+        = @user.full_address
+      .col-sm-4.contact-info
+        %ul.list-unstyled
+          - if @user.phone.present?
+            %li
+              %i.fas.fa-phone
+              %small
+                = @user.phone
+          - if @user.email.present?
+            %li
+              %i.fas.fa-envelope
+              %small
+                = @user.email
+          %li
+            %i.fas.fa-user
+            %small
+              = t("admin.user.roles.#{@user.role}")

@@ -11,7 +11,7 @@ en:
         new: 'Create category'
         edit: 'Edit category'
         show: 'Show category'
-        move_items: 'Move items category'
+        move_items: 'Move items to another category'
       actions:
         add: 'Add category'
         save: 'Save'

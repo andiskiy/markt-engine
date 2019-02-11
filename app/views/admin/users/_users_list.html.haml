@@ -13,7 +13,7 @@
     - users.each do |user|
       %tr
         %td.text-truncate.mw-responsive
-          = link_to user.full_name, admin_user_path(user)
+          = link_to user.full_name, admin_user_path(user), class: 'js-show-user'
         %td.d-none.d-lg-table-cell.text-truncate.mw-responsive
           = user.email
         %td

@@ -14,6 +14,7 @@ window.MarktEngine = {}
 
 class MarktEngine.Application
   @init: ->
+    MarktEngine.UserModal.init()
     MarktEngine.DisabledLinks.init()
     MarktEngine.GlobalTooltips.init()
     MarktEngine.TurbolinksAdditions.init()

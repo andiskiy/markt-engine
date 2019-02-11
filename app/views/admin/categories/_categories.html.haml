@@ -39,7 +39,7 @@
           - else
             = link_to admin_category_move_items_path(category),
                       class: 'show-entity m-1 inline-block move-items',
-                      title: 'Move items to another category' do
+                      title: t('admin.category.titles.move_items') do
               %i.fas.fa-exchange-alt
 
     .collapse{ id: "collapse-#{category.id}",

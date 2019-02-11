@@ -24,7 +24,9 @@ module Admin::PurchasesHelper
     when user.deleted?
       content_tag(:div, class: 'inline-block') { user.full_name_with_email(purchase.ordered_date) }
     else
-      content_tag(:a, href: admin_user_path(user)) { user.full_name_with_email(purchase.ordered_date) }
+      content_tag(:a, href: admin_user_path(user), class: 'js-show-user') do
+        user.full_name_with_email(purchase.ordered_date)
+      end
     end
   end
 end
