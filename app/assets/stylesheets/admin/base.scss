@@ -82,7 +82,6 @@ body[data-area='admin-panel'] {
     }
   }
 
-
   .search-icon {
     color: #7952b3;
     right: 25px;
@@ -91,6 +90,20 @@ body[data-area='admin-panel'] {
 
     .fa-times:hover {
       cursor: pointer;
+    }
+  }
+
+  .text-truncate {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .mw-responsive {
+    max-width: 200px;
+
+    @media (max-width: 991px) {
+      max-width: 150px;
     }
   }
 }

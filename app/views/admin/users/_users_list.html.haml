@@ -12,8 +12,10 @@
   %tbody
     - users.each do |user|
       %tr
-        %td= link_to user.full_name, admin_user_path(user)
-        %td.d-none.d-lg-table-cell= user.email
+        %td.text-truncate.mw-responsive
+          = link_to user.full_name, admin_user_path(user)
+        %td.d-none.d-lg-table-cell.text-truncate.mw-responsive
+          = user.email
         %td
           - if policy([:admin, user]).update?
             .form-check.form-check-inline

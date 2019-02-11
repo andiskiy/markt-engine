@@ -3,3 +3,4 @@
     = f.input :name
     = f.input :description, input_html: { rows: 7 }
     = f.submit t('admin.category.actions.save'), class: 'btn btn-success'
+    = link_to t('shared.actions.back'), admin_categories_path, class: 'btn btn-light'

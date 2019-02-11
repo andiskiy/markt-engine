@@ -18,6 +18,7 @@ ru:
       confirm: 'Вы уверены?'
 
     admin:
+      shop: 'Магазин'
       categories: 'Категории'
       items: 'Товары'
       purchases: 'Сделки'
