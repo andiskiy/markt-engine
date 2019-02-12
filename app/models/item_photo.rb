@@ -15,5 +15,5 @@ class ItemPhoto < ApplicationRecord
   belongs_to :item
 
   # Validations
-  validates :photo, :item_id, presence: true
+  validates :photo, presence: true
 end
