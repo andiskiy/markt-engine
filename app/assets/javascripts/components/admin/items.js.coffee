@@ -10,13 +10,17 @@ class MarktEngine.AdminItemsNew
     @bind()
 
   @bind: ->
+    $('.radio').on 'click', ->
+      $('.radio').not(this).prop('checked', false)
     $('body').on 'change', '.image-input', @previewPhoto
     $('body').on 'click', '.label-items:not(.add-image)', ->
+      setMainCurrentPhoto($(this))
       false
     $('.delete-image').on 'click', ->
       label = $(this).closest('.label-items')
       label.find('.remove_photo_checkbox').prop('checked', true)
       deletePreviewPhoto(label)
+      setMainDefaultPhoto(label.find('.radio'))
       false
 
 
@@ -29,6 +33,7 @@ class MarktEngine.AdminItemsNew
         label.find('.photo-items').attr('src', e.target.result).removeClass('d-none')
         label.find('.image-input').addClass('d-none')
         label.find('.delete-image').removeClass('d-none')
+        label.find('.radio').removeAttr('disabled')
         label.removeClass('add-image')
       reader.readAsDataURL(this.files[0])
 
@@ -39,6 +44,23 @@ class MarktEngine.AdminItemsNew
     input.removeClass('d-none')
     input.val('')
     label.addClass('add-image')
+
+  setMainDefaultPhoto= (radio) ->
+    radio.prop('checked', false)
+    radio.attr('disabled', true)
+    if $('.label-items:not(.add-image)').length > 0
+      firstLabel = $($('.label-items:not(.add-image)')[0])
+      otherRadio = firstLabel.find('.radio')
+      otherRadio.prop('checked', true)
+      otherRadio.trigger('click')
+
+  setMainCurrentPhoto= ($this) ->
+    radio = $this.find('.radio')
+    radio.prop('checked', true)
+    radio.trigger('click')
+    $('.photo-items').removeClass('img-thumbnail')
+    $this.find('.photo-items').addClass('img-thumbnail')
+
 
 class MarktEngine.AdminItemsCreate extends MarktEngine.AdminItemsNew
 

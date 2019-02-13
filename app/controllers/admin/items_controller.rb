@@ -112,7 +112,7 @@ module Admin
 
     def permit_params
       params.require(:item).permit(:name, :description, :price, :category_id,
-                                   item_photos_attributes: %i[id remove_photo photo
+                                   item_photos_attributes: %i[id remove_photo photo active
                                                               photo_cache remove_photo])
     end
   end
