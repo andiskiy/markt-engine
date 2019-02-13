@@ -29,7 +29,7 @@ class Item < ApplicationRecord
   has_many :users, through: :orders
   has_many :orders
 
-  accepts_nested_attributes_for :item_photos
+  accepts_nested_attributes_for :item_photos, allow_destroy: true, reject_if: :all_blank
 
   # Validations
   validates :name, :price, presence: true
@@ -39,5 +39,16 @@ class Item < ApplicationRecord
       items = where('name ILIKE :value', value: "%#{value}%")
       category_id.present? ? items.where(category_id: category_id) : items
     end
+  end
+
+  def ensure_five_photos
+    needed_photos_count.times { association(:item_photos).add_to_target(ItemPhoto.new) }
+  end
+
+  private
+
+  def needed_photos_count
+    needed = 5 - item_photos.length
+    needed.positive? ? needed : 0
   end
 end

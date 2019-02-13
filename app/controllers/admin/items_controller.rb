@@ -3,6 +3,7 @@ module Admin
     before_action :set_category, except: :all_items
     before_action :set_item, only: %i[show edit update destroy]
     before_action :set_new_item, only: %i[new create]
+    before_action :item_photos_build, only: %i[new edit]
 
     def all_items
       @items = Item.search(params[:value], params[:category_id])
@@ -30,9 +31,7 @@ module Admin
 
     def show; end
 
-    def new
-      @item.item_photos.build
-    end
+    def new; end
 
     def edit; end
 
@@ -40,11 +39,18 @@ module Admin
       @item.assign_attributes(permit_params)
       respond_to do |format|
         if @item.save
-          format.html { redirect_to(admin_category_items_path(@category)) }
-          format.json { render json: { status: :created, items: @category.items } }
+          format.html do
+            flash[:success] = t('admin.item.flash_messages.create.success')
+            redirect_to admin_category_items_path(@category)
+          end
+          format.json { render json: { status: :created, item: @item } }
         else
-          format.html { render :new }
-          format.json { render json: @item.errors, status: :unprocessable_entity }
+          @item.ensure_five_photos
+          format.html do
+            flash[:danger] = t('admin.item.flash_messages.create.danger')
+            render :new
+          end
+          format.json { render json: { errors: @item.errors, status: :unprocessable_entity } }
         end
       end
     end
@@ -52,22 +58,38 @@ module Admin
     def update
       respond_to do |format|
         if @item.update(permit_params)
-          format.html { redirect_to(admin_category_items_path(@category)) }
-          format.json { render json: { status: :created, items: @category.items } }
+          format.html do
+            flash[:success] = t('admin.item.flash_messages.update.success')
+            redirect_to admin_category_items_path(@category)
+          end
+          format.json { render json: { status: :updated, item: @item } }
         else
-          format.html { render :edit }
-          format.json { render json: @item.errors, status: :unprocessable_entity }
+          @item.ensure_five_photos
+          format.html do
+            flash[:danger] = t('admin.item.flash_messages.update.danger')
+            render :edit
+          end
+          format.json { render json: { errors: @item.errors, status: :unprocessable_entity } }
         end
       end
     end
 
     def destroy
-      if @item.destroy
-        flash[:success] = t('admin.item.flash_messages.delete.success')
-      else
-        flash[:danger] = t('admin.item.flash_messages.delete.danger')
+      respond_to do |format|
+        if @item.destroy
+          format.html do
+            flash[:success] = t('admin.item.flash_messages.delete.success')
+            redirect_to admin_category_items_path(@category)
+          end
+          format.json { render json: { status: :deleted } }
+        else
+          format.html do
+            flash[:danger] = t('admin.item.flash_messages.delete.danger')
+            redirect_to admin_category_items_path(@category)
+          end
+          format.json { render json: { errors: @item.errors, status: :unprocessable_entity } }
+        end
       end
-      redirect_to(admin_category_items_path(@category))
     end
 
     private
@@ -84,8 +106,14 @@ module Admin
       @item = @category.items.new
     end
 
+    def item_photos_build
+      @item.ensure_five_photos
+    end
+
     def permit_params
-      params.require(:item).permit(:name, :description, :price, :category_id, item_photos_attributes: [:photo])
+      params.require(:item).permit(:name, :description, :price, :category_id,
+                                   item_photos_attributes: %i[id remove_photo photo
+                                                              photo_cache remove_photo])
     end
   end
 end

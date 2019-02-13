@@ -29,6 +29,12 @@ en:
         price: 'Price'
         category: 'Category'
       flash_messages:
+        create:
+          success: 'Item was successfully created'
+          danger: "Item wasn't successfully created"
+        update:
+          success: 'Item was successfully updated'
+          danger: "Item wasn't successfully updated"
         delete:
           success: 'Item was successfully deleted'
           danger: "Item wasn't successfully deleted"

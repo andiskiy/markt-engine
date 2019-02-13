@@ -5,7 +5,9 @@
     = f.input :name
     = f.input :description, input_html: { rows: 6 }
     = f.input :price
-    = f.simple_fields_for :item_photos do |p|
-      = p.input :photo
     = f.association :category
-    = f.submit t('admin.item.actions.save'), class: 'btn btn-success'
+    .mb-2
+      #{t('activerecord.attributes.item_photo.photo')}:
+    = render partial: 'item_photos', locals: { f: f }
+    .actions
+      = f.submit t('admin.item.actions.save'), class: 'btn btn-success'
