@@ -1,0 +1,17 @@
+= f.simple_fields_for :item_photos do |p|
+  :ruby
+    hidden = p.object.photo? ? '' : 'd-none'
+    hidden_input = p.object.photo? ? 'd-none' : ''
+    img_thumbnail = p.object.active ? 'img-thumbnail' : ''
+  %label.label-items.cursor{ class: p.object.photo? ? '' : 'add-image' }
+    %img.photo-items{ src: p.object.photo.thumb.url, class: "#{hidden} #{img_thumbnail}" }
+    %a.cursor.delete-image{ class: hidden }
+    = p.input :photo, label: false,
+                      wrapper: false,
+                      input_html: { class: "image-input #{hidden_input}", accept: 'image/*' }
+    = p.hidden_field :photo_cache
+    .d-none
+      = p.input :active, as: :boolean, input_html: { class: 'radio', disabled: !p.object.photo? }
+    - if p.object.photo?
+      .d-none
+        = p.input :remove_photo, as: :boolean, input_html: { class: 'remove_photo_checkbox' }

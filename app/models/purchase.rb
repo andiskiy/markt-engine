@@ -16,11 +16,11 @@ class Purchase < ApplicationRecord
 
   # Associations
   belongs_to :user
-  belongs_to :with_deleted_user, -> { with_deleted }, foreign_key: 'user_id', inverse_of: false, class_name: 'User'
+  belongs_to :with_deleted_user, -> { with_deleted }, foreign_key: 'user_id',
+                                                      inverse_of:  false,
+                                                      class_name:  'User',
+                                                      optional:    true
   has_many :orders
-
-  # Validations
-  validates :user_id, presence: true
 
   # Callbacks
   before_save :set_ordered_at, if: -> { status_changed? && processing? }

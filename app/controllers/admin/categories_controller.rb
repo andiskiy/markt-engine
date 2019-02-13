@@ -26,10 +26,16 @@ module Admin
       @category.assign_attributes(permit_params)
       respond_to do |format|
         if @category.save
-          format.html { redirect_to(admin_categories_path) }
+          format.html do
+            flash[:success] = t('admin.category.flash_messages.create.success')
+            redirect_to admin_categories_path
+          end
           format.json { render json: { status: :created, category: @category } }
         else
-          format.html { render :new }
+          format.html do
+            flash[:danger] = t('admin.category.flash_messages.create.danger')
+            render :new
+          end
           format.json { render json: { errors: @category.errors, status: :unprocessable_entity } }
         end
       end
@@ -38,12 +44,16 @@ module Admin
     def update
       respond_to do |format|
         if @category.update(permit_params)
-          format.html redirect_to admin_categories_path,
-                                  flash: { success: t('admin.category.flash_messages.update.success') }
+          format.html do
+            flash[:success] = t('admin.category.flash_messages.update.success')
+            redirect_to admin_categories_path
+          end
           format.json { render json: { status: :updated, category: @category } }
         else
-          format.html render :edit,
-                             flash: { danger: t('admin.category.flash_messages.update.danger') }
+          format.html do
+            flash[:danger] = t('admin.category.flash_messages.update.danger')
+            render :edit
+          end
           format.json { render json: { errors: @category.errors, status: :unprocessable_entity } }
         end
       end
@@ -52,12 +62,16 @@ module Admin
     def destroy
       respond_to do |format|
         if @category.destroy
-          format.html redirect_to admin_categories_path,
-                                  flash: { success: t('admin.category.flash_messages.delete.success') }
+          format.html do
+            flash[:success] = t('admin.category.flash_messages.delete.success')
+            redirect_to admin_categories_path
+          end
           format.json { render json: { status: :deleted } }
         else
-          format.html redirect_to admin_categories_path,
-                                  flash: { danger: t('admin.category.flash_messages.delete.danger') }
+          format.html do
+            flash[:danger] = t('admin.category.flash_messages.delete.danger')
+            redirect_to admin_categories_path
+          end
           format.json { render json: { errors: @category.errors, status: :unprocessable_entity } }
         end
       end

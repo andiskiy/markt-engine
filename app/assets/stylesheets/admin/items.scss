@@ -1,0 +1,41 @@
+.label-items {
+  overflow: hidden;
+  height: 120px;
+  width: 120px;
+  border: 1px #a9a9a9 solid;
+  border-radius: 5px;
+  position: relative;
+
+  &.add-image {
+    background: url(asset_path('add_image.svg')) center no-repeat #fff;
+  }
+
+  .delete-image {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    border-radius: 50%;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.5);
+    box-shadow: 0 1px 2px rgba(0,0,0,.5);
+    background: url(asset_path('delete_image.svg')) center no-repeat #fff;
+    width: 17px;
+    height: 17px;
+    overflow: hidden;
+    cursor: pointer;
+    text-indent: -9000px;
+    border: 0;
+    outline: 0;
+    padding: 0;
+    opacity: .7;
+    float: right;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .image-input {
+    opacity: 0;
+  }
+}

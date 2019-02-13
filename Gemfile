@@ -17,7 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
-# Elastic search
+# paginate with bootstrap 4
 gem 'will_paginate-bootstrap4'
 
 # Use CoffeeScript for .coffee assets and views
@@ -35,6 +35,9 @@ gem 'paper_trail'
 # countries list
 gem 'country_select', '~> 4.0'
 
+# aws service
+gem 'aws-sdk-s3', '~> 1'
+gem 'fog-aws'
 
 gem 'haml-rails'
 gem 'jquery-rails'

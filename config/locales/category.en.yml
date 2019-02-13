@@ -24,6 +24,9 @@ en:
         name: 'Name'
         description: 'Description'
       flash_messages:
+        create:
+          success: 'Category was successfully created'
+          danger: "Category wasn't successfully created"
         update:
           success: 'Category was successfully updated'
           danger: "Category wasn't successfully updated"
