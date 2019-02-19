@@ -1,0 +1,1 @@
+class MarktEngine.ItemsIndex extends MarktEngine.CategoriesShow

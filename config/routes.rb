@@ -28,5 +28,5 @@ Rails.application.routes.draw do
   resources :carts
   resources :purchases, only: :update
 
-  root 'main#index'
+  root 'items#index'
 end

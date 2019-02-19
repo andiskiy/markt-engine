@@ -14,7 +14,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
   end
 
   def store_dir
-    "items/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "uploads/items/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   version :thumb do

@@ -1,1 +1,0 @@
-class MarktEngine.MainIndex extends MarktEngine.CategoriesShow
