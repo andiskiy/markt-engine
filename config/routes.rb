@@ -22,10 +22,10 @@ Rails.application.routes.draw do
     get :my_account, to: 'users/registrations#show', as: 'my_account'
   end
 
-  resources :categories
-  resources :orders
+  resources :categories, only: :show
+  resources :orders, only: %i[create destroy]
   resources :items, only: %i[index show]
-  resources :carts
+  resources :carts, only: :index
   resources :purchases, only: :update
 
   root 'items#index'
