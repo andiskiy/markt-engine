@@ -1,0 +1,7 @@
+- title(@item.name)
+.mt-3
+  = link_to orders_path(item_id: @item.id), class: 'btn btn-primary-markt', method: :post do
+    %i.fas.fa-cart-plus
+    = t('item.actions.add_to_cart')
+%hr
+= render partial: 'partials/item_show', locals: { item: @item }

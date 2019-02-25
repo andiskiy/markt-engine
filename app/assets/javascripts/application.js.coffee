@@ -4,6 +4,7 @@
 #= require jquery_ujs
 #= require popper
 #= require bootstrap-sprockets
+#= require jquery.bxslider.min
 #= require_self
 #= require cable.js
 #= require_tree ./components/settings

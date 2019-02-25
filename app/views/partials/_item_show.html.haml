@@ -1,0 +1,18 @@
+.row.justify-content-center
+  .col-12.col-lg-6
+    %ul.slider
+      - item.item_photos.each do |item_photo|
+        %li
+          = image_tag item_photo.photo.url, class: 'photo cursor'
+  .col-12.col-lg-6
+    %h5= item.name
+    %hr
+    %p
+      %strong #{t('activerecord.attributes.item.price')}:
+      = t('item.helpers.price', price: item.price)
+    %strong #{t('activerecord.attributes.item.description')}:
+    %p= item.description
+
+- content_for :modals do
+  = modal 'show-image', size: :lg, body: true do
+    %img.responsive-image.zoom

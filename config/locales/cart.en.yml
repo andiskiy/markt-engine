@@ -11,3 +11,9 @@ en:
     flash_messages:
       success: 'Order successfully issued'
       danger: "Order wasn't successfully issued"
+      create:
+        success: 'Item successfully added to cart'
+        danger: "Item wasn't successfully added to cart"
+      delete:
+        success: 'Item successfully deleted from cart'
+        danger: "Item wasn't successfully deleted from cart"

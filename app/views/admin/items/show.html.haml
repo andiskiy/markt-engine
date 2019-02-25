@@ -1,4 +1,3 @@
-- page_cols(lg: 6, md: 10, sm: 12)
 - title(@item.name)
 
 .row
@@ -9,19 +8,4 @@
     = link_to t('shared.actions.back'), admin_category_items_path(@category), class: 'btn btn-light'
 %hr
 
-.admin-form.mb-5
-  .row
-    .col-md-3
-      %strong #{t('admin.item.attributes.name')}:
-    .col-md-9
-      = @item.name
-  .row
-    .col-md-3
-      %strong #{t('admin.item.attributes.price')}:
-    .col-md-9
-      = t('item.helpers.price', price: @item.price)
-  .row
-    .col-md-3
-      %strong #{t('admin.item.attributes.description')}:
-    .col-md-9
-      = @item.description
+= render partial: 'partials/item_show', locals: { item: @item }
