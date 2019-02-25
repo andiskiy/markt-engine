@@ -3,19 +3,18 @@
     .col-sm-4
       .item
         .item-header
-          = item.name
+          = link_to item.name, item_path(item), class: 'item-link'
         .item-photo
-          - if item.item_photos.present?
-            = image_tag item.item_photos.first.photo.thumb.url
+          - if item.active_photo
+            = image_tag item.thumb_url
           - else
             .fas.fa-images
             = t('item.messages.no_image')
         .item-price
           = t('item.helpers.price', price: item.price)
-        = link_to orders_path(item_id: item.id), method: 'POST' do
-          .item-button
-            .fas.fa-cart-plus
-            = t('item.actions.add_to_cart')
+        = link_to orders_path(item_id: item.id), class: 'item-button', method: :post do
+          .fas.fa-cart-plus
+          = t('item.actions.add_to_cart')
 .text-center
   .inline-block
     = will_paginate(items, renderer: WillPaginate::ActionView::BootstrapLinkRenderer)

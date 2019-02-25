@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
   resources :categories
   resources :orders
-  resources :items, only: :index
+  resources :items, only: %i[index show]
   resources :carts
   resources :purchases, only: :update
 

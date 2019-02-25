@@ -5,6 +5,8 @@
   .modal-dialog{ class: "modal-#{size}" }
     - if body
       .modal-content.modal-body
+        .text-right
+          %a.cursor{ data: { dismiss: 'modal' } }×
         = captured
     - else
       .modal-content

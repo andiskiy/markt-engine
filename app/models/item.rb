@@ -41,6 +41,14 @@ class Item < ApplicationRecord
     end
   end
 
+  def active_photo
+    item_photos.find_by(active: true)
+  end
+
+  def thumb_url
+    active_photo.photo.thumb.url
+  end
+
   def ensure_five_photos
     needed_photos_count.times { association(:item_photos).add_to_target(ItemPhoto.new) }
   end

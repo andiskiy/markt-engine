@@ -62,6 +62,28 @@ class MarktEngine.AdminItemsNew
     $this.find('.photo-items').addClass('img-thumbnail')
 
 
+class MarktEngine.AdminItemsShow
+  @init: ->
+    @setElements()
+    @bind()
+
+  @setElements: ->
+    @modal = $('#show-image-modal')
+
+  @bind: ->
+    $('.slider').bxSlider()
+    $('.photo').on 'click', (e) =>
+      @openModal($(e.target).attr('src'))
+      false
+    @modal.on 'hidden.bs.modal', @clearModal
+
+  @openModal: (src) ->
+    @modal.find('.modal-content img').attr('src', src)
+    @modal.modal('show')
+
+  @clearModal: ->
+    $(this).find('.modal-content img').removeAttr('src')
+
 class MarktEngine.AdminItemsCreate extends MarktEngine.AdminItemsNew
 
 class MarktEngine.AdminItemsEdit extends MarktEngine.AdminItemsNew

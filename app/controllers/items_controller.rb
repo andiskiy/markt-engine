@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :set_categories
+  before_action :set_categories, only: :index
+  before_action :set_item, only: :show
 
   def index
     @items = Item.search(params[:value], params[:category_id])
@@ -13,9 +14,15 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show; end
+
   private
 
   def set_categories
     @categories = Category.all
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 end
