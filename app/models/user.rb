@@ -79,11 +79,6 @@ class User < ApplicationRecord
     country_name.translations[I18n.locale.to_s] || country_name.name
   end
 
-  def can_make_order?
-    phone.present? && country_code.present? &&
-      city.present? && address.present? && zip_code.present?
-  end
-
   private
 
   def full_address_exists?
