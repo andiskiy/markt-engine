@@ -76,10 +76,22 @@ a:hover {
       border-radius: 10px;
       -moz-border-radius: 10px;
       -webkit-border-radius: 10px;
+    }
+
+    .item-button, .item-link, .carts-btn {
       color: $orange-color;
 
       &:hover {
         color: $orange-color-hover;
+      }
+    }
+
+    .item-action {
+      border-radius: 3px;
+
+      .quantity {
+        vertical-align: super;
+        padding: 0 15px;
       }
     }
   }

@@ -53,6 +53,10 @@ class Item < ApplicationRecord
     needed_photos_count.times { association(:item_photos).add_to_target(ItemPhoto.new) }
   end
 
+  def order(purchase, user)
+    orders.find_by(purchase: purchase, user: user)
+  end
+
   private
 
   def needed_photos_count

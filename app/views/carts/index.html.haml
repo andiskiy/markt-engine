@@ -18,17 +18,25 @@
       - if @orders.present?
         .row
           - @orders.each do |order|
-            .col-sm-4
-              .item
-                .text-center
-                  .item-header= order.item.name
+            .col-sm-4.item-column
+              .item{ data: { item: { id: order.item.id }, order: { id: order.id } } }
+                .item-header
+                  = link_to order.item.name, item_path(order.item), class: 'item-link'
                   = link_to order_path(order), method: :delete, class: 'item-close' do
                     .far.fa-times-circle
                 .item-photo
-                  .fas.fa-images
-                  = t('item.messages.no_image')
+                  - if order.item.active_photo
+                    = image_tag order.item.thumb_url
+                  - else
+                    .fas.fa-images
+                    = t('item.messages.no_image')
                 .item-price
                   = t('item.helpers.price', price: order.item.price)
+                .item-action
+                  .plus-minus
+                    = icon('fas', 'minus-square', class: 'fa-2x carts-btn cursor item-minus')
+                    %span.quantity= order.quantity
+                    = icon('fas', 'plus-square', class: 'fa-2x carts-btn cursor item-plus')
       - else
         %center
           .notice-info

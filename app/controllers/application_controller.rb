@@ -16,6 +16,14 @@ class ApplicationController < ActionController::Base
     redirect_to(root_path) unless current_user.admin_or_higher?
   end
 
+  def set_categories
+    @categories = Category.all
+  end
+
+  def set_purchase
+    @purchase = current_user.purchases.find_or_create_by(status: 'pending') if current_user
+  end
+
   # Methods when Access denied
   def user_not_authorized(exception)
     respond_to do |format|

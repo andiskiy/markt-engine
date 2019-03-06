@@ -14,7 +14,7 @@
   %body{ data: { area: 'markt-panel',
                  page: controller_name.camelize + action_name.camelize,
                  controller: body_controller } }
-    = render 'partials/main_navbar'
+    = render partial: 'partials/main_navbar', locals: { purchase: @purchase }
     - if @categories
       .container-fluid
         .row

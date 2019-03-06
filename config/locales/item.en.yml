@@ -8,6 +8,7 @@ en:
       no_image: 'No image'
     helpers:
       price: "$%{price}"
+      price_html: "$<span class='items-price'>%{price}</span>"
 
   admin:
     item:
