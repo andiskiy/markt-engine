@@ -5,11 +5,9 @@
       .col-sm-4.text-center
         = t('cart.titles.index')
       .col-sm-4.text-right
-        - if policy(@purchase).update?
-          = link_to t('cart.actions.payment'), purchase_path(@purchase),
-                                               method: :put,
-                                               class: 'btn btn-primary-markt',
-                                               data: { confirm: t('shared.messages.confirm') }
+        - if policy(@purchase).edit?
+          = link_to t('cart.actions.payment'), edit_purchase_path(@purchase),
+                                               class: 'btn btn-primary-markt'
   .container
     .items-list
       - if @orders.present?

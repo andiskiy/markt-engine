@@ -1,0 +1,21 @@
+- page_cols(sm: 12, lg: 6, xl: 5)
+- title(@purchase.amount_items)
+
+.alert.alert-danger.text-center
+  = t('purchase.messages.warning_message')
+
+.shadow-sm.auth-form
+  %h2= t('purchase.titles.edit')
+  = simple_form_for @purchase do |f|
+    = f.error_notification
+    .form-inputs
+      = f.input :phone, required: true
+      = f.input :country_code, priority: [I18n.locale], required: true
+      = f.input :city, required: true
+      = f.input :address, required: true
+      = f.input :zip_code, required: true
+      = f.input :status, as: :hidden, input_html: { value: 'processing' }
+    .form-actions.text-center
+      = f.submit t('purchase.action.make_order'), class: 'btn btn-primary-markt',
+                                                  data: { confirm: t('shared.messages.confirm') }
+      = link_to t('shared.actions.cancel'), carts_path, class: 'btn btn-light'

@@ -27,3 +27,35 @@ en:
       nav_path:
         purchase: 'Purchases management'
         index: 'All purchases'
+
+  purchase:
+    titles:
+      edit: 'Shipping address items'
+    messages:
+      warning_message: 'Please add the full shipping address and phone number to make the order'
+    action:
+      make_order: 'Make order'
+
+  activerecord:
+    attributes:
+      purchase:
+        phone: 'Phone'
+        country: 'Country'
+        country_code: 'Country'
+        city: 'City'
+        address: 'Address'
+        zip_code: 'Zip code'
+    errors:
+      models:
+        purchase:
+          attributes:
+            phone: &blanks
+              blank: "^can't be blank"
+            country_code:
+              <<: *blanks
+            city:
+              <<: *blanks
+            address:
+              <<: *blanks
+            zip_code:
+              <<: *blanks

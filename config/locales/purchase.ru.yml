@@ -27,3 +27,35 @@ ru:
       nav_path:
         purchase: 'Управление сделками'
         index: 'Все сделки'
+
+  purchase:
+    titles:
+      edit: 'Адрес доставки товаров'
+    messages:
+      warning_message: 'Пожалуйста добавьте полный адрес доставки и номер телефона, чтобы сделать заказ'
+    action:
+      make_order: 'Сделать заказ'
+
+  activerecord:
+    attributes:
+      purchase:
+        phone: 'Телефон'
+        country: 'Страна'
+        country_code: 'Страна'
+        city: 'Город'
+        address: 'Адрес'
+        zip_code: 'Индекс'
+    errors:
+      models:
+        purchase:
+          attributes:
+            phone: &blanks
+              blank: '^не должно быть пустым'
+            country_code:
+              <<: *blanks
+            city:
+              <<: *blanks
+            address:
+              <<: *blanks
+            zip_code:
+              <<: *blanks
