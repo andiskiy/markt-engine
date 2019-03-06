@@ -2,7 +2,7 @@
   .page_head= @category.name
   .items-list{ data: { category: { id: @category.id } } }
     - if @items.present?
-      = render partial: 'partials/items', locals: { items: @items }
+      = render partial: 'partials/items', locals: { items: @items, purchase: @purchase }
     - else
       .notice-info.text-center
         .fas.fa-exclamation-circle

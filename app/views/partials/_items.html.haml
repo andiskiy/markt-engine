@@ -1,7 +1,8 @@
 .row
-  - @items.each do |item|
+  - items.each do |item|
     .col-sm-4
-      .item
+      - order = item.order(purchase, current_user)
+      .item{ data: { item: { id: item.id }, order: { id: order ? order.id : nil } } }
         .item-header
           = link_to item.name, item_path(item), class: 'item-link'
         .item-photo
@@ -12,9 +13,15 @@
             = t('item.messages.no_image')
         .item-price
           = t('item.helpers.price', price: item.price)
-        = link_to orders_path(item_id: item.id), class: 'item-button', method: :post do
-          .fas.fa-cart-plus
-          = t('item.actions.add_to_cart')
+        .item-action
+          .plus-minus{ class: order ? '' : 'd-none' }
+            = icon('fas', 'minus-square', class: 'fa-2x carts-btn cursor item-minus')
+            %span.quantity= order&.quantity
+            = icon('fas', 'plus-square', class: 'fa-2x carts-btn cursor item-plus')
+          .add-item{ class: order ? 'd-none' : '' }
+            %a.cursor.item-button
+              .fas.fa-cart-plus
+              = t('item.actions.add_to_cart')
 .text-center
   .inline-block
     = will_paginate(items, renderer: WillPaginate::ActionView::BootstrapLinkRenderer)

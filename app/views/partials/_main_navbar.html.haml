@@ -21,6 +21,8 @@
             = link_to carts_path, class: 'nav-link' do
               .fas.fa-shopping-cart
               = t('shared.navbar.cart')
+              %span
+                = t('item.helpers.price_html', price: purchase.amount_items)
           %li.nav-item.dropdown
             = link_to '#', class: 'nav-link dropdown-toggle',
                            id: 'user-full-name',

@@ -6,6 +6,7 @@ ru:
       attributes:
         item: 'Товар'
         price: 'Цена'
+        quantity: 'Количество'
       nav_path:
         order: 'Управление заказами'
         index: 'Все заказы по одной сделке'

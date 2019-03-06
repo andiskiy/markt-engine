@@ -2,4 +2,4 @@
   .page_head
     = t('item.titles.index')
   .items-list
-    = render partial: 'partials/items', locals: { items: @items }
+    = render partial: 'partials/items', locals: { items: @items, purchase: @purchase }

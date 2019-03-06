@@ -1,10 +1,10 @@
 class ItemsController < ApplicationController
-  before_action :set_categories, only: :index
-  before_action :set_item, only: :show
+  before_action :set_purchase
 
   def index
+    set_categories
     @items = Item.search(params[:value], params[:category_id])
-                 .includes(:item_photos)
+                 .includes(:item_photos, :orders)
                  .paginate(page: params[:page], per_page: Item::PER_PAGE)
     respond_to do |format|
       format.html {}
@@ -14,15 +14,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  def show; end
-
-  private
-
-  def set_categories
-    @categories = Category.all
-  end
-
-  def set_item
+  def show
     @item = Item.find(params[:id])
   end
 end

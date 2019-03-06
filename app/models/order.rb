@@ -22,6 +22,9 @@ class Order < ApplicationRecord
                                                       class_name:  'Item',
                                                       optional:    true
 
+  # Callbacks
+  after_save :delete_order, if: -> { quantity <= 0 }
+
   # Scopes
   scope :search_with_deleted, lambda { |value|
     joins(:with_deleted_item).where('items.name ILIKE :value', value: "%#{value}%")
@@ -30,5 +33,16 @@ class Order < ApplicationRecord
   def increase!
     self.quantity += 1
     save
+  end
+
+  def decrease!
+    self.quantity -= 1
+    save
+  end
+
+  private
+
+  def delete_order
+    destroy
   end
 end

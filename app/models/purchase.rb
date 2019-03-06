@@ -43,7 +43,11 @@ class Purchase < ApplicationRecord
 
   # Methods
   def amount_with_deleted_items
-    orders.inject(0.0) { |sum, order| sum + order.with_deleted_item.old_price(ordered_date) }
+    orders.inject(0.0) { |sum, order| sum + (order.with_deleted_item.old_price(ordered_date) * order.quantity) }
+  end
+
+  def amount_items
+    orders.inject(0) { |sum, order| sum + (order.item.price * order.quantity) }
   end
 
   def datetime_format(str_time)
