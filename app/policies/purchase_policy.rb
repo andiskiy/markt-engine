@@ -1,6 +1,10 @@
 class PurchasePolicy < ApplicationPolicy
+  def edit?
+    record.pending? && record.orders.present?
+  end
+
   def update?
-    user.can_make_order? && record.pending? && record.orders.present?
+    edit?
   end
 
   class Scope < Scope

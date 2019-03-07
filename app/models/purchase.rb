@@ -1,15 +1,22 @@
 # == Schema Information
 #
 #  Table name: purchases
-#  id          :integer   not null, primary key
-#  user_id     :integer
-#  created_at  :datetime  not null
-#  updated_at  :datetime  not null
-#  status      :integer   default(0)
-#  ordered_at  :datetime
+#  id            :integer   not null, primary key
+#  user_id       :integer
+#  created_at    :datetime  not null
+#  updated_at    :datetime  not null
+#  status        :integer   default(0)
+#  ordered_at    :datetime
+#  country_code  :string
+#  city          :string
+#  address       :string
+#  zip_code      :string
+#  phone         :string
 #
 
 class Purchase < ApplicationRecord
+  include Countryable
+
   PER_PAGE = 50
   STATUSES = %w[pending processing completed].freeze
   enum status: STATUSES
@@ -21,6 +28,10 @@ class Purchase < ApplicationRecord
                                                       class_name:  'User',
                                                       optional:    true
   has_many :orders
+
+  # Validations
+  validates :country_code, :address,
+            :city, :zip_code, :phone, presence: true, if: -> { status_changed? && processing? }
 
   # Callbacks
   before_save :set_ordered_at, if: -> { status_changed? && processing? }

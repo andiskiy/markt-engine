@@ -19,11 +19,17 @@
 #  current_sign_in_ip      :inet
 #  last_sign_in_ip         :inet
 #  deleted_at              :datetime
+#  country_code            :string
+#  city                    :string
+#  address                 :string
+#  zip_code                :string
+#  phone                   :string
 #
 
 class User < ApplicationRecord
   include User::Roles
   include Versionable
+  include Countryable
 
   PER_PAGE = 50
 
@@ -66,27 +72,5 @@ class User < ApplicationRecord
 
   def full_name_with_email(date)
     "#{old_first_name(date)} #{old_last_name(date)} (#{old_email(date)})"
-  end
-
-  def full_address
-    full_address_exists? ? [address, city, country, zip_code].join(', ') : I18n.t('admin.user.messages.no_address')
-  end
-
-  def country
-    return unless country_code
-
-    country_name = ISO3166::Country[country_code]
-    country_name.translations[I18n.locale.to_s] || country_name.name
-  end
-
-  def can_make_order?
-    phone.present? && country_code.present? &&
-      city.present? && address.present? && zip_code.present?
-  end
-
-  private
-
-  def full_address_exists?
-    address.present? && city.present? && country_code.present? && zip_code.present?
   end
 end

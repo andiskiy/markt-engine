@@ -10,11 +10,15 @@
 %div.inline-block
   %strong #{t('admin.purchase.attributes.user')}:
   = customer(@purchase.with_deleted_user, @purchase)
-%div.mb-4
+%div
   %strong #{t('admin.purchase.attributes.total_price')}:
   = @purchase.amount_with_deleted_items
+- %w[country city address zip_code phone].each do |attr|
+  %div
+    %strong #{t("activerecord.attributes.purchase.#{attr}")}:
+    = @purchase.send(attr)
 
-.row
+.row.mt-4
   .col-9
     .input-group
       %input.form-control.admin-searchbar.order-searchbar{ type: 'search', placeholder: t('shared.navbar.search') }
