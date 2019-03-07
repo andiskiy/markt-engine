@@ -14,14 +14,20 @@
         .item-price
           = t('item.helpers.price', price: item.price)
         .item-action
-          .plus-minus{ class: order ? '' : 'd-none' }
-            = icon('fas', 'minus-square', class: 'fa-2x carts-btn cursor item-minus')
-            %span.quantity= order&.quantity
-            = icon('fas', 'plus-square', class: 'fa-2x carts-btn cursor item-plus')
-          .add-item{ class: order ? 'd-none' : '' }
-            %a.cursor.item-button
-              .fas.fa-cart-plus
-              = t('item.actions.add_to_cart')
+          - if current_user
+            .plus-minus{ class: order ? '' : 'd-none' }
+              = icon('fas', 'minus-square', class: 'fa-2x carts-btn cursor item-minus')
+              %span.quantity= order&.quantity
+              = icon('fas', 'plus-square', class: 'fa-2x carts-btn cursor item-plus')
+            .add-item{ class: order ? 'd-none' : '' }
+              %a.cursor.item-button
+                .fas.fa-cart-plus
+                = t('item.actions.add_to_cart')
+          - else
+            = link_to orders_path(item_id: item.id), method: :post do
+              .item-button
+                .fas.fa-cart-plus
+                = t('item.actions.add_to_cart')
 .text-center
   .inline-block
     = will_paginate(items, renderer: WillPaginate::ActionView::BootstrapLinkRenderer)
