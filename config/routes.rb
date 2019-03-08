@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :items, only: %i[index show]
   resources :carts, only: :index
   resources :purchases, only: %i[edit update]
+  resource :locales, only: %i[update]
 
   root 'items#index'
 end

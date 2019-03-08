@@ -16,10 +16,13 @@ ru:
       confirm: 'Подтвердить'
     messages:
       confirm: 'Вы уверены?'
-
     admin:
       shop: 'Магазин'
       categories: 'Категории'
       items: 'Товары'
       purchases: 'Сделки'
       users: 'Пользователи'
+    language:
+      switch: 'Язык'
+      success: 'Язык успешно переключен'
+      danger: 'При переключении языка произошла ошибка'

@@ -28,6 +28,6 @@
               .item-button
                 .fas.fa-cart-plus
                 = t('item.actions.add_to_cart')
-.text-center
+.text-center.orange-pagination.table-responsive
   .inline-block
     = will_paginate(items, renderer: WillPaginate::ActionView::BootstrapLinkRenderer)

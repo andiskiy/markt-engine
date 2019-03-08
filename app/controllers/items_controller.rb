@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
     respond_to do |format|
       format.html {}
       format.js do
-        render partial: 'partials/items', layout: false, locals: { items: @items }
+        render partial: 'partials/items', layout: false, locals: { items: @items, purchase: @purchase }
       end
     end
   end
