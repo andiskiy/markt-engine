@@ -91,7 +91,9 @@ a:hover {
 
       .quantity {
         vertical-align: super;
-        padding: 0 15px;
+        padding: 5px 17px;
+        border: 1px solid $orange-color;
+        border-radius: 3px;
       }
     }
   }

@@ -1,7 +1,21 @@
 - title(@item.name)
-.mt-3
-  = link_to orders_path(item_id: @item.id), class: 'btn btn-primary-markt', method: :post do
-    %i.fas.fa-cart-plus
-    = t('item.actions.add_to_cart')
-%hr
-= render partial: 'partials/item_show', locals: { item: @item }
+
+- order = @item.order(@purchase, current_user)
+.items-list.item{ data: { item: { id: @item.id }, order: { id: order&.id } } }
+  .mt-3
+    .item-action
+      - if current_user
+        .plus-minus{ class: order ? '' : 'd-none' }
+          = icon('fas', 'minus-square', class: 'fa-2x carts-btn cursor item-minus')
+          %span.quantity= order&.quantity
+          = icon('fas', 'plus-square', class: 'fa-2x carts-btn cursor item-plus')
+        .add-item{ class: order ? 'd-none' : '' }
+          %a.btn.btn-primary-markt.item-button
+            %i.fas.fa-cart-plus
+            = t('item.actions.add_to_cart')
+      - else
+        = link_to orders_path(item_id: @item.id), class: 'btn btn-primary-markt', method: :post do
+          %i.fas.fa-cart-plus
+          = t('item.actions.add_to_cart')
+  %hr
+  = render partial: 'partials/item_show', locals: { item: @item }
