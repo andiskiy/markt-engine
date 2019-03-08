@@ -1,9 +1,18 @@
-html {
+html, body {
+  position: relative;
   background-color: $background-body-color !important;
 }
 
+html {
+  height: 100%;
+}
+
 body {
-  background-color: $background-body-color !important;
+  min-height: 100%;
+}
+
+.wrapper {
+  padding-bottom: 60px;
 }
 
 main[role='main'] {
@@ -104,6 +113,30 @@ a:hover {
   &:hover{
     color: $white-color;
     background-color: $orange-color-hover;
+  }
+}
+
+.orange-pagination {
+  .pagination {
+    a {
+      color: $orange-color;
+    }
+
+    .active {
+      span {
+        color: $white-color;
+        background-color: $orange-color;
+        border-color: $orange-color;
+      }
+    }
+  }
+}
+
+.link-a {
+  color: $orange-color !important;
+
+  &:hover{
+    color: $orange-color-hover !important;
   }
 }
 

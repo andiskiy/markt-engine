@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  before_action :set_locale
+
   protect_from_forgery with: :reset_session
   include Pundit
 
@@ -14,14 +16,6 @@ class ApplicationController < ActionController::Base
 
   def admin_user!
     redirect_to(root_path) unless current_user.admin_or_higher?
-  end
-
-  def set_categories
-    @categories = Category.all
-  end
-
-  def set_purchase
-    @purchase = current_user.purchases.find_or_create_by(status: 'pending') if current_user
   end
 
   # Methods when Access denied
@@ -51,5 +45,24 @@ class ApplicationController < ActionController::Base
 
   def current_layout
     controller_path.split('/')[0] == 'admin' ? 'admin' : 'application'
+  end
+
+  # Callbacks
+  def set_categories
+    @categories = Category.all
+  end
+
+  def set_purchase
+    @purchase = current_user.purchases.find_or_create_by(status: 'pending') if current_user
+  end
+
+  def set_locale
+    if cookies[:my_locale] && I18n.available_locales.include?(cookies[:my_locale].to_sym)
+      locale = cookies[:my_locale].to_sym
+    else
+      locale = I18n.default_locale
+      cookies.permanent[:my_locale] = locale
+    end
+    I18n.locale = locale
   end
 end

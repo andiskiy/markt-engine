@@ -16,14 +16,14 @@
                  controller: body_controller } }
     = render partial: 'partials/main_navbar', locals: { purchase: @purchase }
     - if @categories
-      .container-fluid
+      .container-fluid.wrapper
         .row
           = render 'partials/navmenu'
           %main.col-12.col-lg-9{ role: 'main' }
             = render 'partials/flash'
             = yield
     - else
-      .container.mt-2
+      .container.mt-2.wrapper
         = render 'partials/flash'
         .row.justify-content-center
           %div{ class: content_for?(:main_row_class) ? yield(:main_row_class) : 'col-12' }
@@ -31,3 +31,18 @@
 
     = yield :modals if content_for? :modals
     = render partial: 'partials/message_modal'
+
+    %footer.bd-footer
+      .container
+        .text-right
+          = link_to '#', class: 'dropdown-toggle link-a',
+                   id: 'language',
+                   aria: { expanded: 'false', haspopup: 'true' },
+                   data: { toggle: 'dropdown' } do
+            = t('shared.language.switch')
+          .dropdown-menu{ aria: { labelledby: 'navbarDropdown' } }
+            - I18n.available_locales.each do |lang|
+              = link_to languages[lang], locales_path(locale: lang),
+                        class: 'dropdown-item link-a',
+                        method: :put,
+                        data: { confirm: t('shared.messages.confirm') }
