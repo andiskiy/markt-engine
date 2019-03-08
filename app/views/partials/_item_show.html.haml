@@ -1,9 +1,14 @@
 .row.justify-content-center
-  .col-12.col-lg-6
-    %ul.slider
-      - item.item_photos.each do |item_photo|
-        %li
-          = image_tag item_photo.photo.url, class: 'photo cursor'
+  .col-12.col-lg-6.mb-5
+    - if item.item_photos.present?
+      %ul.slider
+        - item.item_photos.each do |item_photo|
+          %li
+            = image_tag item_photo.photo.url, class: 'photo cursor'
+    - else
+      .no-photos.text-center
+        %i.fas.fa-images
+          = t('item.messages.no_image')
   .col-12.col-lg-6
     %h5= item.name
     %hr

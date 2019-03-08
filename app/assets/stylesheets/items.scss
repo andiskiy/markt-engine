@@ -1,0 +1,48 @@
+body[data-page='ItemsShow'] {
+  .items-list.item {
+    .no-photos {
+      display: table;
+      color: #dadada;
+      background-color: #fbfbfb;
+      width: 250px;
+      height: 250px;
+      border-radius: 5px;
+      border: 1px solid $orange-color;
+      margin: 0 auto;
+
+      .fa-images {
+        display: table-cell;
+        vertical-align: middle;
+      }
+    }
+
+    .item-button {
+      color: $white-color;
+      background-color: $orange-color;
+
+      &:hover {
+        background-color: $orange-color-hover;
+      }
+    }
+
+    .carts-btn {
+      color: $orange-color;
+
+      &:hover {
+        color: $orange-color-hover;
+      }
+    }
+
+    .item-action {
+      border-radius: 3px;
+
+      .quantity {
+        vertical-align: super;
+        padding: 5px 17px;
+        border: 1px solid $orange-color;
+        border-radius: 3px;
+        background-color: $white-color;
+      }
+    }
+  }
+}
