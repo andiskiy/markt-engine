@@ -78,6 +78,7 @@ ru:
         city: 'Город'
         address: 'Адрес'
         zip_code: 'Индекс'
+        time_zone: 'Часовой пояс'
     errors:
       models:
         user:
