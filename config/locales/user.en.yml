@@ -78,6 +78,7 @@ en:
         city: 'City'
         address: 'Address'
         zip_code: 'Zip code'
+        time_zone: 'Time Zone'
     errors:
       models:
         user:

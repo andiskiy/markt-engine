@@ -8,7 +8,7 @@ module MarktEngine
     config.load_defaults 5.2
     I18n.available_locales = %i[en ru]
     I18n.default_locale = ENV['LOCALE']
-    config.time_zone = 'Europe/Moscow'
+    config.time_zone = ENV['TIME_ZONE']
 
   end
 

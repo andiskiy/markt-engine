@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::Base
-  before_action :set_locale
-
   protect_from_forgery with: :reset_session
   include Pundit
+
+  before_action :set_locale
+  before_action :set_time_zone
 
   layout :set_layout
 
@@ -64,5 +65,10 @@ class ApplicationController < ActionController::Base
       cookies.permanent[:my_locale] = locale
     end
     I18n.locale = locale
+  end
+
+  def set_time_zone
+    Time.zone = current_user.time_zone if current_user&.time_zone &&
+                                          current_user.time_zone != Time.zone.name
   end
 end
