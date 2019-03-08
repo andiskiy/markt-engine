@@ -12,6 +12,11 @@ module Countryable
     country_name.translations[I18n.locale.to_s] || country_name.name
   end
 
+  def priority_countries
+    country_name = ISO3166::Country[I18n.locale.to_s]
+    country_name ? [I18n.locale.to_s] : %w[GB US]
+  end
+
   private
 
   def full_address_exists?
