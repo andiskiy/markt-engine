@@ -10,7 +10,7 @@
     = f.error_notification
     .form-inputs
       = f.input :phone, required: true
-      = f.input :country_code, priority: [I18n.locale], required: true
+      = f.input :country_code, priority: f.object.priority_countries, required: true
       = f.input :city, required: true
       = f.input :address, required: true
       = f.input :zip_code, required: true
