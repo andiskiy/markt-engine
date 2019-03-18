@@ -26,3 +26,7 @@ ru:
       switch: 'Язык'
       success: 'Язык успешно переключен'
       danger: 'При переключении языка произошла ошибка'
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'Возникли ошибки: %{errors}'
