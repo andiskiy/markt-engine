@@ -78,6 +78,14 @@ group :development, :test do
   gem 'guard-rubocop'
   gem 'timecop', '~> 0.7'
   gem 'guard-shell', '~> 0.7'
+  gem 'rspec-rails', '~> 3.8'
+  gem 'rails-controller-testing'
+  gem 'factory_bot_rails'
+  gem 'guard-rspec'
+  gem 'json_spec'
+  gem 'rspec-its'
+  gem 'rspec-nc'
+  gem 'database_cleaner'
 end
 
 group :development do
