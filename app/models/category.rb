@@ -25,4 +25,5 @@ class Category < ApplicationRecord
 
   # Scopes
   scope :search, ->(value) { where('name ILIKE :value', value: "%#{value}%") }
+  scope :order_by_name, -> { order(name: :asc) }
 end
