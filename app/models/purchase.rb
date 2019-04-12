@@ -68,7 +68,8 @@ class Purchase < ApplicationRecord
   end
 
   def ordered_date
-    ordered_at || Time.current
+    time = ordered_at || Time.now.utc
+    time.in_time_zone('UTC')
   end
 
   STATUSES.each do |status|

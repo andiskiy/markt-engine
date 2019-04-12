@@ -26,10 +26,18 @@ class Order < ApplicationRecord
   after_save :delete_order, if: -> { quantity <= 0 }
 
   # Scopes
-  scope :search_with_deleted, lambda { |value|
-    joins(:with_deleted_item).where('items.name ILIKE :value', value: "%#{value}%")
+  scope :search_with_deleted, lambda { |value, date|
+    joins(:with_deleted_item)
+      .joins("LEFT OUTER JOIN versions ON
+              versions.item_id = items.id AND
+              versions.item_type = 'Item'")
+      .where("(versions.created_at > '#{date}' AND
+               versions.object_changes #>> '{name, 0}' ILIKE :value) OR
+              (items.name ILIKE :value)", value: "%#{value}%")
+      .order(id: :asc)
   }
 
+  # Methods
   def increase!
     self.quantity += 1
     save
