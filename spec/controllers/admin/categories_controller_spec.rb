@@ -27,10 +27,7 @@ RSpec.describe Admin::CategoriesController, type: :controller do
         expect(assigns(:categories)).to eq([category])
       end
 
-      it 'render partial when format js' do
-        http_request_js
-        expect(response).to render_template(partial: 'admin/categories/_categories')
-      end
+      include_examples 'render partial js', 'admin/categories/_categories'
     end
 
     include_examples 'no access to admin panel'
@@ -107,12 +104,9 @@ RSpec.describe Admin::CategoriesController, type: :controller do
           expect(http_request.request.flash[:success]).to eq(I18n.t('admin.category.flash_messages.create.success'))
         end
 
-        it 'sets status when format json' do
-          http_request_json
-          expect(JSON.parse(response.body)['status']).to eq('created')
-        end
+        include_examples 'sets status json', 'created'
 
-        it 'check category name when format json' do
+        it 'check created category name when format json' do
           http_request_json
           expect(JSON.parse(response.body)['category']['name']).to eq(category_name)
         end
@@ -129,10 +123,7 @@ RSpec.describe Admin::CategoriesController, type: :controller do
           expect(http_request.request.flash[:danger]).to eq(I18n.t('admin.category.flash_messages.create.danger'))
         end
 
-        it 'sets status when format json' do
-          http_request_json
-          expect(JSON.parse(response.body)['status']).to eq('unprocessable_entity')
-        end
+        include_examples 'sets status json', 'unprocessable_entity'
       end
     end
 
@@ -164,12 +155,9 @@ RSpec.describe Admin::CategoriesController, type: :controller do
           expect(http_request.request.flash[:success]).to eq(I18n.t('admin.category.flash_messages.update.success'))
         end
 
-        it 'sets status when format json' do
-          http_request_json
-          expect(JSON.parse(response.body)['status']).to eq('updated')
-        end
+        include_examples 'sets status json', 'updated'
 
-        it 'check category name when format json' do
+        it 'check updated category name when format json' do
           http_request_json
           expect(JSON.parse(response.body)['category']['name']).to eq(new_name)
         end
@@ -184,10 +172,7 @@ RSpec.describe Admin::CategoriesController, type: :controller do
           expect(http_request.request.flash[:danger]).to eq(I18n.t('admin.category.flash_messages.update.danger'))
         end
 
-        it 'sets status when format json' do
-          http_request_json
-          expect(JSON.parse(response.body)['status']).to eq('unprocessable_entity')
-        end
+        include_examples 'sets status json', 'unprocessable_entity'
       end
     end
 
@@ -212,10 +197,7 @@ RSpec.describe Admin::CategoriesController, type: :controller do
           expect(http_request.request.flash[:success]).to eq(I18n.t('admin.category.flash_messages.delete.success'))
         end
 
-        it 'sets status when format json' do
-          http_request_json
-          expect(JSON.parse(response.body)['status']).to eq('deleted')
-        end
+        include_examples 'sets status json', 'deleted'
       end
 
       context 'and invalid data(has items)' do
@@ -291,10 +273,7 @@ RSpec.describe Admin::CategoriesController, type: :controller do
         expect(http_request.request.flash[:success]).to eq(flash_message)
       end
 
-      it 'sets status when format json' do
-        http_request_json
-        expect(JSON.parse(response.body)['status']).to eq('updated')
-      end
+      include_examples 'sets status json', 'updated'
     end
 
     include_examples 'no access to admin panel'

@@ -34,12 +34,12 @@ class Item < ApplicationRecord
   # Validations
   validates :name, :price, presence: true
 
-  class << self
-    def search(value, category_id)
-      items = where('name ILIKE :value', value: "%#{value}%")
-      category_id.present? ? items.where(category_id: category_id) : items
-    end
-  end
+  # Scopes
+  scope :order_by_name, -> { order(name: :asc) }
+  scope :search, lambda { |value, category_id|
+    items = where('name ILIKE :value', value: "%#{value}%").order_by_name
+    category_id.present? ? items.where(category_id: category_id) : items
+  }
 
   def active_photo
     item_photos.find_by(active: true)
