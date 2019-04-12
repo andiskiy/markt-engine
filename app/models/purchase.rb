@@ -37,7 +37,12 @@ class Purchase < ApplicationRecord
   before_save :set_ordered_at, if: -> { status_changed? && processing? }
 
   # Scopes
-  scope :with_orders, -> { joins(:orders).having('COUNT(orders.id) > 0').group('purchases.id') }
+  scope :with_orders, lambda {
+    joins(orders: :with_deleted_item)
+      .where('(purchases.status = :pending AND items.deleted_at IS NULL) OR
+              (purchases.status <> :pending)', pending: Purchase.statuses['pending'])
+      .having('COUNT(orders.id) > 0').group('purchases.id').order(created_at: :asc)
+  }
   scope :not_pending, -> { where('purchases.status <> ?', Purchase.statuses['pending']) }
 
   class << self
@@ -58,7 +63,7 @@ class Purchase < ApplicationRecord
   end
 
   def amount_items
-    orders.inject(0) { |sum, order| sum + (order.item.price * order.quantity) }
+    orders.joins(:item).inject(0) { |sum, order| sum + (order.item.price * order.quantity) }
   end
 
   def datetime_format(str_time)

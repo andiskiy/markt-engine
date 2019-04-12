@@ -3,6 +3,6 @@ class CartsController < ApplicationController
 
   def index
     @purchase = current_user.purchases.find_or_create_by(status: 'pending')
-    @orders = @purchase.orders
+    @orders = @purchase.orders.joins(:item)
   end
 end

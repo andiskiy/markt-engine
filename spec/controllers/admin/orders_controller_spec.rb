@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Admin::OrdersController, type: :controller do
   describe 'GET admin/index' do
     let!(:user)        { create :user }
-    let!(:purchase)    { create :purchase, user: user }
+    let!(:purchase)    { create :pending_purchase, user: user }
     let(:http_request) { get :index, params: { purchase_id: purchase } }
 
     context 'when user is admin' do
