@@ -39,7 +39,7 @@ module Admin
           format.html do
             redirect_to admin_users_path, flash: { success: t('admin.user.flash_messages.delete.success') }
           end
-          format.json { render json: { status: :destroyed, user: @user } }
+          format.json { render json: { status: :deleted, user: @user } }
         else
           format.html do
             redirect_to admin_users_path, flash: { danger: t('admin.user.flash_messages.delete.danger') }

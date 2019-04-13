@@ -112,3 +112,4 @@ en:
               confirmation: "^doesn't match Password"
             role:
               inclusion: "Value should be 'super', 'admin' or 'standard'"
+              update_super_role: 'Impossible to set a super role'

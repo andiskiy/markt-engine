@@ -112,3 +112,4 @@ ru:
               confirmation: '^Пароли не совпадают'
             role:
               inclusion: 'Значение должно быть super, admin или standard'
+              update_super_role: 'Невозможно изменить роль на суперпользователя'

@@ -12,12 +12,16 @@ FactoryBot.define do
 
     factory :super_user do
       sequence(:email) { |n| "super_user_#{n}@test.com" }
-      role             { 0 }
+      role             { User.roles['super'] }
     end
 
     factory :admin do
       sequence(:email) { |n| "admin_user_#{n}@test.com" }
-      role             { 1 }
+      role             { User.roles['admin'] }
+    end
+
+    factory :standard do
+      role { User.roles['standard'] }
     end
   end
 end

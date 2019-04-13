@@ -53,7 +53,7 @@ class User < ApplicationRecord
   # Validations
   validates :first_name, :last_name, presence: true
   validates :role, inclusion: { in: User::ROLES }
-  validates :country_code, :address, :city, :zip_code, :phone, presence: true, on: :update
+  validate :do_not_allow_super_role, on: :update
 
   # Scopes
   scope :order_by_id, -> { order(id: :asc) }
@@ -72,5 +72,11 @@ class User < ApplicationRecord
 
   def full_name_with_email(date)
     "#{old_first_name(date)} #{old_last_name(date)} (#{old_email(date)})"
+  end
+
+  private
+
+  def do_not_allow_super_role
+    errors.add(:role, I18n.t('activerecord.errors.models.user.attributes.role.update_super_role')) if super?
   end
 end
