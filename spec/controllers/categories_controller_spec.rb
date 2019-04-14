@@ -7,7 +7,8 @@ RSpec.describe CategoriesController, type: :controller do
     let(:http_request)          { get :show, params: { id: first_category } }
     let!(:items_first_category) { create_list :item, Item::PER_PAGE + 10, category: first_category }
 
-    include_examples 'categories and purchase'
+    include_examples 'set categories'
+    include_examples 'set purchase'
 
     it 'category assigns' do
       http_request

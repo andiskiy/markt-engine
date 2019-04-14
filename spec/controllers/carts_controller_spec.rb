@@ -21,7 +21,7 @@ RSpec.describe CartsController, type: :controller do
         deleted_item.destroy
         items.map do |item|
           create :order, item: item, user: current_user, purchase: pending_purchase, quantity: 1
-        end
+        end.sort_by(&:id)
       end
       let(:another_orders) do
         item = create :item, category: category
@@ -31,21 +31,6 @@ RSpec.describe CartsController, type: :controller do
         create :order, item: item, user: user, purchase: purchase_user, quantity: 1
         create :order, item: items[0], user: current_user, purchase: processing_purchase, quantity: 1
         create :order, item: items[1], user: current_user, purchase: completed_purchase, quantity: 1
-      end
-
-      it 'purchase assigns' do
-        pending_purchase
-        http_request
-        expect(assigns(:purchase)).to eq(pending_purchase)
-      end
-
-      it 'purchase created' do
-        expect { http_request }.to change(Purchase, :count).by(1)
-      end
-
-      it 'purchase exists' do
-        pending_purchase
-        expect { http_request }.to change(Purchase, :count).by(0)
       end
 
       it 'orders assigns' do
@@ -63,5 +48,7 @@ RSpec.describe CartsController, type: :controller do
         expect(response).to redirect_to(new_user_session_path)
       end
     end
+
+    include_examples 'set purchase'
   end
 end

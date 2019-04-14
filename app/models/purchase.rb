@@ -27,7 +27,7 @@ class Purchase < ApplicationRecord
                                                       inverse_of:  false,
                                                       class_name:  'User',
                                                       optional:    true
-  has_many :orders
+  has_many :orders, -> { order_by_id }, inverse_of: :purchase
 
   # Validations
   validates :country_code, :address,

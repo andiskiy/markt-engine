@@ -12,7 +12,8 @@ RSpec.describe ItemsController, type: :controller do
       ((items_first_category + items_second_category) << item_second_category).sort_by(&:name)
     end
 
-    include_examples 'categories and purchase'
+    include_examples 'set categories'
+    include_examples 'set purchase'
 
     include_examples 'render partial js', 'partials/_items'
 

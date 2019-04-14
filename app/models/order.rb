@@ -34,8 +34,9 @@ class Order < ApplicationRecord
       .where("(versions.created_at > '#{date}' AND
                versions.object_changes #>> '{name, 0}' ILIKE :value) OR
               (items.name ILIKE :value)", value: "%#{value}%")
-      .order(id: :asc)
+      .order_by_id
   }
+  scope :order_by_id, -> { order(id: :asc) }
 
   # Methods
   def increase!
