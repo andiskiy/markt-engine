@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
+  before_action :set_categories
   before_action :set_purchase
 
   def index
-    set_categories
     @items = Item.search(params[:value], params[:category_id])
                  .includes(:item_photos, :orders)
                  .paginate(page: params[:page], per_page: Item::PER_PAGE)
