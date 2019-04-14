@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_purchase
-    @purchase = current_user.purchases.find_or_create_by(status: 'pending') if current_user
+    @purchase = current_user.purchases.find_or_create_by(status: Purchase.statuses['pending']) if current_user
   end
 
   def set_locale
