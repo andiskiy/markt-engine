@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
 
   # Callbacks
   def set_categories
-    @categories = Category.all
+    @categories = Category.order_by_name
   end
 
   def set_purchase
