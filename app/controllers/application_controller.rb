@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def admin_user!
-    redirect_to(root_path) unless current_user.admin_or_higher?
+    redirect_to(root_path) unless current_user&.admin_or_higher?
   end
 
   # Methods when Access denied
