@@ -12,7 +12,7 @@ Rails:
 
 Metrics/BlockLength:
   Exclude:
-    - '**/*_spec.rb'
+    - '**/*.rb'
 
 Style/Documentation:
   Enabled: false
