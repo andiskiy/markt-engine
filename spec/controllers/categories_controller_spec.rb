@@ -17,12 +17,12 @@ RSpec.describe CategoriesController, type: :controller do
 
     it 'items assigns for first page' do
       http_request
-      expect(assigns(:items)).to eq(items_first_category[0..Item::PER_PAGE - 1])
+      expect(assigns(:items)).to eq_id_list_of(items_first_category[0..Item::PER_PAGE - 1])
     end
 
     it 'items assigns for second page' do
       get :show, params: { id: first_category, page: 2 }
-      expect(assigns(:items)).to eq(items_first_category[Item::PER_PAGE..Item::PER_PAGE + 9])
+      expect(assigns(:items)).to eq_id_list_of(items_first_category[Item::PER_PAGE..Item::PER_PAGE + 9])
     end
   end
 end

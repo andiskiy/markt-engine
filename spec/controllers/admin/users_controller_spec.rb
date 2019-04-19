@@ -23,19 +23,19 @@ RSpec.describe Admin::UsersController, type: :controller do
 
         it 'get users from first page' do
           http_request
-          expect(assigns(:users)).to eq(users[0..(User::PER_PAGE - 1)])
+          expect(assigns(:users)).to eq_id_list_of(users[0..(User::PER_PAGE - 1)])
         end
 
         it 'get users from second page' do
           get :index, params: { page: 2 }
-          expect(assigns(:users)).to eq(users[User::PER_PAGE..(User::PER_PAGE + 11)])
+          expect(assigns(:users)).to eq_id_list_of(users[User::PER_PAGE..(User::PER_PAGE + 11)])
         end
 
         %w[email last_name first_name].each do |search_filed|
           it "get users by search #{search_filed.sub('_', ' ')}" do
             user
             get :index, params: { value: send(search_filed) }
-            expect(assigns(:users)).to eq([user])
+            expect(assigns(:users)).to eq_id_list_of([user])
           end
         end
 
@@ -43,7 +43,7 @@ RSpec.describe Admin::UsersController, type: :controller do
           it "get users with role #{role}" do
             users_list = send("#{role}_users")
             get :index, params: { role: role }
-            expect(assigns(:users)).to eq(users_list[0..(User::PER_PAGE - 1)])
+            expect(assigns(:users)).to eq_id_list_of(users_list[0..(User::PER_PAGE - 1)])
           end
         end
 

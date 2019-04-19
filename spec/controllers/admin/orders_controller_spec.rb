@@ -40,27 +40,27 @@ RSpec.describe Admin::OrdersController, type: :controller do
 
         it 'get orders from first page' do
           http_request
-          expect(assigns(:orders)).to eq(orders[0..(Item::PER_PAGE - 1)])
+          expect(assigns(:orders)).to eq_id_list_of(orders[0..(Item::PER_PAGE - 1)])
         end
 
         it 'get orders from second page with deleted item(pending purchase)' do
           remove_item
           get :index, params: { purchase_id: purchase, page: 2 }
-          expect(assigns(:orders)).to eq(orders[Item::PER_PAGE..(Item::PER_PAGE + 9)])
+          expect(assigns(:orders)).to eq_id_list_of(orders[Item::PER_PAGE..(Item::PER_PAGE + 9)])
         end
 
         it 'get orders from second page with deleted item(processing purchase)' do
           purchase_processing
           remove_item
           get :index, params: { purchase_id: purchase, page: 2 }
-          expect(assigns(:orders)).to eq(orders[Item::PER_PAGE..(Item::PER_PAGE + 10)])
+          expect(assigns(:orders)).to eq_id_list_of(orders[Item::PER_PAGE..(Item::PER_PAGE + 10)])
         end
 
         it 'get orders from second page with deleted item(before processing purchase)' do
           remove_item
           purchase_processing
           get :index, params: { purchase_id: purchase, page: 2 }
-          expect(assigns(:orders)).to eq(orders[Item::PER_PAGE..(Item::PER_PAGE + 9)])
+          expect(assigns(:orders)).to eq_id_list_of(orders[Item::PER_PAGE..(Item::PER_PAGE + 9)])
         end
 
         it 'get order by search old item name(pending purchase)' do

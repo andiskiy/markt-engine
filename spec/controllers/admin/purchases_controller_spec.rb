@@ -39,13 +39,13 @@ RSpec.describe Admin::PurchasesController, type: :controller do
 
       it 'purchases assigns' do
         http_request
-        expect(assigns(:purchases)).to eq(purchases)
+        expect(assigns(:purchases)).to eq_id_list_of(purchases)
       end
 
       %w[pending processing only_completed].each do |status|
         it "#{status.sub('_', ' ')} purchases" do
           get :index, params: { status: status.sub('only_', '') }
-          expect(assigns(:purchases)).to eq([*send("purchase_#{status}")])
+          expect(assigns(:purchases)).to eq_id_list_of([*send("purchase_#{status}")])
         end
       end
     end

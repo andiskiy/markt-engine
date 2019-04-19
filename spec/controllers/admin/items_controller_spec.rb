@@ -22,18 +22,18 @@ RSpec.describe Admin::ItemsController, type: :controller do
 
       it 'get items from first page' do
         http_request
-        expect(assigns(:items)).to eq(items[0..(Item::PER_PAGE - 1)])
+        expect(assigns(:items)).to eq_id_list_of(items[0..(Item::PER_PAGE - 1)])
       end
 
       it 'get items from second page' do
         get :all_items, params: { page: 2 }
-        expect(assigns(:items)).to eq(items[Item::PER_PAGE..(Item::PER_PAGE * 2 - 1)])
+        expect(assigns(:items)).to eq_id_list_of(items[Item::PER_PAGE..(Item::PER_PAGE * 2 - 1)])
       end
 
       it 'get items by search' do
         item
         get :all_items, params: { value: name }
-        expect(assigns(:items)).to eq([item])
+        expect(assigns(:items)).to eq_id_list_of([item])
       end
 
       include_examples 'render partial js', 'admin/items/_items_table'
@@ -64,12 +64,12 @@ RSpec.describe Admin::ItemsController, type: :controller do
 
       it 'get items from first page' do
         http_request
-        expect(assigns(:items)).to eq(main_items[0..(Item::PER_PAGE - 1)])
+        expect(assigns(:items)).to eq_id_list_of(main_items[0..(Item::PER_PAGE - 1)])
       end
 
       it 'get items from second page' do
         get :index, params: { category_id: main_category, page: 2 }
-        expect(assigns(:items)).to eq(main_items[Item::PER_PAGE..(Item::PER_PAGE + 9)])
+        expect(assigns(:items)).to eq_id_list_of(main_items[Item::PER_PAGE..(Item::PER_PAGE + 9)])
       end
 
       include_examples 'render partial js', 'admin/categories/_items'

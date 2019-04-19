@@ -20,17 +20,17 @@ RSpec.describe ItemsController, type: :controller do
     context 'without category' do
       it 'items assigns from first page' do
         http_request
-        expect(assigns(:items)).to eq(items[0..Item::PER_PAGE - 1])
+        expect(assigns(:items)).to eq_id_list_of(items[0..Item::PER_PAGE - 1])
       end
 
       it 'items assigns from second page' do
         get :index, params: { page: 2 }
-        expect(assigns(:items)).to eq(items[Item::PER_PAGE..(Item::PER_PAGE * 2 - 1)])
+        expect(assigns(:items)).to eq_id_list_of(items[Item::PER_PAGE..(Item::PER_PAGE * 2 - 1)])
       end
 
       it 'items assigns by search name' do
         get :index, params: { value: search_item_name }
-        expect(assigns(:items)).to eq([item_second_category])
+        expect(assigns(:items)).to eq_id_list_of([item_second_category])
       end
 
       it 'items assigns by search bad name' do
@@ -42,17 +42,17 @@ RSpec.describe ItemsController, type: :controller do
     context 'with category' do
       it 'items assigns from first page' do
         get :index, params: { category_id: first_category }
-        expect(assigns(:items)).to eq(items_first_category[0..Item::PER_PAGE - 1])
+        expect(assigns(:items)).to eq_id_list_of(items_first_category[0..Item::PER_PAGE - 1])
       end
 
       it 'items assigns from second page' do
         get :index, params: { page: 2, category_id: first_category }
-        expect(assigns(:items)).to eq(items_first_category[Item::PER_PAGE..(Item::PER_PAGE + 11)])
+        expect(assigns(:items)).to eq_id_list_of(items_first_category[Item::PER_PAGE..(Item::PER_PAGE + 11)])
       end
 
       it 'items assigns by search name in second category' do
         get :index, params: { category_id: second_category, value: search_item_name }
-        expect(assigns(:items)).to eq([item_second_category])
+        expect(assigns(:items)).to eq_id_list_of([item_second_category])
       end
 
       it 'items assigns by search name in first category' do

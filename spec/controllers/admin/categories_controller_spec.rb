@@ -13,18 +13,18 @@ RSpec.describe Admin::CategoriesController, type: :controller do
 
       it 'get categories from first page' do
         http_request
-        expect(assigns(:categories)).to eq(categories[0..(Category::PER_PAGE - 1)])
+        expect(assigns(:categories)).to eq_id_list_of(categories[0..(Category::PER_PAGE - 1)])
       end
 
       it 'get categories from second page' do
         get :index, params: { page: 2 }
-        expect(assigns(:categories)).to eq(categories[Category::PER_PAGE..(Category::PER_PAGE + 9)])
+        expect(assigns(:categories)).to eq_id_list_of(categories[Category::PER_PAGE..(Category::PER_PAGE + 9)])
       end
 
       it 'get categories by search' do
         category
         get :index, params: { value: name }
-        expect(assigns(:categories)).to eq([category])
+        expect(assigns(:categories)).to eq_id_list_of([category])
       end
 
       include_examples 'render partial js', 'admin/categories/_categories'
@@ -221,7 +221,7 @@ RSpec.describe Admin::CategoriesController, type: :controller do
     context 'when user is admin' do
       login_admin
 
-      let!(:categories) { (create_list :category, 5).sort_by(&:name) }
+      let!(:categories) { (create_list :category, 5) }
 
       it 'category assigns' do
         http_request
@@ -230,7 +230,7 @@ RSpec.describe Admin::CategoriesController, type: :controller do
 
       it 'categories assigns' do
         http_request
-        expect(assigns(:categories)).to eq(categories)
+        expect(assigns(:categories)).to eq_id_list_of(categories)
       end
     end
 
@@ -266,7 +266,7 @@ RSpec.describe Admin::CategoriesController, type: :controller do
       it 'items assigns' do
         items
         http_request
-        expect(new_category.items).to eq(items)
+        expect(new_category.items).to eq_id_list_of(items)
       end
 
       it 'sets flash success' do

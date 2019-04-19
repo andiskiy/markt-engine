@@ -21,7 +21,7 @@ RSpec.describe CartsController, type: :controller do
         deleted_item.destroy
         items.map do |item|
           create :order, item: item, user: current_user, purchase: pending_purchase
-        end.sort_by(&:id)
+        end
       end
       let(:another_orders) do
         item = create :item, category: category
@@ -38,7 +38,7 @@ RSpec.describe CartsController, type: :controller do
         another_orders
         orders
         http_request
-        expect(assigns(:orders)).to eq(orders)
+        expect(assigns(:orders)).to eq_id_list_of(orders)
       end
     end
 
