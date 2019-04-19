@@ -43,7 +43,6 @@ class Purchase < ApplicationRecord
               (purchases.status <> :pending)', pending: Purchase.statuses['pending'])
       .having('COUNT(orders.id) > 0').group('purchases.id').order(created_at: :asc)
   }
-  scope :not_pending, -> { where('purchases.status <> ?', Purchase.statuses['pending']) }
 
   class << self
     def with_status(status)
