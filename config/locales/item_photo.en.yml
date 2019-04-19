@@ -1,0 +1,14 @@
+en:
+  activerecord:
+    attributes:
+      item_photo:
+        item: 'Item'
+        photo: 'Image'
+    errors:
+      models:
+        item_photo:
+          attributes:
+            photo:
+              blank: "can't be blank"
+            item:
+              required: 'must exist'
