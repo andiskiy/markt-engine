@@ -1,9 +1,3 @@
-RSpec::Matchers.define :be_datetime_format do |expected|
-  match do |actual|
-    expect(expected.in_time_zone(Time.zone.name).strftime(MarktEngine::DATETIME_FORMAT)).to eq(actual)
-  end
-end
-
 shared_examples 'set purchase' do
   include_examples 'set purchase when authorized'
   include_examples 'set purchase when not authorized'
