@@ -130,13 +130,13 @@ RSpec.describe Admin::UsersController, type: :controller do
             let!(:user)    { create role }
             let(:new_role) { 'super' }
 
-            it "'super' role failed" do
-              error_message = I18n.t('activerecord.errors.models.user.attributes.role.update_super_role')
+            it "another to 'super'" do
+              error_message = I18n.t('activerecord.errors.models.user.attributes.role.update_another_role_to_super')
               http_request
               expect(assigns(:user).errors.messages[:role]).to eq([error_message])
             end
 
-            it "'bad' role failed" do
+            it "another to 'bad' failed" do
               error_message = I18n.t('activerecord.errors.models.user.attributes.role.inclusion')
               patch :update, params: { id: user, role: 'bad' }
               expect(assigns(:user).errors.messages[:role]).to eq([error_message])

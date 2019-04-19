@@ -77,14 +77,31 @@ RSpec.describe User, type: :model do
       expect(build(:user, role: 'standard')).to be_valid
     end
 
-    it 'do_not_allow_super_role' do
-      expect(user.super!).to be(false)
+    %w[admin standard].each do |role|
+      it "do_not_allow_super_role(#{role} to super)" do
+        user_temp = create role
+
+        expect(user_temp.super!).to be(false)
+      end
+
+      it "do_not_allow_super_role(super to #{role})" do
+        user_temp = create :super_user
+
+        expect(user_temp.send("#{role}!")).to be(false)
+      end
     end
 
-    it 'do_not_allow_super_role error message' do
+    it 'do_not_allow_super_role error message(standard to super)' do
       user.super!
-      error_message = I18n.t('activerecord.errors.models.user.attributes.role.update_super_role')
+      error_message = I18n.t('activerecord.errors.models.user.attributes.role.update_another_role_to_super')
       expect(user.errors.messages[:role]).to eq([error_message])
+    end
+
+    it 'do_not_allow_super_role error message(super to admin)' do
+      user_temp = create :super_user
+      user_temp.admin!
+      error_message = I18n.t('activerecord.errors.models.user.attributes.role.update_super_role_to_another')
+      expect(user_temp.errors.messages[:role]).to eq([error_message])
     end
   end
 
