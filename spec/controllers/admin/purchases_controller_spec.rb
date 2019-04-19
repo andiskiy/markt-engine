@@ -4,15 +4,15 @@ RSpec.describe Admin::PurchasesController, type: :controller do
   before do
     create :pending_purchase, user: user
     items.each do |item|
-      create :order, item: item, purchase: purchase_pending, user: user, quantity: 1
-      create :order, item: item, purchase: purchase_completed, user: user, quantity: 1
-      create :order, item: item, purchase: purchase_processing, user: user, quantity: 1
+      create :order, item: item, purchase: purchase_pending, user: user
+      create :order, item: item, purchase: purchase_completed, user: user
+      create :order, item: item, purchase: purchase_processing, user: user
     end
     purchase_pending_with_deleted_item = create :pending_purchase, user: user
     deleted_item = create :item, category: category
     user2 = create :user
-    create :order, item: deleted_item, purchase: purchase_pending_with_deleted_item, user: user2, quantity: 1
-    create :order, item: deleted_item, purchase: purchase_completed_with_deleted_item, user: user2, quantity: 1
+    create :order, item: deleted_item, purchase: purchase_pending_with_deleted_item, user: user2
+    create :order, item: deleted_item, purchase: purchase_completed_with_deleted_item, user: user2
     deleted_item.destroy
   end
 

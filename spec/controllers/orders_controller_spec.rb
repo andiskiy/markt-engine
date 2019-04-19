@@ -10,7 +10,7 @@ RSpec.describe OrdersController, type: :controller do
     context 'when user is authorized' do
       login_user
 
-      let(:order)             { create :order, purchase: purchase, user: current_user, item: item, quantity: 1 }
+      let(:order)             { create :order, purchase: purchase, user: current_user, item: item }
       let!(:purchase)         { create :pending_purchase, user: current_user }
       let(:current_user)      { subject.current_user }
       let(:http_request_json) { post :create, params: { item_id: item.id }, format: 'json' }
@@ -62,14 +62,14 @@ RSpec.describe OrdersController, type: :controller do
 
   describe 'DELETE destroy' do
     let(:http_request)    { delete :destroy, params: { id: order_purchase.id } }
-    let!(:order_purchase) { create :order, quantity: 1 }
+    let!(:order_purchase) { create :order }
 
     context 'when user is authorized' do
       login_user
 
       let!(:item)             { create :item, category: category, price: price }
       let(:price)             { 50 }
-      let!(:order)            { create :order, purchase: purchase, user: current_user, item: item, quantity: 1 }
+      let!(:order)            { create :order, purchase: purchase, user: current_user, item: item }
       let(:category)          { create :category }
       let!(:purchase)         { create :pending_purchase, user: current_user }
       let(:http_request)      { delete :destroy, params: { id: order.id } }

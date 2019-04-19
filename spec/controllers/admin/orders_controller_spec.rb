@@ -29,7 +29,7 @@ RSpec.describe Admin::OrdersController, type: :controller do
         end
         let!(:orders) do
           (items << item).map do |map_item|
-            create :order, item: map_item, purchase: purchase, user: user, quantity: 1
+            create :order, item: map_item, purchase: purchase, user: user
           end
         end
 

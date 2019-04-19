@@ -17,20 +17,20 @@ RSpec.describe CartsController, type: :controller do
       let!(:completed_purchase)  { create :completed_purchase, user: current_user }
       let!(:processing_purchase) { create :processing_purchase, user: current_user }
       let(:orders) do
-        create :order, item: deleted_item, user: current_user, purchase: pending_purchase, quantity: 1
+        create :order, item: deleted_item, user: current_user, purchase: pending_purchase
         deleted_item.destroy
         items.map do |item|
-          create :order, item: item, user: current_user, purchase: pending_purchase, quantity: 1
+          create :order, item: item, user: current_user, purchase: pending_purchase
         end.sort_by(&:id)
       end
       let(:another_orders) do
         item = create :item, category: category
-        create :order, item: item, user: current_user, purchase: completed_purchase, quantity: 1
-        create :order, item: item, user: current_user, purchase: processing_purchase, quantity: 1
-        create :order, item: item, user: user, purchase: purchase_user, quantity: 1
-        create :order, item: item, user: user, purchase: purchase_user, quantity: 1
-        create :order, item: items[0], user: current_user, purchase: processing_purchase, quantity: 1
-        create :order, item: items[1], user: current_user, purchase: completed_purchase, quantity: 1
+        create :order, item: item, user: current_user, purchase: completed_purchase
+        create :order, item: item, user: current_user, purchase: processing_purchase
+        create :order, item: item, user: user, purchase: purchase_user
+        create :order, item: item, user: user, purchase: purchase_user
+        create :order, item: items[0], user: current_user, purchase: processing_purchase
+        create :order, item: items[1], user: current_user, purchase: completed_purchase
       end
 
       it 'orders assigns' do

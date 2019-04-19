@@ -49,7 +49,7 @@ shared_examples 'assigns purchase in purchases controller' do
     context 'and valid data' do
       let(:purchase) { create :pending_purchase, user: current_user }
 
-      before { create :order, item: item, user: current_user, purchase: purchase, quantity: 1 }
+      before { create :order, item: item, user: current_user, purchase: purchase }
 
       it 'assigns purchase' do
         http_request
@@ -68,7 +68,7 @@ shared_examples 'assigns purchase in purchases controller' do
         let(:purchase) { create :pending_purchase, user: current_user }
 
         before do
-          create :order, item: item, user: current_user, purchase: purchase, quantity: 1
+          create :order, item: item, user: current_user, purchase: purchase
           item.destroy
         end
 
@@ -79,7 +79,7 @@ shared_examples 'assigns purchase in purchases controller' do
         let(:user)     { create :user }
         let(:purchase) { create :pending_purchase, user: user }
 
-        before { create :order, item: item, user: user, purchase: purchase, quantity: 1 }
+        before { create :order, item: item, user: user, purchase: purchase }
 
         include_examples 'purchase to be a nil'
       end
@@ -88,7 +88,7 @@ shared_examples 'assigns purchase in purchases controller' do
         context "with #{status} purchase and with orders" do
           let(:purchase) { create "#{status}_purchase", user: current_user }
 
-          before { create :order, item: item, user: current_user, purchase: purchase, quantity: 1 }
+          before { create :order, item: item, user: current_user, purchase: purchase }
 
           include_examples 'purchase to be a nil'
         end

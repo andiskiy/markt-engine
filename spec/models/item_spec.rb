@@ -28,8 +28,8 @@ RSpec.describe Item, type: :model do
     let(:orders)             { [first_order, second_order] }
     let(:first_user)         { create :user }
     let(:second_user)        { create :user }
-    let(:first_order)        { create :order, user: first_user, purchase: pending_purchase, item: item, quantity: 1 }
-    let(:second_order)       { create :order, user: second_user, purchase: completed_purchase, item: item, quantity: 1 }
+    let(:first_order)        { create :order, user: first_user, purchase: pending_purchase, item: item }
+    let(:second_order)       { create :order, user: second_user, purchase: completed_purchase, item: item }
     let(:pending_purchase)   { create :pending_purchase, user: first_user }
     let(:completed_purchase) { create :completed_purchase, user: second_user }
 
@@ -79,8 +79,8 @@ RSpec.describe Item, type: :model do
 
   describe 'callbacks' do
     before do
-      create :order, user: user, purchase: purchase, item: item, quantity: 1
-      create :order, user: user, purchase: purchase, item: item, quantity: 1
+      create :order, user: user, purchase: purchase, item: item
+      create :order, user: user, purchase: purchase, item: item
     end
 
     it 'before delete item' do
@@ -114,12 +114,12 @@ RSpec.describe Item, type: :model do
   end
 
   describe 'methods' do
-    let(:order) { create :order, purchase: purchase, user: user, item: item, quantity: 1 }
+    let(:order) { create :order, purchase: purchase, user: user, item: item }
     let(:orders) do
       item_temp = create :item, category: category
-      create :order, purchase: purchase, user: user, item: item_temp, quantity: 1
+      create :order, purchase: purchase, user: user, item: item_temp
       purchase_temp = create :processing_purchase, user: user
-      create :order, purchase: purchase_temp, user: user, item: item, quantity: 1
+      create :order, purchase: purchase_temp, user: user, item: item
     end
 
     it 'active_photo' do

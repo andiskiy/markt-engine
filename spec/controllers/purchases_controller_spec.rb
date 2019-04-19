@@ -26,7 +26,7 @@ RSpec.describe PurchasesController, type: :controller do
       let(:http_request)      { patch :update, params: { id: purchase, purchase: attributes } }
       let(:http_request_json) { patch :update, params: { id: purchase, purchase: attributes }, format: 'json' }
 
-      before { create :order, item: item, user: current_user, purchase: purchase, quantity: 1 }
+      before { create :order, item: item, user: current_user, purchase: purchase }
 
       context 'when data is valid' do
         it 'sets flash success' do

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Purchase, type: :model do
   let(:user)     { create :user }
-  let(:orders)   { create_list :order, 10, purchase: purchase, user: user, quantity: 1 }
+  let(:orders)   { create_list :order, 10, purchase: purchase, user: user }
   let(:purchase) { create :pending_purchase, user: user }
 
   describe 'countryable' do
@@ -64,8 +64,8 @@ RSpec.describe Purchase, type: :model do
     let!(:purchases) do
       orders
       user_temp = create :user
-      create :order, purchase: processing_purchase, user: user_temp, quantity: 1
-      create :order, purchase: completed_purchase, user: user_temp, quantity: 1
+      create :order, purchase: processing_purchase, user: user_temp
+      create :order, purchase: completed_purchase, user: user_temp
       [purchase, processing_purchase, completed_purchase].sort_by(&:created_at)
     end
     let(:additional_purchases) do
@@ -77,7 +77,7 @@ RSpec.describe Purchase, type: :model do
     before do
       item_temp = create :item
       user_temp = create :user
-      create :order, purchase: pending_purchase, item: item_temp, user: user_temp, quantity: 1
+      create :order, purchase: pending_purchase, item: item_temp, user: user_temp
       item_temp.destroy
     end
 

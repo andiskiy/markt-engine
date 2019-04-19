@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Order, type: :model do
   let(:user)     { create :user }
   let(:item)     { create :item, name: old_name, category: category }
-  let(:order)    { create :order, item: item, user: user, purchase: purchase, quantity: 1 }
+  let(:order)    { create :order, item: item, user: user, purchase: purchase }
   let(:old_name) { 'Old name' }
   let(:category) { create :category }
   let(:purchase) { create :purchase, user: user }
@@ -49,7 +49,7 @@ RSpec.describe Order, type: :model do
     let!(:new_order) do
       order
       item_temp = create :item, category: category
-      create :order, item: item_temp, user: user, purchase: purchase, quantity: 1
+      create :order, item: item_temp, user: user, purchase: purchase
     end
 
     context 'when purchase is pending' do
