@@ -78,6 +78,10 @@ class User < ApplicationRecord
   private
 
   def do_not_allow_super_role
-    errors.add(:role, I18n.t('activerecord.errors.models.user.attributes.role.update_super_role')) if super?
+    if super?
+      errors.add(:role, I18n.t('activerecord.errors.models.user.attributes.role.update_another_role_to_super'))
+    elsif super_was?
+      errors.add(:role, I18n.t('activerecord.errors.models.user.attributes.role.update_super_role_to_another'))
+    end
   end
 end
