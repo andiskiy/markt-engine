@@ -19,30 +19,8 @@ RSpec.describe Item, type: :model do
 
     before { item.update(name: new_name, price: new_price) }
 
-    context 'when purchase is pending' do
-      let!(:pending_purchase) { create :pending_purchase, user: user }
-
-      it 'old_name' do
-        expect(item.old_name(pending_purchase.ordered_date)).to eq(new_name)
-      end
-
-      it 'old_price' do
-        expect(item.old_price(pending_purchase.ordered_date)).to eq(new_price)
-      end
-    end
-
-    %w[processing completed].each do |purchase_status|
-      context "when purchase is #{purchase_status}" do
-        let!(:purchase) { create "#{purchase_status}_purchase", user: user, ordered_at: 10.seconds.ago }
-
-        it 'old_name' do
-          expect(item.old_name(purchase.ordered_date)).to eq(old_name)
-        end
-
-        it 'old_price' do
-          expect(item.old_price(purchase.ordered_date)).to eq(old_price)
-        end
-      end
+    include_examples 'versionable', %w[name price] do
+      let(:model) { item }
     end
   end
 

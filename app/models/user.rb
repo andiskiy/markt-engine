@@ -58,7 +58,8 @@ class User < ApplicationRecord
   # Scopes
   scope :order_by_id, -> { order(id: :asc) }
   scope :with_role, lambda { |role|
-    User.roles[role] ? where(role: role) : where.not(role: nil)
+    users = admin_or_lower.order_by_id
+    User.roles[role] ? users.where(role: role) : users.where.not(role: nil)
   }
   scope :search, lambda { |value|
     where("CONCAT(first_name,' ',last_name) ILIKE :value OR

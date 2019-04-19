@@ -4,9 +4,7 @@ module Admin
 
     def index
       @users = User.with_role(params[:role])
-                   .admin_or_lower
                    .search(params[:value])
-                   .order_by_id
                    .paginate(page: params[:page], per_page: User::PER_PAGE)
       authorize([:admin, @users])
       respond_to do |format|
