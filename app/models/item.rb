@@ -25,9 +25,9 @@ class Item < ApplicationRecord
   # Associations
   belongs_to :category
   belongs_to :prev_category, class_name: 'Category', optional: true
-  has_many :item_photos
-  has_many :users, through: :orders
+  has_many :item_photos, dependent: :destroy
   has_many :orders
+  has_many :users, through: :orders
   has_many :pending_orders, lambda {
     joins(:purchase).where('purchases.status = ?', Purchase.statuses['pending'])
   }, class_name: 'Order', inverse_of: :item
