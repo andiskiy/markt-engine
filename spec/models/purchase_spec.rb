@@ -24,7 +24,7 @@ RSpec.describe Purchase, type: :model do
     end
 
     it 'orders' do
-      expect(purchase.orders).to eq(orders)
+      expect(purchase.orders).to eq_id_list_of(orders)
     end
   end
 
@@ -66,7 +66,7 @@ RSpec.describe Purchase, type: :model do
       user_temp = create :user
       create :order, purchase: processing_purchase, user: user_temp
       create :order, purchase: completed_purchase, user: user_temp
-      [purchase, processing_purchase, completed_purchase].sort_by(&:created_at)
+      [purchase, processing_purchase, completed_purchase]
     end
     let(:additional_purchases) do
       [create(:pending_purchase),
@@ -83,20 +83,20 @@ RSpec.describe Purchase, type: :model do
 
     it 'with_orders' do
       additional_purchases
-      expect(described_class.with_orders).to eq(purchases)
+      expect(described_class.with_orders).to eq_id_list_of(purchases)
     end
 
     it 'with_status(all)' do
       additional_purchases
-      expect(described_class.with_status('')).to eq((purchases << pending_purchase) + additional_purchases)
+      expect(described_class.with_status('')).to eq_id_list_of((purchases << pending_purchase) + additional_purchases)
     end
 
     it 'with_status(processing)' do
-      expect(described_class.with_status('processing')).to eq([processing_purchase])
+      expect(described_class.with_status('processing')).to eq_id_list_of([processing_purchase])
     end
 
     it 'with_status(completed)' do
-      expect(described_class.with_status('completed')).to eq([completed_purchase])
+      expect(described_class.with_status('completed')).to eq_id_list_of([completed_purchase])
     end
   end
 

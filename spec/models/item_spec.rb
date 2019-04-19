@@ -44,22 +44,22 @@ RSpec.describe Item, type: :model do
     it 'item_photos' do
       item_photo
       active_item_photo
-      expect(item.item_photos).to eq([item_photo, active_item_photo])
+      expect(item.item_photos).to eq_id_list_of([item_photo, active_item_photo])
     end
 
     it 'users' do
       orders
-      expect(item.users.sort_by(&:id)).to eq([first_user, second_user])
+      expect(item.users).to eq_id_list_of([first_user, second_user])
     end
 
     it 'orders' do
       orders
-      expect(item.orders).to eq(orders)
+      expect(item.orders).to eq_id_list_of(orders)
     end
 
     it 'pending_orders' do
       orders
-      expect(item.pending_orders).to eq([first_order])
+      expect(item.pending_orders).to eq_id_list_of([first_order])
     end
   end
 
@@ -101,15 +101,15 @@ RSpec.describe Item, type: :model do
     let(:second_category) { create :category }
 
     it 'order by name' do
-      expect(described_class.order_by_name.to_a).to eq([second_item, first_item])
+      expect(described_class.order_by_name.to_a).to eq_id_list_of([second_item, first_item])
     end
 
     it 'search #1' do
-      expect(described_class.search('444', '').to_a).to eq([second_item, first_item])
+      expect(described_class.search('444', '').to_a).to eq_id_list_of([second_item, first_item])
     end
 
     it 'search #2' do
-      expect(described_class.search('444', category.id).to_a).to eq([first_item])
+      expect(described_class.search('444', category.id).to_a).to eq_id_list_of([first_item])
     end
   end
 

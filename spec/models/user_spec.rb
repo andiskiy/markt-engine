@@ -44,17 +44,17 @@ RSpec.describe User, type: :model do
 
     it 'orders' do
       orders
-      expect(user.orders).to eq(orders)
+      expect(user.orders).to eq_id_list_of(orders)
     end
 
     it 'items' do
       orders
-      expect(user.items).to eq(items + items)
+      expect(user.items).to eq_id_list_of(items + items)
     end
 
     it 'purchases' do
       purchases
-      expect(user.purchases).to eq(purchases)
+      expect(user.purchases).to eq_id_list_of(purchases)
     end
   end
 
@@ -107,11 +107,11 @@ RSpec.describe User, type: :model do
 
   describe 'scopes' do
     let(:users)          { (admin_users + standard_users) }
-    let(:email)          { '222@gmail.com' }
-    let(:last_name)      { '444222555' }
+    let(:email)          { 'AAAAAAAA@gmail.com' }
+    let(:last_name)      { '444AAAAAAAAXXXXXX' }
     let(:super_user)     { create :super_user, first_name: first_name, last_name: last_name }
-    let(:first_name)     { '111222333' }
-    let(:first_user)     { create :user, first_name: first_name, last_name: '666' }
+    let(:first_name)     { '111AAAAAAAAWWWWWW' }
+    let(:first_user)     { create :user, first_name: first_name, last_name: 'RRRRRR' }
     let(:third_user)     { create :user, email: email }
     let(:second_user)    { create :user, last_name: last_name }
     let(:admin_users)    { create_list :admin, 20 }
@@ -130,7 +130,7 @@ RSpec.describe User, type: :model do
 
     it 'with_role(all)' do
       users
-      expect(described_class.with_role('')).to eq(users)
+      expect(described_class.with_role('')).to eq_id_list_of(users)
     end
 
     it 'with_role(super)' do
@@ -140,37 +140,37 @@ RSpec.describe User, type: :model do
 
     it 'with_role(admin)' do
       users
-      expect(described_class.with_role('admin')).to eq(admin_users)
+      expect(described_class.with_role('admin')).to eq_id_list_of(admin_users)
     end
 
     it 'with_role(standard)' do
       users
-      expect(described_class.with_role('standard')).to eq(standard_users)
+      expect(described_class.with_role('standard')).to eq_id_list_of(standard_users)
     end
 
     it 'search all three users' do
       search
-      expect(described_class.search('222').order_by_id).to eq([first_user, second_user, third_user])
+      expect(described_class.search('AAAAAAAA')).to eq_id_list_of([first_user, second_user, third_user])
     end
 
     it 'search by full name' do
       search
-      expect(described_class.search('333 666').order_by_id).to eq([first_user])
+      expect(described_class.search('WWWWWW RRRRRR')).to eq_id_list_of([first_user])
     end
 
     it 'search by first name' do
       search
-      expect(described_class.search(first_name)).to eq([first_user])
+      expect(described_class.search(first_name)).to eq_id_list_of([first_user])
     end
 
     it 'search by last name' do
       search
-      expect(described_class.search(last_name)).to eq([second_user])
+      expect(described_class.search(last_name)).to eq_id_list_of([second_user])
     end
 
     it 'search by email' do
       search
-      expect(described_class.search(email)).to eq([third_user])
+      expect(described_class.search(email)).to eq_id_list_of([third_user])
     end
   end
 

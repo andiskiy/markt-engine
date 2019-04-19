@@ -78,7 +78,7 @@ RSpec.describe Order, type: :model do
     end
 
     it 'order_by_id' do
-      expect(described_class.order_by_id).to eq([order, new_order])
+      expect(described_class.order_by_id).to eq_id_list_of([order, new_order])
     end
   end
 

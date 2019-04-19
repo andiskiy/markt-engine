@@ -16,6 +16,6 @@ RSpec::Matchers.define :eq_id_list_of do |expected|
   end
 
   description do
-    "have this ID list #{id_list expected}"
+    "have this ID list #{id_list(expected)}, but got #{id_list(actual)}"
   end
 end
