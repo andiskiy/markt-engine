@@ -27,6 +27,8 @@ class PhotoUploader < CarrierWave::Uploader::Base
     %r{image\/}
   end
 
+  private
+
   def destroy_model
     model.destroy
   end
