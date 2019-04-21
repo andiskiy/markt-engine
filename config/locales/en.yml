@@ -26,3 +26,8 @@ en:
       switch: 'Language'
       success: 'Language successfully switched'
       danger: "Language wasn't successfully switched"
+
+    activerecord:
+      errors:
+        messages:
+          record_invalid: 'Errors have occurred: %{errors}'

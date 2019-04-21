@@ -1,0 +1,14 @@
+ru:
+  activerecord:
+    attributes:
+      item_photo:
+        item: 'Товар'
+        photo: 'Изображение'
+    errors:
+      models:
+        item_photo:
+          attributes:
+            photo:
+              blank: 'не должно быть пустым'
+            item:
+              required: 'должен должен существовать'

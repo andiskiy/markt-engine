@@ -1,8 +1,8 @@
 class CartsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_purchase
 
   def index
-    @purchase = current_user.purchases.find_or_create_by(status: 'pending')
-    @orders = @purchase.orders
+    @orders = @purchase.orders.joins(:item)
   end
 end

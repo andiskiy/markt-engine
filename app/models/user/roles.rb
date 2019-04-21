@@ -15,6 +15,10 @@ class User
           self.role == role
         end
 
+        define_method "#{role}_was?" do
+          role_was == role
+        end
+
         define_method "#{role}_or_higher?" do
           User.roles[self.role] <= User.roles[role]
         end

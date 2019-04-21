@@ -53,12 +53,13 @@ class User < ApplicationRecord
   # Validations
   validates :first_name, :last_name, presence: true
   validates :role, inclusion: { in: User::ROLES }
-  validates :country_code, :address, :city, :zip_code, :phone, presence: true, on: :update
+  validate :do_not_allow_super_role, on: :update
 
   # Scopes
   scope :order_by_id, -> { order(id: :asc) }
   scope :with_role, lambda { |role|
-    User.roles[role] ? where(role: role) : where.not(role: nil)
+    users = admin_or_lower.order_by_id
+    User.roles[role] ? users.where(role: role) : users.where.not(role: nil)
   }
   scope :search, lambda { |value|
     where("CONCAT(first_name,' ',last_name) ILIKE :value OR
@@ -72,5 +73,15 @@ class User < ApplicationRecord
 
   def full_name_with_email(date)
     "#{old_first_name(date)} #{old_last_name(date)} (#{old_email(date)})"
+  end
+
+  private
+
+  def do_not_allow_super_role
+    if super?
+      errors.add(:role, I18n.t('activerecord.errors.models.user.attributes.role.update_another_role_to_super'))
+    elsif super_was?
+      errors.add(:role, I18n.t('activerecord.errors.models.user.attributes.role.update_super_role_to_another'))
+    end
   end
 end

@@ -1,8 +1,6 @@
 class PhotoUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
-  storage :fog
-
   after :remove, :destroy_model
 
   def fog_public
@@ -28,6 +26,8 @@ class PhotoUploader < CarrierWave::Uploader::Base
   def content_type_whitelist
     %r{image\/}
   end
+
+  private
 
   def destroy_model
     model.destroy

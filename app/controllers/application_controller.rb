@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def admin_user!
-    redirect_to(root_path) unless current_user.admin_or_higher?
+    redirect_to(root_path) unless current_user&.admin_or_higher?
   end
 
   # Methods when Access denied
@@ -50,11 +50,11 @@ class ApplicationController < ActionController::Base
 
   # Callbacks
   def set_categories
-    @categories = Category.all
+    @categories = Category.order_by_name
   end
 
   def set_purchase
-    @purchase = current_user.purchases.find_or_create_by(status: 'pending') if current_user
+    @purchase = current_user.purchases.find_or_create_by(status: Purchase.statuses['pending']) if current_user
   end
 
   def set_locale

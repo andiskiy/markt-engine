@@ -8,13 +8,13 @@ class PurchasesController < ApplicationController
     respond_to do |format|
       if @purchase.update(permit_params)
         format.html { redirect_to root_path, flash: { success: t('cart.flash_messages.success') } }
-        format.json { render status: :created, purchase: @purchase }
+        format.json { render json: { status: :created, purchase: @purchase } }
       else
         format.html do
           flash[:danger] = t('cart.flash_messages.danger')
           render :edit
         end
-        format.json { render errors: @purchase.errors, status: :unprocessable_entity }
+        format.json { render json: { errors: @purchase.errors, status: :unprocessable_entity } }
       end
     end
   end
@@ -22,8 +22,7 @@ class PurchasesController < ApplicationController
   private
 
   def set_purchase
-    @purchase = Purchase.find(params[:id])
-    authorize(@purchase)
+    @purchase = authorize(Purchase.find(params[:id]))
   end
 
   def permit_params

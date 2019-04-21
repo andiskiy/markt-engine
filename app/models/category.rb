@@ -18,11 +18,12 @@ class Category < ApplicationRecord
   attr_accessor :category_id
 
   # Associations
-  has_many :items
+  has_many :items, -> { order_by_name }, inverse_of: :category
 
   # Validations
   validates :name, presence: true
 
   # Scopes
   scope :search, ->(value) { where('name ILIKE :value', value: "%#{value}%") }
+  scope :order_by_name, -> { order(name: :asc) }
 end

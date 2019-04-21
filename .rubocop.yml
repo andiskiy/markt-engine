@@ -1,10 +1,18 @@
 require: rubocop-rspec
 
+AllCops:
+  Exclude:
+    - 'spec/spec_helper.rb'
+
 Rails:
   Enabled: true
   Exclude:
     - 'db/schema.rb'
     - 'bin/**/*'
+
+Metrics/BlockLength:
+  Exclude:
+    - '**/*.rb'
 
 Style/Documentation:
   Enabled: false
@@ -15,6 +23,16 @@ Metrics/LineLength:
   Max: 130
 RSpec/FilePath:
   Enabled: false
+RSpec/NestedGroups:
+  Max: 4
+RSpec/ContextWording:
+ Prefixes:
+   - when
+   - with
+   - without
+   - if
+   - and
+
 
 ClassLength:
   Enabled: false

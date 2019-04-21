@@ -6,6 +6,7 @@ module Admin
 
     def index
       @categories = Category.search(params[:value])
+                            .order_by_name
                             .includes(:items)
                             .paginate(page: params[:page], per_page: Category::PER_PAGE)
       respond_to do |format|
@@ -78,7 +79,7 @@ module Admin
     end
 
     def move_items
-      @categories = Category.all.where.not(id: @category.id)
+      @categories = Category.order_by_name.where.not(id: @category.id)
     end
 
     def update_items

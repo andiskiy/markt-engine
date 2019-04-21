@@ -25,22 +25,29 @@ class Item < ApplicationRecord
   # Associations
   belongs_to :category
   belongs_to :prev_category, class_name: 'Category', optional: true
-  has_many :item_photos
-  has_many :users, through: :orders
+  has_many :item_photos, dependent: :destroy
   has_many :orders
+  has_many :users, through: :orders
+  has_many :pending_orders, lambda {
+    joins(:purchase).where('purchases.status = ?', Purchase.statuses['pending'])
+  }, class_name: 'Order', inverse_of: :item
 
   accepts_nested_attributes_for :item_photos, allow_destroy: true, reject_if: :all_blank
 
   # Validations
   validates :name, :price, presence: true
 
-  class << self
-    def search(value, category_id)
-      items = where('name ILIKE :value', value: "%#{value}%")
-      category_id.present? ? items.where(category_id: category_id) : items
-    end
-  end
+  # Callbacks
+  after_destroy :delete_pending_orders
 
+  # Scopes
+  scope :order_by_name, -> { order(name: :asc) }
+  scope :search, lambda { |value, category_id|
+    items = where('name ILIKE :value', value: "%#{value}%").order_by_name
+    category_id.present? ? items.where(category_id: category_id) : items
+  }
+
+  # Methods
   def active_photo
     item_photos.find_by(active: true)
   end
@@ -62,5 +69,10 @@ class Item < ApplicationRecord
   def needed_photos_count
     needed = 5 - item_photos.length
     needed.positive? ? needed : 0
+  end
+
+  # Callbacks
+  def delete_pending_orders
+    pending_orders.destroy_all
   end
 end

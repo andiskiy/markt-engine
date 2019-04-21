@@ -27,7 +27,7 @@ class Purchase < ApplicationRecord
                                                       inverse_of:  false,
                                                       class_name:  'User',
                                                       optional:    true
-  has_many :orders
+  has_many :orders, -> { order_by_id }, inverse_of: :purchase
 
   # Validations
   validates :country_code, :address,
@@ -37,8 +37,12 @@ class Purchase < ApplicationRecord
   before_save :set_ordered_at, if: -> { status_changed? && processing? }
 
   # Scopes
-  scope :with_orders, -> { joins(:orders).having('COUNT(orders.id) > 0').group('purchases.id') }
-  scope :not_pending, -> { where('purchases.status <> ?', Purchase.statuses['pending']) }
+  scope :with_orders, lambda {
+    joins(orders: :with_deleted_item)
+      .where('(purchases.status = :pending AND items.deleted_at IS NULL) OR
+              (purchases.status <> :pending)', pending: Purchase.statuses['pending'])
+      .having('COUNT(orders.id) > 0').group('purchases.id').order(created_at: :asc)
+  }
 
   class << self
     def with_status(status)
@@ -58,7 +62,7 @@ class Purchase < ApplicationRecord
   end
 
   def amount_items
-    orders.inject(0) { |sum, order| sum + (order.item.price * order.quantity) }
+    orders.joins(:item).inject(0) { |sum, order| sum + (order.item.price * order.quantity) }
   end
 
   def datetime_format(str_time)
@@ -68,7 +72,8 @@ class Purchase < ApplicationRecord
   end
 
   def ordered_date
-    ordered_at || Time.current
+    time = ordered_at || Time.now.utc
+    time.in_time_zone('UTC')
   end
 
   STATUSES.each do |status|

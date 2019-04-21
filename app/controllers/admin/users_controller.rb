@@ -4,9 +4,7 @@ module Admin
 
     def index
       @users = User.with_role(params[:role])
-                   .admin_or_lower
                    .search(params[:value])
-                   .order_by_id
                    .paginate(page: params[:page], per_page: User::PER_PAGE)
       authorize([:admin, @users])
       respond_to do |format|
@@ -39,7 +37,7 @@ module Admin
           format.html do
             redirect_to admin_users_path, flash: { success: t('admin.user.flash_messages.delete.success') }
           end
-          format.json { render json: { status: :destroyed, user: @user } }
+          format.json { render json: { status: :deleted, user: @user } }
         else
           format.html do
             redirect_to admin_users_path, flash: { danger: t('admin.user.flash_messages.delete.danger') }
