@@ -41,7 +41,7 @@ gem 'fog-aws'
 
 gem 'haml-rails'
 gem 'jquery-rails'
-gem 'bootstrap', '~> 4.1.0'
+gem 'bootstrap', '~> 5.1.3'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'font-awesome-sass', '~> 5.0.9'
 gem 'devise'
